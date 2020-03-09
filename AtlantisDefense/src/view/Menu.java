@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Toolkit;
+import java.net.URL;
+
 /**
  *
  * @author anwol
@@ -16,6 +19,11 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        URL url = Menu.class.getClassLoader().getResource("res/goldfish.png");
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
+        this.setTitle("Kezdőképernyő");
+        this.setSize(600, 600);
+        this.setResizable(false);
     }
 
     /**

@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package view;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import javax.swing.Timer;
 
 /**
@@ -20,6 +22,10 @@ public class View extends javax.swing.JFrame {
     
     public View() {
         initComponents();
+        URL url = View.class.getClassLoader().getResource("res/fugu.png");
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
+        this.setTitle("Főképernyő");
+        this.setResizable(false);
         this.startTime =  System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override
