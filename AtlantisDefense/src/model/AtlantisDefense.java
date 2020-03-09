@@ -5,6 +5,8 @@
  */
 package model;
 
+import view.View;
+
 /**
  *
  * @author vub8vd
@@ -17,6 +19,7 @@ public class AtlantisDefense {
     public static void main(String[] args) {
         // TODO code application logic here
         int valami;
+        new View().setVisible(true);
     }
     
 }
