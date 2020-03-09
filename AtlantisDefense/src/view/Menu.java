@@ -5,8 +5,14 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.net.URL;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -24,6 +30,7 @@ public class Menu extends javax.swing.JFrame {
         this.setTitle("Kezdőképernyő");
         this.setSize(600, 600);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -58,11 +65,21 @@ public class Menu extends javax.swing.JFrame {
 
         enemiesButton.setBackground(new java.awt.Color(0, 204, 204));
         enemiesButton.setText("Ellenségekről");
+        enemiesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemiesButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(enemiesButton);
         enemiesButton.setBounds(140, 30, 120, 30);
 
         creditsButton.setBackground(new java.awt.Color(0, 204, 204));
         creditsButton.setText("Készítőkről");
+        creditsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditsButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(creditsButton);
         creditsButton.setBounds(290, 30, 110, 30);
 
@@ -109,7 +126,34 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void towersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towersButtonActionPerformed
-        // TODO add your handling code here:
+
+        JDialog d = new JDialog(this, "Tornyok");
+        JTextArea txtAreaDetail = new JTextArea("- GoldTower: Ezzel a toronnyal a játékban eltelt idővel arányosan  \n"
+                + "  lehet pénz gyűjteni. Aktív támadásra nem használható, azonban \n"
+                + "  minden - más torony által - kilőtt Goldfish után a pénztermelés \n"
+                + "  gyorsasága a kétszeresére nő.\n\n"
+                + "- BubbleTower: Az ElectricTower-rel ellentétben ez a toronytípus\n"
+                + "  pontatlanabbul, de sokkal nagyobb hatőkörben képes lőni maga \n"
+                + "  körül a fejlesztésektől függő sugarú körben. Enemy, akire\n"
+                + "  leginkább hatásos: Fugu.\n\n"
+                + "- IceTower: Ez a torony a hatókörébe érkező gyors Swordfish-eket \n"
+                + "  képes lelassítani, fejlesztések után akár megállítani, \n"
+                + "  befagyasztani, hogy minél nagyobb arányban ki tudja őket lőni.\n\n"
+                + "- ElectricTower: Ez a torony nagyon gyors ütemben, de egyszerre\n"
+                + "  csak egy enemy-t képes lőni nagy pontossággal, messziről. Enemy, \n"
+                + "  akire leginkább hatásos: Eel.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
     }//GEN-LAST:event_towersButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -127,43 +171,110 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void hintsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintsButtonActionPerformed
-        // TODO add your handling code here:
+        JDialog d = new JDialog(this, "A játékról");
+        JTextArea txtAreaDetail = new JTextArea("  Az Atlantis Defence egy tower defence sítlusú, 3 szinten \n"
+                + "  elérhető játék. Minden szinten lehetőség van tornyok \n"
+                + "  lehelyzésére a pályán megjelölt helyekre, melyek a hullámokban\n"
+                + "  érkező ellenségeket hivatottak feltartóztatni, hogy ne érjék el\n"
+                + "  a pálya végén található igazgyöngyöt. Ha ez mégis megtörténik, \n"
+                + "  a göngy veszít életerejéből, végső esetben elpusztul, ezzel \n"
+                + "  a felhasználó elveszítette a szintet. Minden szint az előző szint\n"
+                + "  sikeres teljesítése után válik elérhetővé.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
     }//GEN-LAST:event_hintsButtonActionPerformed
+
+    private void enemiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemiesButtonActionPerformed
+        JDialog d = new JDialog(this, "Ellenségek");
+        JTextArea txtAreaDetail = new JTextArea("- Goldfish: Lassú, de életerős hal, ami megnehezíti a kilövését. \n"
+                + "  Minden kilőtt egyed után megkétszereződik a GoldTower által \n"
+                + "  termelt pénz.\n\n"
+                + "- Swordfish: Nagyon gyors, könnyen mozgó hal. Az ElectricTower\n"
+                + "  képes lelassítani, megállítani.\n\n"
+                + "- Fugu: Nagytestű, lomha hal, de sokáig él. Legkönnyebben a\n"
+                + "  BubbleTower tudja kilőni.\n\n"
+                + "- Eel: Gyors, áramvonalas hal. Nehéz messziről eltalálni, ezt \n"
+                + "  legkönnyebben az ElectricTower tudja megtenni.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
+    }//GEN-LAST:event_enemiesButtonActionPerformed
+
+    private void creditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtonActionPerformed
+        JDialog d = new JDialog(this, "Készítők");
+        JTextArea txtAreaDetail = new JTextArea("A játékot készítették:\n"
+                + "\tZakariás Adrienn\n"
+                + "\tWolosz András\n"
+                + "\tKálmán Jázmin\n"
+                + "\t\t2020. tavasz\n"
+                + "\t\tELTE IK, Szoftvertechnológia");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
+    }//GEN-LAST:event_creditsButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-            try {
-                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            //</editor-fold>
-
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Menu().setVisible(true);
-                }
-            });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//            //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Menu().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton creditsButton;

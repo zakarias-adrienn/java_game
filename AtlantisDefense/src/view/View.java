@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package view;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 /**
@@ -26,6 +32,7 @@ public class View extends javax.swing.JFrame {
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Főképernyő");
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.startTime =  System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override
@@ -47,7 +54,7 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,19 +62,20 @@ public class View extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         timerStopButton = new javax.swing.JButton();
         timerContinueButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton1.setText("Súgó");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        helpButton.setBackground(new java.awt.Color(0, 204, 204));
+        helpButton.setText("Súgó");
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                helpButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(610, 40, 90, 40);
+        getContentPane().add(helpButton);
+        helpButton.setBounds(610, 40, 90, 40);
 
         jButton2.setBackground(new java.awt.Color(0, 204, 204));
         jButton2.setText("Kilépés");
@@ -114,12 +122,52 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(timerContinueButton);
         timerContinueButton.setBounds(610, 380, 90, 40);
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/small-sand-castle.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(620, 90, 70, 100);
+
         setBounds(0, 0, 886, 519);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+        JDialog d = new JDialog(this, "Súgó");
+        JTextArea txtAreaDetail = new JTextArea("TORNYOK\n\n- GoldTower: Ezzel a toronnyal a játékban eltelt idővel arányosan  \n"
+                + "  lehet pénz gyűjteni. Aktív támadásra nem használható, azonban \n"
+                + "  minden - más torony által - kilőtt Goldfish után a pénztermelés \n"
+                + "  gyorsasága a kétszeresére nő.\n\n"
+                + "- BubbleTower: Az ElectricTower-rel ellentétben ez a toronytípus\n"
+                + "  pontatlanabbul, de sokkal nagyobb hatőkörben képes lőni maga \n"
+                + "  körül a fejlesztésektől függő sugarú körben. Enemy, akire\n"
+                + "  leginkább hatásos: Fugu.\n\n"
+                + "- IceTower: Ez a torony a hatókörébe érkező gyors Swordfish-eket \n"
+                + "  képes lelassítani, fejlesztések után akár megállítani, \n"
+                + "  befagyasztani, hogy minél nagyobb arányban ki tudja őket lőni.\n\n"
+                + "- ElectricTower: Ez a torony nagyon gyors ütemben, de egyszerre\n"
+                + "  csak egy enemy-t képes lőni nagy pontossággal, messziről. Enemy, \n"
+                + "  akire leginkább hatásos: Eel.\n\n"
+                + "ELLENSÉGEK\n\n"
+                + "- Goldfish: Lassú, de életerős hal, ami megnehezíti a kilövését. \n"
+                + "  Minden kilőtt egyed után megkétszereződik a GoldTower által \n"
+                + "  termelt pénz.\n\n"
+                + "- Swordfish: Nagyon gyors, könnyen mozgó hal. Az ElectricTower\n"
+                + "  képes lelassítani, megállítani.\n\n"
+                + "- Fugu: Nagytestű, lomha hal, de sokáig él. Legkönnyebben a\n"
+                + "  BubbleTower tudja kilőni.\n\n"
+                + "- Eel: Gyors, áramvonalas hal. Nehéz messziről eltalálni, ezt \n"
+                + "  legkönnyebben az ElectricTower tudja megtenni.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
+    }//GEN-LAST:event_helpButtonActionPerformed
 
     private void timerStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStopButtonActionPerformed
         timer.stop();
@@ -164,12 +212,13 @@ public class View extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton helpButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton timerContinueButton;
     private javax.swing.JButton timerStopButton;
     // End of variables declaration//GEN-END:variables
