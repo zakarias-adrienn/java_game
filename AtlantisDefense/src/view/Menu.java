@@ -45,23 +45,28 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(towersButton);
-        towersButton.setBounds(10, 30, 100, 37);
+        towersButton.setBounds(10, 30, 100, 25);
 
         enemiesButton.setText("Enemies");
         getContentPane().add(enemiesButton);
-        enemiesButton.setBounds(110, 30, 100, 37);
+        enemiesButton.setBounds(110, 30, 100, 25);
 
         creditsButton.setText("Credits");
         getContentPane().add(creditsButton);
-        creditsButton.setBounds(210, 30, 90, 37);
+        creditsButton.setBounds(210, 30, 90, 25);
 
         hintsButton.setText("Hints");
         getContentPane().add(hintsButton);
-        hintsButton.setBounds(320, 30, 100, 37);
+        hintsButton.setBounds(320, 30, 100, 25);
 
         jButton1.setText("Level 1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 170, 120, 37);
+        jButton1.setBounds(380, 170, 120, 25);
 
         jButton2.setText("Level 2");
         jButton2.setEnabled(false);
@@ -71,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(370, 230, 120, 37);
+        jButton2.setBounds(370, 230, 120, 25);
 
         jButton3.setText("Level 3");
         jButton3.setEnabled(false);
@@ -81,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(390, 300, 110, 37);
+        jButton3.setBounds(390, 300, 110, 25);
 
         setBounds(0, 0, 874, 479);
     }// </editor-fold>//GEN-END:initComponents
@@ -97,6 +102,12 @@ public class Menu extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // játék indítása
+        this.setVisible(false);
+        new View().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,6 +16,7 @@ public class View extends javax.swing.JFrame {
     private long startTime;
     private Timer timer;
     private boolean paused = false;
+    private int i = 0;
     
     public View() {
         initComponents();
@@ -24,7 +25,7 @@ public class View extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!paused){
-                    jLabel1.setText("" + elapsedTime());
+                    jLabel1.setText("" + i++);
                 }
                 
             }
@@ -46,8 +47,8 @@ public class View extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        timerStopButton = new javax.swing.JButton();
+        timerContinueButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -81,23 +82,23 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(570, 260, 53, 16);
 
-        jButton3.setText("Leállít");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        timerStopButton.setText("Leállít");
+        timerStopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                timerStopButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(650, 370, 90, 30);
+        getContentPane().add(timerStopButton);
+        timerStopButton.setBounds(650, 370, 90, 30);
 
-        jButton4.setText("Folytat");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        timerContinueButton.setText("Folytat");
+        timerContinueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                timerContinueButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(520, 370, 90, 30);
+        getContentPane().add(timerContinueButton);
+        timerContinueButton.setBounds(520, 370, 90, 30);
 
         setBounds(0, 0, 886, 519);
     }// </editor-fold>//GEN-END:initComponents
@@ -106,14 +107,15 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void timerStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStopButtonActionPerformed
+        timer.stop();
         this.paused = true;
-        this.startTime = System.currentTimeMillis();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_timerStopButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void timerContinueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerContinueButtonActionPerformed
         this.paused = false;
-    }//GEN-LAST:event_jButton4ActionPerformed
+        timer.start();
+    }//GEN-LAST:event_timerContinueButtonActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -150,11 +152,11 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton timerContinueButton;
+    private javax.swing.JButton timerStopButton;
     // End of variables declaration//GEN-END:variables
 }
