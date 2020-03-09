@@ -59,35 +59,42 @@ public class View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setText("Hint");
+        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setText("Súgó");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(479, 30, 140, 25);
+        jButton1.setBounds(610, 40, 90, 40);
 
-        jButton2.setText("Exit");
+        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setText("Kilépés");
         getContentPane().add(jButton2);
-        jButton2.setBounds(640, 30, 150, 25);
+        jButton2.setBounds(710, 40, 90, 40);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("0");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(650, 260, 180, 16);
+        jLabel1.setBounds(730, 330, 80, 22);
 
-        jLabel2.setText("Money:");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Pénz:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(560, 320, 50, 20);
+        jLabel2.setBounds(610, 270, 60, 30);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("0");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(650, 320, 150, 16);
+        jLabel3.setBounds(730, 280, 40, 16);
 
-        jLabel4.setText("Time:");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Eltelt idő:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(570, 260, 53, 16);
+        jLabel4.setBounds(610, 320, 80, 40);
 
+        timerStopButton.setBackground(new java.awt.Color(0, 204, 204));
         timerStopButton.setText("Leállít");
         timerStopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +102,9 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(timerStopButton);
-        timerStopButton.setBounds(650, 370, 90, 30);
+        timerStopButton.setBounds(710, 380, 90, 40);
 
+        timerContinueButton.setBackground(new java.awt.Color(0, 204, 204));
         timerContinueButton.setText("Folytat");
         timerContinueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +112,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(timerContinueButton);
-        timerContinueButton.setBounds(520, 370, 90, 30);
+        timerContinueButton.setBounds(610, 380, 90, 40);
 
         setBounds(0, 0, 886, 519);
     }// </editor-fold>//GEN-END:initComponents

@@ -46,37 +46,46 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        towersButton.setText("Towers");
+        towersButton.setBackground(new java.awt.Color(0, 204, 204));
+        towersButton.setText("Tornyokról");
         towersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 towersButtonActionPerformed(evt);
             }
         });
         getContentPane().add(towersButton);
-        towersButton.setBounds(10, 30, 100, 25);
+        towersButton.setBounds(20, 30, 100, 30);
 
-        enemiesButton.setText("Enemies");
+        enemiesButton.setBackground(new java.awt.Color(0, 204, 204));
+        enemiesButton.setText("Ellenségekről");
         getContentPane().add(enemiesButton);
-        enemiesButton.setBounds(110, 30, 100, 25);
+        enemiesButton.setBounds(140, 30, 120, 30);
 
-        creditsButton.setText("Credits");
+        creditsButton.setBackground(new java.awt.Color(0, 204, 204));
+        creditsButton.setText("Készítőkről");
         getContentPane().add(creditsButton);
-        creditsButton.setBounds(210, 30, 90, 25);
+        creditsButton.setBounds(290, 30, 110, 30);
 
-        hintsButton.setText("Hints");
+        hintsButton.setBackground(new java.awt.Color(0, 204, 204));
+        hintsButton.setText("A játékról");
+        hintsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hintsButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(hintsButton);
-        hintsButton.setBounds(320, 30, 100, 25);
+        hintsButton.setBounds(430, 30, 100, 30);
 
-        jButton1.setText("Level 1");
+        jButton1.setText("Első pálya");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 170, 120, 25);
+        jButton1.setBounds(220, 150, 130, 40);
 
-        jButton2.setText("Level 2");
+        jButton2.setText("Második pálya");
         jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,9 +93,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(370, 230, 120, 25);
+        jButton2.setBounds(220, 200, 130, 40);
 
-        jButton3.setText("Level 3");
+        jButton3.setText("Harmadik pálya");
         jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,9 +103,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(390, 300, 110, 25);
+        jButton3.setBounds(220, 250, 130, 40);
 
-        setBounds(0, 0, 874, 479);
+        setBounds(0, 0, 589, 478);
     }// </editor-fold>//GEN-END:initComponents
 
     private void towersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towersButtonActionPerformed
@@ -116,6 +125,10 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
         new View().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void hintsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hintsButtonActionPerformed
 
     /**
      * @param args the command line arguments
