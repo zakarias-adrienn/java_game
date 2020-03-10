@@ -29,7 +29,7 @@ public class Menu extends javax.swing.JFrame {
         URL url = Menu.class.getClassLoader().getResource("res/goldfish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Kezdőképernyő");
-        this.setSize(600, 600);
+        //this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }

@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package view;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -21,11 +23,12 @@ import javax.swing.Timer;
  * @author anwol
  */
 public class View extends javax.swing.JFrame {
+
     private long startTime;
     private Timer timer;
     private boolean paused = false;
     private int i = 0;
-    
+
     public View() {
         initComponents();
         URL url = View.class.getClassLoader().getResource("res/fugu.png");
@@ -33,36 +36,37 @@ public class View extends javax.swing.JFrame {
         this.setTitle("Főképernyő");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.startTime =  System.currentTimeMillis();
+        this.startTime = System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!paused){
-                    jLabel1.setText("" + i++);
+                if (!paused) {
+                    timeView.setText("" + i++);
                 }
-                
+
             }
         });
         timer.start();
     }
-    
+
     public long elapsedTime() {
-            return (System.currentTimeMillis() - this.startTime) / 1000;
-     }
+        return (System.currentTimeMillis() - this.startTime) / 1000;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         helpButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JButton();
+        timeView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        moneyView = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         timerStopButton = new javax.swing.JButton();
         timerContinueButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -75,32 +79,39 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(helpButton);
-        helpButton.setBounds(610, 40, 90, 40);
+        helpButton.setBounds(1050, 20, 90, 40);
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
-        jButton2.setText("Kilépés");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(710, 40, 90, 40);
+        exitButton.setBackground(new java.awt.Color(0, 204, 204));
+        exitButton.setText("Kilépés");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(exitButton);
+        exitButton.setBounds(1160, 20, 90, 40);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("0");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(730, 330, 80, 22);
+        timeView.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        timeView.setForeground(new java.awt.Color(255, 206, 159));
+        timeView.setText("0");
+        getContentPane().add(timeView);
+        timeView.setBounds(1170, 430, 130, 50);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Pénz:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(610, 270, 60, 30);
+        jLabel2.setBounds(1050, 400, 60, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("0");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(730, 280, 40, 16);
+        moneyView.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        moneyView.setForeground(new java.awt.Color(255, 206, 159));
+        moneyView.setText("0");
+        getContentPane().add(moneyView);
+        moneyView.setBounds(1210, 490, 100, 50);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Eltelt idő:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(610, 320, 80, 40);
+        jLabel4.setBounds(1050, 470, 80, 40);
 
         timerStopButton.setBackground(new java.awt.Color(0, 204, 204));
         timerStopButton.setText("Leállít");
@@ -110,7 +121,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(timerStopButton);
-        timerStopButton.setBounds(710, 380, 90, 40);
+        timerStopButton.setBounds(1190, 590, 90, 40);
 
         timerContinueButton.setBackground(new java.awt.Color(0, 204, 204));
         timerContinueButton.setText("Folytat");
@@ -120,13 +131,17 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(timerContinueButton);
-        timerContinueButton.setBounds(610, 380, 90, 40);
+        timerContinueButton.setBounds(1070, 580, 90, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/small-sand-castle.png"))); // NOI18N
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(620, 90, 70, 100);
+        jLabel5.setBounds(1050, 150, 70, 100);
 
-        setBounds(0, 0, 886, 519);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bg.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, -10, 1520, 860);
+
+        setBounds(0, 0, 1397, 872);
     }// </editor-fold>//GEN-END:initComponents
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -179,6 +194,14 @@ public class View extends javax.swing.JFrame {
         timer.start();
     }//GEN-LAST:event_timerContinueButtonActionPerformed
 
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.setVisible(false);
+        Menu menu = new Menu();
+        menu.setPreferredSize(new Dimension(1397, 842));
+        menu.pack();
+        menu.setVisible(true);
+    }//GEN-LAST:event_exitButtonActionPerformed
+
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -212,13 +235,14 @@ public class View extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel moneyView;
+    private javax.swing.JLabel timeView;
     private javax.swing.JButton timerContinueButton;
     private javax.swing.JButton timerStopButton;
     // End of variables declaration//GEN-END:variables
