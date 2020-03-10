@@ -12,11 +12,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 
 /**
  *
@@ -28,6 +30,8 @@ public class View extends javax.swing.JFrame {
     private Timer timer;
     private boolean paused = false;
     private int i = 0;
+
+    boolean selected = false;
 
     public View() {
         initComponents();
@@ -61,10 +65,10 @@ public class View extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
-        timerStopButton = new javax.swing.JButton();
-        timerContinueButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        timerContinuePanel = new javax.swing.JPanel();
+        timerStopPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -101,33 +105,34 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(moneyView);
         moneyView.setBounds(1210, 490, 100, 50);
 
-        timerStopButton.setBackground(new java.awt.Color(0, 204, 204));
-        timerStopButton.setText("Stop");
-        timerStopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerStopButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(timerStopButton);
-        timerStopButton.setBounds(1190, 590, 90, 40);
-
-        timerContinueButton.setBackground(new java.awt.Color(0, 204, 204));
-        timerContinueButton.setText("Resume");
-        timerContinueButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerContinueButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(timerContinueButton);
-        timerContinueButton.setBounds(1070, 590, 90, 40);
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/small-sand-castle.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel5);
         jLabel5.setBounds(1050, 150, 70, 100);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bg.png"))); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, -10, 1520, 860);
+
+        timerContinuePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                timerContinuePanelMouseClicked(evt);
+            }
+        });
+        getContentPane().add(timerContinuePanel);
+        timerContinuePanel.setBounds(1050, 690, 60, 50);
+
+        timerStopPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                timerStopPanelMouseClicked(evt);
+            }
+        });
+        getContentPane().add(timerStopPanel);
+        timerStopPanel.setBounds(1140, 690, 50, 50);
 
         setBounds(0, 0, 1397, 872);
     }// </editor-fold>//GEN-END:initComponents
@@ -172,16 +177,6 @@ public class View extends javax.swing.JFrame {
         d.setLocationRelativeTo(null);
     }//GEN-LAST:event_helpButtonActionPerformed
 
-    private void timerStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerStopButtonActionPerformed
-        timer.stop();
-        this.paused = true;
-    }//GEN-LAST:event_timerStopButtonActionPerformed
-
-    private void timerContinueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerContinueButtonActionPerformed
-        this.paused = false;
-        timer.start();
-    }//GEN-LAST:event_timerContinueButtonActionPerformed
-
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.setVisible(false);
         Menu menu = new Menu();
@@ -189,6 +184,32 @@ public class View extends javax.swing.JFrame {
         menu.pack();
         menu.setVisible(true);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void timerContinuePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerContinuePanelMouseClicked
+        this.paused = false;
+        timer.start();
+    }//GEN-LAST:event_timerContinuePanelMouseClicked
+
+    private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
+        // TODO add your handling code here:
+        timer.stop();
+        this.paused = true;
+    }//GEN-LAST:event_timerStopPanelMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        //this.setBorder(BorderFactory.createLineBorder(Color.black));
+        if (!selected) {
+            Border border = BorderFactory.createLineBorder(Color.yellow, 2, true);
+            jLabel5.setBorder(border);
+            selected = true;
+            return;
+        } else {
+            Border border = BorderFactory.createLineBorder(Color.yellow, 0, true);
+            jLabel5.setBorder(border);
+            selected = false;
+        }
+    }//GEN-LAST:event_jLabel5MouseClicked
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -229,7 +250,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
-    private javax.swing.JButton timerContinueButton;
-    private javax.swing.JButton timerStopButton;
+    private javax.swing.JPanel timerContinuePanel;
+    private javax.swing.JPanel timerStopPanel;
     // End of variables declaration//GEN-END:variables
 }
