@@ -8,6 +8,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -45,12 +46,15 @@ public class Menu extends javax.swing.JFrame {
         towersButton = new javax.swing.JButton();
         enemiesButton = new javax.swing.JButton();
         creditsButton = new javax.swing.JButton();
-        hintsButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        level1Button = new javax.swing.JButton();
+        level2Button = new javax.swing.JButton();
+        level3Button = new javax.swing.JButton();
+        hintsButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1387, 842));
         getContentPane().setLayout(null);
 
         towersButton.setBackground(new java.awt.Color(0, 204, 204));
@@ -61,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(towersButton);
-        towersButton.setBounds(20, 30, 100, 30);
+        towersButton.setBounds(20, 10, 150, 40);
 
         enemiesButton.setBackground(new java.awt.Color(0, 204, 204));
         enemiesButton.setText("Ellenségekről");
@@ -71,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(enemiesButton);
-        enemiesButton.setBounds(140, 30, 120, 30);
+        enemiesButton.setBounds(190, 10, 150, 40);
 
         creditsButton.setBackground(new java.awt.Color(0, 204, 204));
         creditsButton.setText("Készítőkről");
@@ -81,48 +85,67 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(creditsButton);
-        creditsButton.setBounds(290, 30, 110, 30);
+        creditsButton.setBounds(360, 10, 150, 40);
 
-        hintsButton.setBackground(new java.awt.Color(0, 204, 204));
-        hintsButton.setText("A játékról");
-        hintsButton.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setBackground(new java.awt.Color(0, 204, 204));
+        exitButton.setText("Kilépés");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hintsButtonActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(hintsButton);
-        hintsButton.setBounds(430, 30, 100, 30);
+        getContentPane().add(exitButton);
+        exitButton.setBounds(1220, 10, 150, 40);
 
-        jButton1.setText("Első pálya");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        level1Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        level1Button.setText("Első pálya");
+        level1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                level1ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(220, 150, 130, 40);
+        getContentPane().add(level1Button);
+        level1Button.setBounds(580, 390, 220, 80);
 
-        jButton2.setText("Második pálya");
-        jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        level2Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        level2Button.setText("Második pálya");
+        level2Button.setEnabled(false);
+        level2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                level2ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(220, 200, 130, 40);
+        getContentPane().add(level2Button);
+        level2Button.setBounds(580, 510, 220, 80);
 
-        jButton3.setText("Harmadik pálya");
-        jButton3.setEnabled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        level3Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        level3Button.setText("Harmadik pálya");
+        level3Button.setEnabled(false);
+        level3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                level3ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(220, 250, 130, 40);
+        getContentPane().add(level3Button);
+        level3Button.setBounds(580, 620, 220, 80);
 
-        setBounds(0, 0, 589, 478);
+        hintsButton1.setBackground(new java.awt.Color(0, 204, 204));
+        hintsButton1.setText("A játékról");
+        hintsButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hintsButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(hintsButton1);
+        hintsButton1.setBounds(530, 10, 150, 40);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/menu.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(1397, 842));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1397, 842));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1490, 845);
+
+        setBounds(0, 0, 1397, 872);
     }// </editor-fold>//GEN-END:initComponents
 
     private void towersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towersButtonActionPerformed
@@ -156,43 +179,23 @@ public class Menu extends javax.swing.JFrame {
         d.setLocationRelativeTo(null);
     }//GEN-LAST:event_towersButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void level2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_level2ButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void level3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_level3ButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
         // játék indítása
         this.setVisible(false);
         new View().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_level1ButtonActionPerformed
 
-    private void hintsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintsButtonActionPerformed
-        JDialog d = new JDialog(this, "A játékról");
-        JTextArea txtAreaDetail = new JTextArea("  Az Atlantis Defence egy tower defence sítlusú, 3 szinten \n"
-                + "  elérhető játék. Minden szinten lehetőség van tornyok \n"
-                + "  lehelyzésére a pályán megjelölt helyekre, melyek a hullámokban\n"
-                + "  érkező ellenségeket hivatottak feltartóztatni, hogy ne érjék el\n"
-                + "  a pálya végén található igazgyöngyöt. Ha ez mégis megtörténik, \n"
-                + "  a göngy veszít életerejéből, végső esetben elpusztul, ezzel \n"
-                + "  a felhasználó elveszítette a szintet. Minden szint az előző szint\n"
-                + "  sikeres teljesítése után válik elérhetővé.");
-        txtAreaDetail.setEditable(false);
-        txtAreaDetail.setBackground(new Color(240, 248, 255));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
-        JScrollPane txtAreaScroll = new JScrollPane();
-        txtAreaScroll.setViewportView(txtAreaDetail);
-        d.add(txtAreaScroll);
-        d.pack();
-        d.setVisible(true);
-        d.setLocationRelativeTo(null);
-    }//GEN-LAST:event_hintsButtonActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void enemiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemiesButtonActionPerformed
         JDialog d = new JDialog(this, "Ellenségek");
@@ -241,48 +244,54 @@ public class Menu extends javax.swing.JFrame {
         d.setLocationRelativeTo(null);
     }//GEN-LAST:event_creditsButtonActionPerformed
 
+    private void hintsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintsButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hintsButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//            //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Menu().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Menu().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton creditsButton;
     private javax.swing.JButton enemiesButton;
-    private javax.swing.JButton hintsButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JButton hintsButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton level1Button;
+    private javax.swing.JButton level2Button;
+    private javax.swing.JButton level3Button;
     private javax.swing.JButton towersButton;
     // End of variables declaration//GEN-END:variables
 }
