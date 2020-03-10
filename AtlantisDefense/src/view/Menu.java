@@ -245,7 +245,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_creditsButtonActionPerformed
 
     private void hintsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintsButton1ActionPerformed
-        // TODO add your handling code here:
+        JDialog d = new JDialog(this, "A játékról");
+        JTextArea txtAreaDetail = new JTextArea("  Az Atlantis Defence egy tower defence sítlusú, 3 szinten \n"
+                + "  elérhető játék. Minden szinten lehetőség van tornyok \n"
+                + "  lehelyzésére a pályán megjelölt helyekre, melyek a hullámokban\n"
+                + "  érkező ellenségeket hivatottak feltartóztatni, hogy ne érjék el\n"
+                + "  a pálya végén található igazgyöngyöt. Ha ez mégis megtörtnik, a\n"
+                + "  göngy veszít életerejéből, végső esetben elpusztul, ezzel a \n"
+                + "  felhasználó elveszítette a szintet. Minden szint az előző szint\n"
+                + "  sikeres teljesítése után válik elérhetővé.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
     }//GEN-LAST:event_hintsButton1ActionPerformed
 
     /**

@@ -60,9 +60,7 @@ public class View extends javax.swing.JFrame {
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         timerStopButton = new javax.swing.JButton();
         timerContinueButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -95,12 +93,7 @@ public class View extends javax.swing.JFrame {
         timeView.setForeground(new java.awt.Color(255, 206, 159));
         timeView.setText("0");
         getContentPane().add(timeView);
-        timeView.setBounds(1170, 430, 130, 50);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Pénz:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(1050, 400, 60, 30);
+        timeView.setBounds(1180, 430, 130, 50);
 
         moneyView.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         moneyView.setForeground(new java.awt.Color(255, 206, 159));
@@ -108,13 +101,8 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(moneyView);
         moneyView.setBounds(1210, 490, 100, 50);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Eltelt idő:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(1050, 470, 80, 40);
-
         timerStopButton.setBackground(new java.awt.Color(0, 204, 204));
-        timerStopButton.setText("Leállít");
+        timerStopButton.setText("Stop");
         timerStopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timerStopButtonActionPerformed(evt);
@@ -124,14 +112,14 @@ public class View extends javax.swing.JFrame {
         timerStopButton.setBounds(1190, 590, 90, 40);
 
         timerContinueButton.setBackground(new java.awt.Color(0, 204, 204));
-        timerContinueButton.setText("Folytat");
+        timerContinueButton.setText("Resume");
         timerContinueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timerContinueButtonActionPerformed(evt);
             }
         });
         getContentPane().add(timerContinueButton);
-        timerContinueButton.setBounds(1070, 580, 90, 40);
+        timerContinueButton.setBounds(1070, 590, 90, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/small-sand-castle.png"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -237,8 +225,6 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel moneyView;
