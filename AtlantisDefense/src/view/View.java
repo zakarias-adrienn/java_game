@@ -73,7 +73,9 @@ public class View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        helpButton.setBackground(new java.awt.Color(0, 204, 204));
+        helpButton.setBackground(new java.awt.Color(250, 215, 172));
+        helpButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        helpButton.setForeground(new java.awt.Color(0, 0, 51));
         helpButton.setText("Súgó");
         helpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,9 +83,11 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(helpButton);
-        helpButton.setBounds(1050, 20, 90, 40);
+        helpButton.setBounds(1050, 20, 100, 40);
 
-        exitButton.setBackground(new java.awt.Color(0, 204, 204));
+        exitButton.setBackground(new java.awt.Color(250, 215, 172));
+        exitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(0, 0, 51));
         exitButton.setText("Kilépés");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,15 +95,15 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(exitButton);
-        exitButton.setBounds(1160, 20, 90, 40);
+        exitButton.setBounds(1160, 20, 110, 40);
 
-        timeView.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        timeView.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         timeView.setForeground(new java.awt.Color(255, 206, 159));
         timeView.setText("0");
         getContentPane().add(timeView);
         timeView.setBounds(1180, 430, 130, 50);
 
-        moneyView.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        moneyView.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         moneyView.setForeground(new java.awt.Color(255, 206, 159));
         moneyView.setText("0");
         getContentPane().add(moneyView);
