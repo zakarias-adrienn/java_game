@@ -66,6 +66,7 @@ public class View extends javax.swing.JFrame {
 
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        jTable1 = new javax.swing.JTable();
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -79,6 +80,9 @@ public class View extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -106,6 +110,30 @@ public class View extends javax.swing.JFrame {
         });
         getContentPane().add(exitButton);
         exitButton.setBounds(1160, 20, 110, 40);
+
+        jTable1.setAutoCreateColumnsFromModel(false);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14", "Title 15"
+            }
+        ));
+        getContentPane().add(jTable1);
+        jTable1.setBounds(120, 100, 870, 650);
 
         timeView.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         timeView.setForeground(new java.awt.Color(255, 206, 159));
@@ -145,7 +173,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(1070, 260, 80, 80);
+        jLabel7.setBounds(1070, 280, 80, 80);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/toy_medium.png"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -155,9 +183,13 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(1170, 260, 70, 80);
+        jLabel9.setBounds(1170, 280, 70, 80);
 
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bg.png"))); // NOI18N
+        jLabel6.setMaximumSize(new java.awt.Dimension(1397, 842));
+        jLabel6.setMinimumSize(new java.awt.Dimension(1397, 842));
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, -10, 1520, 860);
 
@@ -192,6 +224,15 @@ public class View extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(1170, 190, 41, 16);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(1050, 240, 106, 40);
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(210, 190, 2, 2);
 
         setBounds(0, 0, 1397, 872);
     }// </editor-fold>//GEN-END:initComponents
@@ -360,6 +401,10 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
