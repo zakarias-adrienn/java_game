@@ -14,8 +14,8 @@ public class AtlantisDefense {
         menu.setPreferredSize(new Dimension(1397, 842));
         menu.pack();
         menu.setVisible(true);
-        //menu.setPreferredSize(new Dimension(1397, 842));
-        //new View().setVisible(true);
+        
+        Model model = new Model();
     }
     
 }

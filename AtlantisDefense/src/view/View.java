@@ -145,7 +145,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(1070, 260, 70, 80);
+        jLabel7.setBounds(1070, 260, 80, 80);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/toy_medium.png"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -261,6 +261,15 @@ public class View extends javax.swing.JFrame {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
             jLabel5.setBorder(border);
             selected1 = true;
+            selected2 = false;
+            selected3 = false;
+            selected4 = false;
+            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel7.setBorder(border2);
+            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel8.setBorder(border3);
+            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel9.setBorder(border4);
             return;
         } else {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
@@ -275,6 +284,15 @@ public class View extends javax.swing.JFrame {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
             jLabel8.setBorder(border);
             selected3 = true;
+            selected1 = false;
+            selected2 = false;
+            selected4 = false;
+            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel7.setBorder(border2);
+            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel5.setBorder(border3);
+            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel9.setBorder(border4);
             return;
         } else {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
@@ -289,6 +307,15 @@ public class View extends javax.swing.JFrame {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
             jLabel7.setBorder(border);
             selected2 = true;
+            selected1 = false;
+            selected3 = false;
+            selected4 = false;
+            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel5.setBorder(border2);
+            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel8.setBorder(border3);
+            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel9.setBorder(border4);
             return;
         } else {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
@@ -303,6 +330,15 @@ public class View extends javax.swing.JFrame {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
             jLabel9.setBorder(border);
             selected4 = true;
+            selected2 = false;
+            selected3 = false;
+            selected1 = false;
+            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel7.setBorder(border2);
+            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel8.setBorder(border3);
+            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel5.setBorder(border4);
             return;
         } else {
             Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
