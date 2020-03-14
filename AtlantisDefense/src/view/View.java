@@ -31,7 +31,10 @@ public class View extends javax.swing.JFrame {
     private boolean paused = false;
     private int i = 0;
 
-    boolean selected = false;
+    private boolean selected1 = false;
+    private boolean selected2 = false;
+    private boolean selected3 = false;
+    private boolean selected4 = false;
 
     public View() {
         initComponents();
@@ -66,9 +69,16 @@ public class View extends javax.swing.JFrame {
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         timerContinuePanel = new javax.swing.JPanel();
         timerStopPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -109,14 +119,43 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(moneyView);
         moneyView.setBounds(1210, 490, 100, 50);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/small-sand-castle.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/sand-castle_medium.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(1050, 150, 70, 100);
+        jLabel5.setBounds(1070, 160, 70, 80);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/castle_medium.png"))); // NOI18N
+        jLabel8.setName(""); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(1170, 160, 70, 80);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/sand-castle_brown_medium.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(1070, 260, 70, 80);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/toy_medium.png"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(1170, 260, 70, 80);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bg.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -137,6 +176,22 @@ public class View extends javax.swing.JFrame {
         });
         getContentPane().add(timerStopPanel);
         timerStopPanel.setBounds(1140, 690, 50, 50);
+
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(1190, 210, 41, 16);
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(1180, 210, 41, 16);
+
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(1160, 190, 41, 16);
+
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(1170, 190, 41, 16);
 
         setBounds(0, 0, 1397, 872);
     }// </editor-fold>//GEN-END:initComponents
@@ -201,57 +256,74 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_timerStopPanelMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        //this.setBorder(BorderFactory.createLineBorder(Color.black));
-        if (!selected) {
-            Border border = BorderFactory.createLineBorder(Color.yellow, 2, true);
+
+        if (!selected1) {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
             jLabel5.setBorder(border);
-            selected = true;
+            selected1 = true;
             return;
         } else {
-            Border border = BorderFactory.createLineBorder(Color.yellow, 0, true);
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
             jLabel5.setBorder(border);
-            selected = false;
+            selected1 = false;
         }
     }//GEN-LAST:event_jLabel5MouseClicked
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new View().setVisible(true);
-//            }
-//        });
-//    }
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        if (!selected3) {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            jLabel8.setBorder(border);
+            selected3 = true;
+            return;
+        } else {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel8.setBorder(border);
+            selected3 = false;
+        }
+    }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        
+        if (!selected2) {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            jLabel7.setBorder(border);
+            selected2 = true;
+            return;
+        } else {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel7.setBorder(border);
+            selected2 = false;
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+
+        if (!selected4) {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            jLabel9.setBorder(border);
+            selected4 = true;
+            return;
+        } else {
+            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            jLabel9.setBorder(border);
+            selected4 = false;
+        }
+    }//GEN-LAST:event_jLabel9MouseClicked
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
