@@ -1,11 +1,13 @@
 package model;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+
 
 public class Model {
 
@@ -16,7 +18,7 @@ public class Model {
     private ArrayList<JLabel> towerSpots; // ? JLabel lesz?
     private int round;
     private ArrayList<Bullet> bullets;
-    private ArrayList<Pair> route;
+    private ArrayList<Point> route;
     
     private ArrayList<String> readLines;
 
@@ -51,7 +53,7 @@ public class Model {
 //        }
         String[] routeString = readLines.get(length+1).split(" ");
         for(int i = 0; i<routeString.length-1; i+=2){
-            Pair p = new Pair();
+            Point p = new Point(0, 0);
             p.x = parseInt(routeString[i]);
             p.y = parseInt(routeString[i+1]);
             route.add(p);

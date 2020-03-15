@@ -188,8 +188,6 @@ public class View extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 51));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bg.png"))); // NOI18N
-        jLabel6.setMaximumSize(new java.awt.Dimension(1397, 842));
-        jLabel6.setMinimumSize(new java.awt.Dimension(1397, 842));
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, -10, 1520, 860);
 
@@ -211,26 +209,26 @@ public class View extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1190, 210, 41, 16);
+        jLabel1.setBounds(1190, 210, 53, 23);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1180, 210, 41, 16);
+        jLabel2.setBounds(1180, 210, 53, 23);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1160, 190, 41, 16);
+        jLabel3.setBounds(1160, 190, 53, 23);
 
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1170, 190, 41, 16);
+        jLabel4.setBounds(1170, 190, 53, 23);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(1050, 240, 106, 40);
+        jScrollPane1.setBounds(1050, 240, 302, 40);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 

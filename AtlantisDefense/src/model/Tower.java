@@ -1,11 +1,11 @@
 package model;
 
 public abstract class Tower {
-    private int life;
-    private int spot;
-    private int price;
-    private int distance;
-    private String type;
+    protected Integer life;
+    protected Integer spot;
+    protected Integer price;
+    protected Integer distance;
+    protected String type;
     
     public abstract void shoot();
 }

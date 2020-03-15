@@ -1,11 +1,13 @@
 package model;
 
+import java.awt.Point;
+
 public abstract class Enemy {
-    private Pair p; // x, y helyett
-    private int life;
-    private int strength;
-    private int speed;
-    private String type;
+    protected Point pos; // x, y helyett
+    protected int life;
+    protected int strength;
+    protected int speed;
+    protected String type;
     
     public abstract void move();
     
