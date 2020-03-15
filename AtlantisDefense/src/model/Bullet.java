@@ -1,9 +1,9 @@
 package model;
 
-import jdk.javadoc.internal.doclets.toolkit.util.Utils.Pair;
+import java.awt.Point;
 
 public class Bullet {
-    public Pair pos;
+    public Point pos;
     public int speed;
     public int breaK; // ? mit is mondott helyette Szendrei?
     

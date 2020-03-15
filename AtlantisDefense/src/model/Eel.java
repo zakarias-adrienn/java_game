@@ -1,13 +1,13 @@
 package model;
 
-import jdk.javadoc.internal.doclets.toolkit.util.Utils.Pair;
+import java.awt.Point;
 
 public class Eel extends Enemy {
     
     
     public Eel()
     {
-        this.pos = new Pair(0, 0);
+        this.pos = new Point(0, 0);
         this.life = 20;
         this.speed = 5;
         this.strength = 4;
