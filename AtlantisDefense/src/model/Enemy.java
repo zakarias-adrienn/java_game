@@ -1,7 +1,9 @@
 package model;
 
+import java.awt.Point;
+
 public abstract class Enemy {
-    protected Pair pos; // x, y helyett
+    protected Point pos; // x, y helyett
     protected int life;
     protected int strength;
     protected int speed;
