@@ -57,8 +57,10 @@ public class Menu extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1387, 842));
         getContentPane().setLayout(null);
 
-        towersButton.setBackground(new java.awt.Color(0, 204, 204));
-        towersButton.setText("Tornyokról");
+        towersButton.setBackground(new java.awt.Color(0, 0, 51));
+        towersButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 20)); // NOI18N
+        towersButton.setForeground(new java.awt.Color(250, 215, 172));
+        towersButton.setText("Tornyok");
         towersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 towersButtonActionPerformed(evt);
@@ -67,27 +69,33 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(towersButton);
         towersButton.setBounds(20, 10, 150, 40);
 
-        enemiesButton.setBackground(new java.awt.Color(0, 204, 204));
-        enemiesButton.setText("Ellenségekről");
+        enemiesButton.setBackground(new java.awt.Color(0, 0, 51));
+        enemiesButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 20)); // NOI18N
+        enemiesButton.setForeground(new java.awt.Color(250, 215, 172));
+        enemiesButton.setText("Ellenségek");
         enemiesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enemiesButtonActionPerformed(evt);
             }
         });
         getContentPane().add(enemiesButton);
-        enemiesButton.setBounds(190, 10, 150, 40);
+        enemiesButton.setBounds(190, 10, 180, 40);
 
-        creditsButton.setBackground(new java.awt.Color(0, 204, 204));
-        creditsButton.setText("Készítőkről");
+        creditsButton.setBackground(new java.awt.Color(0, 0, 51));
+        creditsButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 20)); // NOI18N
+        creditsButton.setForeground(new java.awt.Color(250, 215, 172));
+        creditsButton.setText("Megvalósítók");
         creditsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 creditsButtonActionPerformed(evt);
             }
         });
         getContentPane().add(creditsButton);
-        creditsButton.setBounds(360, 10, 150, 40);
+        creditsButton.setBounds(390, 10, 170, 40);
 
-        exitButton.setBackground(new java.awt.Color(0, 204, 204));
+        exitButton.setBackground(new java.awt.Color(255, 51, 51));
+        exitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(0, 0, 51));
         exitButton.setText("Kilépés");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,8 +105,10 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(exitButton);
         exitButton.setBounds(1220, 10, 150, 40);
 
-        level1Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
-        level1Button.setText("Első pálya");
+        level1Button.setBackground(new java.awt.Color(250, 215, 172));
+        level1Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        level1Button.setForeground(new java.awt.Color(0, 0, 51));
+        level1Button.setText("1. pálya");
         level1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 level1ButtonActionPerformed(evt);
@@ -107,8 +117,10 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(level1Button);
         level1Button.setBounds(580, 390, 220, 80);
 
-        level2Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
-        level2Button.setText("Második pálya");
+        level2Button.setBackground(new java.awt.Color(250, 215, 172));
+        level2Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        level2Button.setForeground(new java.awt.Color(0, 0, 51));
+        level2Button.setText("2. pálya");
         level2Button.setEnabled(false);
         level2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,8 +130,10 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(level2Button);
         level2Button.setBounds(580, 510, 220, 80);
 
-        level3Button.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
-        level3Button.setText("Harmadik pálya");
+        level3Button.setBackground(new java.awt.Color(250, 215, 172));
+        level3Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        level3Button.setForeground(new java.awt.Color(0, 0, 51));
+        level3Button.setText("3. pálya");
         level3Button.setEnabled(false);
         level3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +143,9 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(level3Button);
         level3Button.setBounds(580, 620, 220, 80);
 
-        hintsButton1.setBackground(new java.awt.Color(0, 204, 204));
+        hintsButton1.setBackground(new java.awt.Color(0, 0, 51));
+        hintsButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
+        hintsButton1.setForeground(new java.awt.Color(250, 215, 172));
         hintsButton1.setText("A játékról");
         hintsButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +153,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(hintsButton1);
-        hintsButton1.setBounds(530, 10, 150, 40);
+        hintsButton1.setBounds(580, 10, 150, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/menu.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1397, 842));
@@ -166,7 +182,7 @@ public class Menu extends javax.swing.JFrame {
                 + "  csak egy enemy-t képes lőni nagy pontossággal, messziről. Enemy, \n"
                 + "  akire leginkább hatásos: Eel.");
         txtAreaDetail.setEditable(false);
-        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(Color.BLACK);
         Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
@@ -209,7 +225,7 @@ public class Menu extends javax.swing.JFrame {
                 + "- Eel: Gyors, áramvonalas hal. Nehéz messziről eltalálni, ezt \n"
                 + "  legkönnyebben az ElectricTower tudja megtenni.");
         txtAreaDetail.setEditable(false);
-        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(Color.BLACK);
         Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
@@ -231,7 +247,7 @@ public class Menu extends javax.swing.JFrame {
                 + "\t\t2020. tavasz\n"
                 + "\t\tELTE IK, Szoftvertechnológia");
         txtAreaDetail.setEditable(false);
-        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(Color.BLACK);
         Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
@@ -255,7 +271,7 @@ public class Menu extends javax.swing.JFrame {
                 + "  felhasználó elveszítette a szintet. Minden szint az előző szint\n"
                 + "  sikeres teljesítése után válik elérhetővé.");
         txtAreaDetail.setEditable(false);
-        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(Color.BLACK);
         Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
