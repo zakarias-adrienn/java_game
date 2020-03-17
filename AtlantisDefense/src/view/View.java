@@ -61,7 +61,12 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        board = new javax.swing.JPanel();
+        try {
+			board = new Board();
+		}
+		catch (IOException e){
+			e.getMessage();
+		}
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
