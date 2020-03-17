@@ -19,6 +19,10 @@ public class Model {
     private int round;
     private ArrayList<Bullet> bullets;
     private ArrayList<Point> route;
+    private int length;
+    private int width;
+    private int table[][];
+    public static LevelItem[][] level;
     
     private ArrayList<String> readLines;
 
@@ -35,15 +39,25 @@ public class Model {
 //        for (int i = 0; i < readLines.size(); i++) {
 //            System.out.println(readLines.get(i));
 //        }
-        int length = parseInt(readLines.get(1).split(" ")[0]);
-        int width = parseInt(readLines.get(1).split(" ")[1]);
-        int[][] table = new int[length][width];
+        length = parseInt(readLines.get(1).split(" ")[0]);
+        width = parseInt(readLines.get(1).split(" ")[1]);
+        table = new int[length][width];
         for(int i = 2; i<14; ++i){
             String[] row = readLines.get(i).split(" ");
             for(int j = 0; j<width; ++j){
                 table[i-2][j] = parseInt(row[j]);
             }
         }
+        level = new LevelItem[length][width];
+         for (int i = 0; i < length; i++){
+                for (int j = 0; j < width; j++){
+                    switch (table[i][j]){
+                        case 0: level[i][j] = LevelItem.SAND; break;
+                        case 1: level[i][j] = LevelItem.ROUTE; break;
+                        case 2: level[i][j] = LevelItem.TOWER_PLACE; break;
+                    }
+                }
+            }
 //        for(int i = 0; i<length; ++i){
 //            for(int j = 0; j<width; ++j){
 //               System.out.print(table[i][j]);
@@ -58,6 +72,7 @@ public class Model {
             p.y = parseInt(routeString[i+1]);
             route.add(p);
         }
+        
         
     }
 
@@ -77,6 +92,10 @@ public class Model {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public static LevelItem getItem(int row, int col) {
+        return level[row][col];
     }
     
     

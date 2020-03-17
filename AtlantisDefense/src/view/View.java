@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -20,10 +21,6 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
-/**
- *
- * @author anwol
- */
 public class View extends javax.swing.JFrame {
 
     private long startTime;
@@ -63,10 +60,14 @@ public class View extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+		try {
+			board = new Board();
+		}
+		catch (IOException e){
+			e.getMessage();
+		}
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        jTable1 = new javax.swing.JTable();
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -86,6 +87,8 @@ public class View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+        getContentPane().add(board);
+        board.setBounds(120, 100, 870, 650);
 
         helpButton.setBackground(new java.awt.Color(250, 215, 172));
         helpButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
@@ -110,30 +113,6 @@ public class View extends javax.swing.JFrame {
         });
         getContentPane().add(exitButton);
         exitButton.setBounds(1160, 20, 110, 40);
-
-        jTable1.setAutoCreateColumnsFromModel(false);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14", "Title 15"
-            }
-        ));
-        getContentPane().add(jTable1);
-        jTable1.setBounds(120, 100, 870, 650);
 
         timeView.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         timeView.setForeground(new java.awt.Color(255, 206, 159));
@@ -209,26 +188,26 @@ public class View extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1190, 210, 53, 23);
+        jLabel1.setBounds(1190, 210, 41, 16);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1180, 210, 53, 23);
+        jLabel2.setBounds(1180, 210, 41, 16);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1160, 190, 53, 23);
+        jLabel3.setBounds(1160, 190, 41, 16);
 
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1170, 190, 53, 23);
+        jLabel4.setBounds(1170, 190, 41, 16);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(1050, 240, 302, 40);
+        jScrollPane1.setBounds(1050, 240, 106, 40);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 
@@ -388,6 +367,7 @@ public class View extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel board;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
@@ -401,7 +381,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
