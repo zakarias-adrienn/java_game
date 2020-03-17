@@ -29,10 +29,10 @@ public class View extends javax.swing.JFrame {
     private boolean paused = false;
     private int i = 0;
 
-    private boolean selected1 = false;
-    private boolean selected2 = false;
-    private boolean selected3 = false;
-    private boolean selected4 = false;
+    private static boolean selected1 = false;
+    private static boolean selected2 = false;
+    private static boolean selected3 = false;
+    private static boolean selected4 = false;
 
     public View() {
         initComponents();
@@ -368,6 +368,19 @@ public class View extends javax.swing.JFrame {
         System.out.println(evt);
     }//GEN-LAST:event_boardMouseClicked
     
+    public static int checkClick(){
+        if(selected1){
+            return 1;
+        } else if(selected2) {
+            return 2;
+        } else if(selected3) {
+            return 3;
+        } else if(selected4){
+            return 4;
+        } else {
+            return 0;
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel board;

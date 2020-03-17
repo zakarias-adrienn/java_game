@@ -17,12 +17,16 @@ import model.Model;
 
 public class Board extends JPanel {
 
-    public final Image sand, route, towerPlace;
+    public final Image sand, route, towerPlace, ice, bubble, gold, electric;
 
     public Board() throws IOException {
         sand = ResourceLoader.loadImage("res/homok.png");
         route = ResourceLoader.loadImage("res/ut.png");
         towerPlace = ResourceLoader.loadImage("res/toronyhely.png");
+        ice = ResourceLoader.loadImage("res/ice_bg.png");
+        bubble = ResourceLoader.loadImage("res/bubble_bg.png");
+        gold = ResourceLoader.loadImage("res/gold_bg.png");
+        electric = ResourceLoader.loadImage("res/electric_bg.png");
         setLayout(new GridLayout(13, 15));
         int w = 15;
         int h = 13;
@@ -49,6 +53,23 @@ public class Board extends JPanel {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             System.out.println("he");
+                            int imageNumber = View.checkClick();
+                            if(imageNumber!=0){
+                                ImageIcon icon;
+                                if(imageNumber==1){
+                                    icon = new ImageIcon(gold);
+                                }
+                                else if(imageNumber==2){
+                                    icon = new ImageIcon(bubble);
+                                }
+                                else if(imageNumber==3){
+                                    icon = new ImageIcon(electric);
+                                }
+                                else {
+                                    icon = new ImageIcon(ice);
+                                }
+                                thumb.setIcon(icon);
+                            }
                         }
                     });
                 }
