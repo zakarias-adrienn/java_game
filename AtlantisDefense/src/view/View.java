@@ -60,12 +60,8 @@ public class View extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-		try {
-			board = new Board();
-		}
-		catch (IOException e){
-			e.getMessage();
-		}
+
+        board = new javax.swing.JPanel();
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
@@ -81,8 +77,6 @@ public class View extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,13 +195,6 @@ public class View extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(1170, 190, 41, 16);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(1050, 240, 106, 40);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 
@@ -379,9 +366,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
