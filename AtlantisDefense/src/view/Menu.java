@@ -54,7 +54,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1387, 842));
         getContentPane().setLayout(null);
 
         towersButton.setBackground(new java.awt.Color(0, 0, 51));
@@ -91,7 +90,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(creditsButton);
-        creditsButton.setBounds(390, 10, 170, 40);
+        creditsButton.setBounds(390, 10, 180, 40);
 
         exitButton.setBackground(new java.awt.Color(255, 51, 51));
         exitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
@@ -153,7 +152,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(hintsButton1);
-        hintsButton1.setBounds(580, 10, 150, 40);
+        hintsButton1.setBounds(590, 10, 150, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/menu.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1397, 842));
