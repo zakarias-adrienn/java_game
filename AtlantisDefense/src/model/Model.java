@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import javafx.util.Pair;
 import javax.swing.JLabel;
 
 
@@ -22,8 +23,7 @@ public class Model {
     private int length;
     private int width;
     private int table[][];
-    public static LevelItem[][] level;
-    
+    public static LevelItem[][] level;     
     private ArrayList<String> readLines;
 
     public Model() {
@@ -35,10 +35,8 @@ public class Model {
         route = new ArrayList<>();
         round = 1;
         readLines = readFile("src/res/palya.txt");
-// sikerült-e a fájlbeolvasás
-//        for (int i = 0; i < readLines.size(); i++) {
-//            System.out.println(readLines.get(i));
-//        }
+
+        
         length = parseInt(readLines.get(1).split(" ")[0]);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
@@ -58,13 +56,7 @@ public class Model {
                     }
                 }
             }
-//        for(int i = 0; i<length; ++i){
-//            for(int j = 0; j<width; ++j){
-//               System.out.print(table[i][j]);
-//               System.out.print(" ");
-//           }
-//           System.out.println("\n");
-//        }
+         
         String[] routeString = readLines.get(length+1).split(" ");
         for(int i = 0; i<routeString.length-1; i+=2){
             Point p = new Point(0, 0);
@@ -97,7 +89,6 @@ public class Model {
     public static LevelItem getItem(int row, int col) {
         return level[row][col];
     }
-    
     
 
 }

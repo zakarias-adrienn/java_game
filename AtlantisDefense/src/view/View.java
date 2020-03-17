@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import model.Model;
 
 public class View extends javax.swing.JFrame {
 
@@ -64,8 +65,8 @@ public class View extends javax.swing.JFrame {
         try {
 			board = new Board();
 		}
-		catch (IOException e){
-			e.getMessage();
+		catch(IOException e){
+		   e.getMessage();
 		}
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -86,6 +87,12 @@ public class View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        board.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boardMouseClicked(evt);
+            }
+        });
         getContentPane().add(board);
         board.setBounds(120, 100, 870, 650);
 
@@ -356,6 +363,10 @@ public class View extends javax.swing.JFrame {
             selected4 = false;
         }
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void boardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boardMouseClicked
+        System.out.println(evt);
+    }//GEN-LAST:event_boardMouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
