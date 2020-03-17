@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Dimension;
 import view.Menu;
-import view.View;
 
 public class AtlantisDefense {
 

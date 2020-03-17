@@ -38,7 +38,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        URL url = View.class.getClassLoader().getResource("res/fugu.png");
+        URL url = View.class.getClassLoader().getResource("res/fugu_small.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Főképernyő");
         this.setResizable(false);
