@@ -44,6 +44,7 @@ public class View extends javax.swing.JFrame {
         this.setTitle("Főképernyő");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.moneyView.setText("" + Model.money);
         this.startTime = System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override

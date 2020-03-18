@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 public class Model {
 
-    private int money;
+    public static int money;
     private int time; // ? kell ez ide?
     private ArrayList<Enemy> enemies;
     private ArrayList<Tower> towers;
