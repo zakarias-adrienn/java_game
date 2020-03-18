@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
-import javafx.util.Pair;
 import javax.swing.JLabel;
 
 
