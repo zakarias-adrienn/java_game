@@ -39,7 +39,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        URL url = View.class.getClassLoader().getResource("res/fugu_small.png");
+        URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Főképernyő");
         this.setResizable(false);
@@ -84,12 +84,7 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try {
-			board = new Board();
-		}
-		catch(IOException e){
-		   e.getMessage();
-		}
+        board = new javax.swing.JPanel();
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();

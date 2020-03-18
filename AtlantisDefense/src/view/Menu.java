@@ -26,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        URL url = Menu.class.getClassLoader().getResource("res/goldfish_small.png");
+        URL url = Menu.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Kezdőképernyő");
         //this.setSize(600, 600);
