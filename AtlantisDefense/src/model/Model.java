@@ -7,6 +7,7 @@ import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 
 public class Model {
@@ -18,11 +19,12 @@ public class Model {
     private ArrayList<JLabel> towerSpots; // ? JLabel lesz?
     private int round;
     private ArrayList<Bullet> bullets;
-    private ArrayList<Point> route;
+    public static ArrayList<Point> route;
     private int length;
     private int width;
     private int table[][];
-    public static LevelItem[][] level;     
+    public static LevelItem[][] level; 
+    public static ArrayList<EnemyReaded> readedEnemies;
     private ArrayList<String> readLines;
 
     public Model() {
@@ -32,6 +34,7 @@ public class Model {
         towerSpots = new ArrayList<>();
         bullets = new ArrayList<>();
         route = new ArrayList<>();
+        readedEnemies = new ArrayList<>();
         round = 1;
         readLines = readFile("src/res/palya.txt");
 
@@ -53,6 +56,7 @@ public class Model {
                         case 1: level[i][j] = LevelItem.ROUTE; break;
                         case 2: level[i][j] = LevelItem.TOWER_PLACE; break;
                     }
+                    
                 }
             }
          
@@ -62,6 +66,18 @@ public class Model {
             p.x = parseInt(routeString[i]);
             p.y = parseInt(routeString[i+1]);
             route.add(p);
+        }
+        
+        int enemyNumber = parseInt(readLines.get(length+2));
+        //System.out.println(enemyNumber);
+        
+        for(int i = 0; i<enemyNumber; ++i){
+            String[] s = readLines.get(length+3+i).split(" ");
+            String type = s[0];
+            int time = parseInt(s[1]);
+            int speed = parseInt(s[2]);
+            EnemyReaded e = new EnemyReaded(type, time, speed);
+            readedEnemies.add(e);
         }
         
         

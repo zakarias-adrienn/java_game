@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +19,8 @@ import model.Model;
 public class Board extends JPanel {
 
     public final Image sand, route, towerPlace, ice, bubble, gold, electric;
+    public Cell[][] cells;
+    public static ArrayList<Cell> routeCells;
 
     public Board() throws IOException {
         sand = ResourceLoader.loadImage("res/homok.png");
@@ -27,11 +30,15 @@ public class Board extends JPanel {
         bubble = ResourceLoader.loadImage("res/bubble_bg.png");
         gold = ResourceLoader.loadImage("res/gold_bg.png");
         electric = ResourceLoader.loadImage("res/electric_bg.png");
+        cells = new Cell[13][15];
+        routeCells = new ArrayList<>();
         setLayout(new GridLayout(13, 15));
         int w = 15;
         int h = 13;
+        boolean r;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
+                r = false;
                 Image img = null;
                 LevelItem li = Model.getItem(y, x);
                 switch (li) {
@@ -42,12 +49,17 @@ public class Board extends JPanel {
                         img = towerPlace;
                         break;
                     case ROUTE:
+                        r = true;
                         img = route;
                         break;
                 }
                 ImageIcon icon = new ImageIcon(img);
-                JLabel thumb = new JLabel();
+                Cell thumb = new Cell(icon, y, x);
                 thumb.setIcon(icon);
+                if(r){
+                    routeCells.add(thumb);
+                }
+                cells[y][x] = thumb;
                 if (img == towerPlace) {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
@@ -77,37 +89,12 @@ public class Board extends JPanel {
             }
         }
     }
+    
+    public static void enemyComes(Image img, int speed){
+        // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
+        // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
+        ImageIcon icon = new ImageIcon(img);
+        routeCells.get(0).setIcon(icon);
+    }
 
-//    public boolean refresh() {
-//        repaint();
-//        return true;
-//    }
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        Graphics2D gr = (Graphics2D) g;
-//        int w = 15;
-//        int h = 13;
-//        for (int y = 0; y < h; y++) {
-//            for (int x = 0; x < w; x++) {
-//                Image img = null;
-//                LevelItem li = Model.getItem(y, x);
-//                switch (li) {
-//                    case SAND:
-//                        img = sand;
-//                        break;
-//                    case TOWER_PLACE:
-//                        img = towerPlace;
-//                        break;
-//                    case ROUTE:
-//                        img = route;
-//                        break;
-//                }
-//                if (img == null) {
-//                    continue;
-//                }
-//                gr.drawImage(img, x * 58, y * 58, 58, 58, null);
-//            }
-//        }
-//    }
 }

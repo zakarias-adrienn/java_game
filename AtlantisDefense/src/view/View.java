@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -24,8 +26,9 @@ import model.Model;
 
 public class View extends javax.swing.JFrame {
 
-    private long startTime;
-    private Timer timer;
+    private final long startTime;
+    private final Timer timer;
+    private final Timer timerForEnemies;
     private boolean paused = false;
     private int i = 0;
 
@@ -51,11 +54,30 @@ public class View extends javax.swing.JFrame {
 
             }
         });
+        this.timerForEnemies = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!paused) {
+                    for(int i = 0; i<Model.readedEnemies.size(); ++i){
+                        if(Model.readedEnemies.get(i).startTime==elapsedTime()){
+                            try {
+                                // el kell induljon az ellenség, mert eljött az ideje
+                                Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed);
+                            } catch (IOException ex) {
+                                System.out.println("Ellenség képét nem sikerült elérni.\n");
+                            }
+                        }
+                    }
+                }
+
+            }
+        });
         timer.start();
+        timerForEnemies.start();
     }
 
     public long elapsedTime() {
-        return (System.currentTimeMillis() - this.startTime) / 1000;
+        return (System.currentTimeMillis() - this.startTime)/100;
     }
 
     @SuppressWarnings("unchecked")
