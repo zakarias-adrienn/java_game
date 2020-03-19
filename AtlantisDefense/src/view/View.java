@@ -24,7 +24,7 @@ public class View extends javax.swing.JFrame {
     private final long startTime;
     private final Timer timer;
     private final Timer timerForEnemies;
-    private boolean paused = false;
+    public static boolean paused = false;
     private int i = 0;
 
     private static boolean selected1 = false;
@@ -46,6 +46,7 @@ public class View extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
                     timeView.setText("" + i++);
+                    
                 }
 
             }

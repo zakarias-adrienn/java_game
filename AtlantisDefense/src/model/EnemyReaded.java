@@ -32,7 +32,6 @@ public class EnemyReaded {
         }
         else{ //gold
             img = ResourceLoader.loadImage("res/goldfish_small.png");
-            System.out.println("gold");
             return img;
         }
         

@@ -32,7 +32,7 @@ public class Model {
     public Model() {
         numberOfSpots = 0;
         pearlPower = 100;
-        money = 1000; // kezdetben mennyi legyen?
+        money = 100; // kezdetben mennyi legyen?
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         towerSpots = new ArrayList<>();

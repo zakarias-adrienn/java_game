@@ -102,6 +102,7 @@ public class Board extends JPanel {
                                 if (imageNumber == 1) {
                                     icon = new ImageIcon(gold);
                                     tmp = new GoldTower();
+                                    tmp.shoot(); // elindul az aranytermelés
                                 } else if (imageNumber == 2) {
                                     icon = new ImageIcon(bubble);
                                     tmp = new BubbleTower();
