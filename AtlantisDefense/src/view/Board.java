@@ -60,6 +60,7 @@ public class Board extends JPanel {
                     routeCells.add(thumb);
                 }
                 cells[y][x] = thumb;
+                cells[y][x].setSize(58,58);
                 if (img == towerPlace) {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
