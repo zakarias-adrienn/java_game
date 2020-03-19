@@ -15,7 +15,7 @@ public class Model {
     public static int money;
     private int time; // ? kell ez ide?
     private ArrayList<Enemy> enemies;
-    private ArrayList<Tower> towers;
+    public static ArrayList<Tower> towers;
     private ArrayList<JLabel> towerSpots; // ? JLabel lesz?
     private Integer numberOfSpots;
     private int round;

@@ -15,12 +15,18 @@ import javax.swing.JPanel;
 import res.ResourceLoader;
 import model.LevelItem;
 import model.Model;
+import model.Tower;
+import model.GoldTower;
+import model.BubbleTower;
+import model.ElectricTower;
+import model.IceTower;
 
 public class Board extends JPanel {
 
     public final Image sand, route, towerPlace, ice, bubble, gold, electric;
     public Cell[][] cells;
     public static ArrayList<Cell> routeCells;
+    int spotIndex = 0;
 
     public Board() throws IOException {
         sand = ResourceLoader.loadImage("res/homok.png");
@@ -61,6 +67,7 @@ public class Board extends JPanel {
                 }
                 cells[y][x] = thumb;
                 cells[y][x].setSize(58,58);
+                
                 if (img == towerPlace) {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
@@ -69,20 +76,27 @@ public class Board extends JPanel {
                             int imageNumber = View.checkClick();
                             if(imageNumber!=0){
                                 ImageIcon icon;
+                                Tower tmp;
                                 if(imageNumber==1){
                                     icon = new ImageIcon(gold);
-                                    
+                                    tmp = new GoldTower();
                                 }
                                 else if(imageNumber==2){
                                     icon = new ImageIcon(bubble);
+                                    tmp = new BubbleTower();
                                 }
                                 else if(imageNumber==3){
                                     icon = new ImageIcon(electric);
+                                    tmp = new ElectricTower();
                                 }
                                 else {
                                     icon = new ImageIcon(ice);
+                                    tmp = new ElectricTower();
                                 }
                                 thumb.setIcon(icon);
+                                Model.towers.add(spotIndex, tmp);
+                                System.out.println(Model.towers);
+                                spotIndex++;
                             }
                         }
                     });
