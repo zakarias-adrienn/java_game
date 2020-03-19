@@ -85,7 +85,7 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try {
+          try {
 			board = new Board();
 		}
 		catch(IOException e){
@@ -217,19 +217,19 @@ public class View extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1190, 210, 41, 16);
+        jLabel1.setBounds(1190, 210, 53, 23);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1180, 210, 41, 16);
+        jLabel2.setBounds(1180, 210, 53, 23);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1160, 190, 41, 16);
+        jLabel3.setBounds(1160, 190, 53, 23);
 
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1170, 190, 41, 16);
+        jLabel4.setBounds(1170, 190, 53, 23);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 
@@ -419,7 +419,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel moneyView;
+    public javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
     private javax.swing.JPanel timerStopPanel;

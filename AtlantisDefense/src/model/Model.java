@@ -17,6 +17,7 @@ public class Model {
     private ArrayList<Enemy> enemies;
     private ArrayList<Tower> towers;
     private ArrayList<JLabel> towerSpots; // ? JLabel lesz?
+    private Integer numberOfSpots;
     private int round;
     private ArrayList<Bullet> bullets;
     public static ArrayList<Point> route;
@@ -28,6 +29,7 @@ public class Model {
     private ArrayList<String> readLines;
 
     public Model() {
+        numberOfSpots = 0;
         money = 100; // kezdetben mennyi legyen?
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
@@ -54,11 +56,15 @@ public class Model {
                     switch (table[i][j]){
                         case 0: level[i][j] = LevelItem.SAND; break;
                         case 1: level[i][j] = LevelItem.ROUTE; break;
-                        case 2: level[i][j] = LevelItem.TOWER_PLACE; break;
+                        case 2: level[i][j] = LevelItem.TOWER_PLACE; numberOfSpots++; break;
                     }
                     
                 }
             }
+         
+        System.out.println(numberOfSpots);
+        towers.clear(); //minden értéket null-ra állít
+
          
         String[] routeString = readLines.get(length+1).split(" ");
         for(int i = 0; i<routeString.length-1; i+=2){

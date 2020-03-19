@@ -71,6 +71,7 @@ public class Board extends JPanel {
                                 ImageIcon icon;
                                 if(imageNumber==1){
                                     icon = new ImageIcon(gold);
+                                    
                                 }
                                 else if(imageNumber==2){
                                     icon = new ImageIcon(bubble);
