@@ -50,8 +50,10 @@ public class Board extends JPanel {
         int w = 15;
         int h = 13;
         boolean r;
+        boolean kagylo;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
+                kagylo = false;
                 r = false;
                 Image img = null;
                 LevelItem li = Model.getItem(y, x);
@@ -68,11 +70,15 @@ public class Board extends JPanel {
                         break;
                     case PEARL:
                         img = pearl;
+                        kagylo = true;
                         break;
                 }
                 ImageIcon icon = new ImageIcon(img);
                 Cell thumb = new Cell(icon, y, x);
                 thumb.setIcon(icon);
+                if(kagylo){
+                    thumb.kagylo = true;
+                }
                 if (r) {
                     routeCells.add(thumb);
                 }

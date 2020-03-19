@@ -15,6 +15,7 @@ public class Cell extends JLabel {
     public int majom;
     public Image img;
     public boolean toronyLe = false;
+    public boolean kagylo = false;
     
     Cell(ImageIcon icon, int x, int y){
         this.icon = icon;
@@ -39,7 +40,7 @@ public class Cell extends JLabel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponents(g);
-        if(toronyLe){
+        if(toronyLe || kagylo){
             super.paintComponent(g);
             g.drawImage(img, 0, 0, null);
         } else {
