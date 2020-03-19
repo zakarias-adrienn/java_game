@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.Color;
@@ -45,7 +40,6 @@ public class View extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.moneyView.setText("" + Model.money);
-        this.pearlPowerView.setText("" + Model.pearlPower);
         this.startTime = System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override
@@ -85,17 +79,18 @@ public class View extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-		try {
-			board = new Board();
+
+        try
+        {
+			board = new Board(this);
 		}
 		catch(IOException e){
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
-        pearlPowerView = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -155,14 +150,6 @@ public class View extends javax.swing.JFrame {
         moneyView.setText("0");
         getContentPane().add(moneyView);
         moneyView.setBounds(1160, 490, 170, 50);
-
-        pearlPowerView.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        pearlPowerView.setForeground(new java.awt.Color(0, 0, 51));
-        pearlPowerView.setText("0");
-        pearlPowerView.setToolTipText("");
-        getContentPane().add(pearlPowerView);
-        pearlPowerView.setBounds(1000, 700, 12, 21);
-        pearlPowerView.getAccessibleContext().setAccessibleName("pearlPowerView");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/sand-castle_medium.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -441,7 +428,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JLabel moneyView;
-    public static javax.swing.JLabel pearlPowerView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
     private javax.swing.JPanel timerStopPanel;

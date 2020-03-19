@@ -32,10 +32,12 @@ public class Board extends JPanel {
     public final Image sand, route, towerPlace, ice, bubble, gold, electric, pearl;
     public Cell[][] cells;
     public static ArrayList<Cell> routeCells;
+    View view = null;
     int spotIndex = 0;
     
 
-    public Board() throws IOException {
+    public Board(View view) throws IOException {
+        this.view = view;
         sand = ResourceLoader.loadImage("res/homok.png");
         route = ResourceLoader.loadImage("res/ut.png");
         towerPlace = ResourceLoader.loadImage("res/toronyhely.png");
@@ -117,6 +119,7 @@ public class Board extends JPanel {
                                     System.out.println(Model.towers);
                                     spotIndex++;
                                 }
+                                view.resetBorder();
                             }
                         }
                     });
