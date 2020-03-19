@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -18,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import res.ResourceLoader;
 import model.LevelItem;
 import model.Model;
@@ -29,12 +32,12 @@ import model.IceTower;
 
 public class Board extends JPanel {
 
-    public final Image sand, route, towerPlace, ice, bubble, gold, electric, pearl;
-    public Cell[][] cells;
+    public final Image sand, towerPlace, ice, bubble, gold, electric, pearl;
+    public static Image route;
+    public static Cell[][] cells;
     public static ArrayList<Cell> routeCells;
     View view = null;
     int spotIndex = 0;
-    
 
     public Board(View view) throws IOException {
         this.view = view;
@@ -51,16 +54,16 @@ public class Board extends JPanel {
         setLayout(new GridLayout(13, 15));
         int w = 15;
         int h = 13;
-        boolean r;
+        boolean r = false;
         boolean kagylo;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 kagylo = false;
-                r = false;
                 Image img = null;
                 LevelItem li = Model.getItem(y, x);
                 switch (li) {
                     case SAND:
+                        r = false;
                         img = sand;
                         break;
                     case TOWER_PLACE:
@@ -71,6 +74,7 @@ public class Board extends JPanel {
                         img = route;
                         break;
                     case PEARL:
+                        r = false;
                         img = pearl;
                         kagylo = true;
                         break;
@@ -78,7 +82,7 @@ public class Board extends JPanel {
                 ImageIcon icon = new ImageIcon(img);
                 Cell thumb = new Cell(icon, y, x);
                 thumb.setIcon(icon);
-                if(kagylo){
+                if (kagylo) {
                     thumb.kagylo = true;
                 }
                 if (r) {
@@ -91,7 +95,6 @@ public class Board extends JPanel {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("he");
                             int imageNumber = View.checkClick();
                             if (imageNumber != 0) {
                                 ImageIcon icon;
@@ -123,22 +126,51 @@ public class Board extends JPanel {
                             }
                         }
                     });
-                    //View.resetBorder();
                 }
                 this.add(thumb);
             }
         }
     }
-    
-    /*public static void resetBorder(){
-        View.resetBorder();
-    }*/
+
+    // routeCell-t jó sorrendbe kellene tenni!
+    public static ArrayList<Cell> orderRouteCells() {
+        ArrayList<Cell> routeCopies = new ArrayList<>();
+        int k = 0;
+        while (k < Model.route.size()) {
+           for(int i = 0; i<routeCells.size(); ++i){
+               if(routeCells.get(i).getXPos()==Model.route.get(k).x && routeCells.get(i).getYPos()==Model.route.get(k).y){
+                   routeCopies.add(routeCells.get(i));
+                   k = k+1;
+                   break;
+               }
+           }
+        }
+        return routeCopies;
+    }
 
     public static void enemyComes(Image img, int speed) {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
+        ArrayList<Cell> routeCells2 = orderRouteCells();
         ImageIcon icon = new ImageIcon(img);
-        routeCells.get(0).setIcon(icon);
-    }
+        ImageIcon icon2 = new ImageIcon(route);
+        routeCells2.get(0).setIcon(icon);
+        Timer timerForEnemy = new Timer(speed, new ActionListener() {
+            int i = 1;
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ha nincs megállítva!
+                if (i >= routeCells2.size()) {
+                    ((Timer) e.getSource()).stop();
+                } else {
+                    routeCells2.get(i - 1).setIcon(icon2);
+                    routeCells2.get(i).setIcon(icon);
+                    i = i + 1;
+                }
+
+            }
+        });
+        timerForEnemy.start();
+    }
 }

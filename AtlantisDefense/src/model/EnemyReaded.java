@@ -23,15 +23,16 @@ public class EnemyReaded {
             return img;
         }
         else if("ice".equals(type)){
-            img = ResourceLoader.loadImage("res/eel_small.png");
+            img = ResourceLoader.loadImage("res/swordfish_small.png");
             return img;
         }
         else if("bubble".equals(type)){
-            img = ResourceLoader.loadImage("res/eel_small.png");
+            img = ResourceLoader.loadImage("res/fugu_small.png");
             return img;
         }
         else{ //gold
-            img = ResourceLoader.loadImage("res/eel_small.png");
+            img = ResourceLoader.loadImage("res/goldfish_small.png");
+            System.out.println("gold");
             return img;
         }
         

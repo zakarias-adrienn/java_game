@@ -65,7 +65,6 @@ public class Model {
                 }
             }
          
-        System.out.println(numberOfSpots);
         towers.clear(); //minden értéket null-ra állít
 
          
@@ -78,7 +77,6 @@ public class Model {
         }
         
         int enemyNumber = parseInt(readLines.get(length+2));
-        //System.out.println(enemyNumber);
         
         for(int i = 0; i<enemyNumber; ++i){
             String[] s = readLines.get(length+3+i).split(" ");

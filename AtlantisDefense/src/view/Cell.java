@@ -29,11 +29,11 @@ public class Cell extends JLabel {
     }
     
     public int getXPos(){
-        return xPos;
+        return xPos+1;
     }
     
     public int getYPos(){
-        return yPos;
+        return yPos+1;
     }
     
     
