@@ -13,6 +13,7 @@ import javax.swing.Timer;
 public class Model {
 
     public static int money;
+    public static int pearlPower;
     private int time; // ? kell ez ide?
     private ArrayList<Enemy> enemies;
     public static ArrayList<Tower> towers;
@@ -30,6 +31,7 @@ public class Model {
 
     public Model() {
         numberOfSpots = 0;
+        pearlPower = 100;
         money = 1000; // kezdetben mennyi legyen?
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
@@ -57,6 +59,7 @@ public class Model {
                         case 0: level[i][j] = LevelItem.SAND; break;
                         case 1: level[i][j] = LevelItem.ROUTE; break;
                         case 2: level[i][j] = LevelItem.TOWER_PLACE; numberOfSpots++; break;
+                        case 3: level[i][j] = LevelItem.PEARL; break;
                     }
                     
                 }

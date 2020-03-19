@@ -29,7 +29,7 @@ import model.IceTower;
 
 public class Board extends JPanel {
 
-    public final Image sand, route, towerPlace, ice, bubble, gold, electric;
+    public final Image sand, route, towerPlace, ice, bubble, gold, electric, pearl;
     public Cell[][] cells;
     public static ArrayList<Cell> routeCells;
     int spotIndex = 0;
@@ -43,6 +43,7 @@ public class Board extends JPanel {
         bubble = ResourceLoader.loadImage("res/bubble_bg.png");
         gold = ResourceLoader.loadImage("res/gold_bg.png");
         electric = ResourceLoader.loadImage("res/electric_bg.png");
+        pearl = ResourceLoader.loadImage("res/pearl_small.png");
         cells = new Cell[13][15];
         routeCells = new ArrayList<>();
         setLayout(new GridLayout(13, 15));
@@ -64,6 +65,9 @@ public class Board extends JPanel {
                     case ROUTE:
                         r = true;
                         img = route;
+                        break;
+                    case PEARL:
+                        img = pearl;
                         break;
                 }
                 ImageIcon icon = new ImageIcon(img);
@@ -110,12 +114,16 @@ public class Board extends JPanel {
                             }
                         }
                     });
-
+                    //View.resetBorder();
                 }
                 this.add(thumb);
             }
         }
     }
+    
+    /*public static void resetBorder(){
+        View.resetBorder();
+    }*/
 
     public static void enemyComes(Image img, int speed) {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon

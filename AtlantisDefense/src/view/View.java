@@ -31,7 +31,6 @@ public class View extends javax.swing.JFrame {
     private final Timer timerForEnemies;
     private boolean paused = false;
     private int i = 0;
-    
 
     private static boolean selected1 = false;
     private static boolean selected2 = false;
@@ -46,6 +45,7 @@ public class View extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.moneyView.setText("" + Model.money);
+        this.pearlPowerView.setText("" + Model.pearlPower);
         this.startTime = System.currentTimeMillis();
         this.timer = new Timer(1000, new ActionListener() {
             @Override
@@ -60,8 +60,8 @@ public class View extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
-                    for(int i = 0; i<Model.readedEnemies.size(); ++i){
-                        if(Model.readedEnemies.get(i).startTime==elapsedTime()){
+                    for (int i = 0; i < Model.readedEnemies.size(); ++i) {
+                        if (Model.readedEnemies.get(i).startTime == elapsedTime()) {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje
                                 Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed);
@@ -79,14 +79,13 @@ public class View extends javax.swing.JFrame {
     }
 
     public long elapsedTime() {
-        return (System.currentTimeMillis() - this.startTime)/100;
+        return (System.currentTimeMillis() - this.startTime) / 100;
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-                  try {
+		try {
 			board = new Board();
 		}
 		catch(IOException e){
@@ -96,6 +95,7 @@ public class View extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
         moneyView = new javax.swing.JLabel();
+        pearlPowerView = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -155,6 +155,14 @@ public class View extends javax.swing.JFrame {
         moneyView.setText("0");
         getContentPane().add(moneyView);
         moneyView.setBounds(1160, 490, 170, 50);
+
+        pearlPowerView.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        pearlPowerView.setForeground(new java.awt.Color(0, 0, 51));
+        pearlPowerView.setText("0");
+        pearlPowerView.setToolTipText("");
+        getContentPane().add(pearlPowerView);
+        pearlPowerView.setBounds(1000, 700, 12, 21);
+        pearlPowerView.getAccessibleContext().setAccessibleName("pearlPowerView");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/sand-castle_medium.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,19 +226,19 @@ public class View extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1190, 210, 53, 23);
+        jLabel1.setBounds(1190, 210, 41, 16);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1180, 210, 53, 23);
+        jLabel2.setBounds(1180, 210, 41, 16);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1160, 190, 53, 23);
+        jLabel3.setBounds(1160, 190, 41, 16);
 
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1170, 190, 53, 23);
+        jLabel4.setBounds(1170, 190, 41, 16);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 
@@ -299,21 +307,21 @@ public class View extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
 
         if (!selected1) {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 4, true);
             jLabel5.setBorder(border);
             selected1 = true;
             selected2 = false;
             selected3 = false;
             selected4 = false;
-            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border2 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel7.setBorder(border2);
-            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border3 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel8.setBorder(border3);
-            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border4 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel9.setBorder(border4);
             return;
         } else {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel5.setBorder(border);
             selected1 = false;
         }
@@ -322,44 +330,44 @@ public class View extends javax.swing.JFrame {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         if (!selected3) {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 4, true);
             jLabel8.setBorder(border);
             selected3 = true;
             selected1 = false;
             selected2 = false;
             selected4 = false;
-            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border2 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel7.setBorder(border2);
-            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border3 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel5.setBorder(border3);
-            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border4 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel9.setBorder(border4);
             return;
         } else {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel8.setBorder(border);
             selected3 = false;
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        
+
         if (!selected2) {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 4, true);
             jLabel7.setBorder(border);
             selected2 = true;
             selected1 = false;
             selected3 = false;
             selected4 = false;
-            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border2 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel5.setBorder(border2);
-            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border3 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel8.setBorder(border3);
-            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border4 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel9.setBorder(border4);
             return;
         } else {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel7.setBorder(border);
             selected2 = false;
         }
@@ -368,21 +376,21 @@ public class View extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
 
         if (!selected4) {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 4, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 4, true);
             jLabel9.setBorder(border);
             selected4 = true;
             selected2 = false;
             selected3 = false;
             selected1 = false;
-            Border border2 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border2 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel7.setBorder(border2);
-            Border border3 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border3 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel8.setBorder(border3);
-            Border border4 = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border4 = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel5.setBorder(border4);
             return;
         } else {
-            Border border = BorderFactory.createLineBorder(new Color(0,255,255), 0, true);
+            Border border = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
             jLabel9.setBorder(border);
             selected4 = false;
         }
@@ -391,21 +399,33 @@ public class View extends javax.swing.JFrame {
     private void boardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boardMouseClicked
         System.out.println(evt);
     }//GEN-LAST:event_boardMouseClicked
-    
-    public static int checkClick(){
-        if(selected1){
+
+    public void resetBorder() {
+        Border nullborder = BorderFactory.createLineBorder(new Color(0, 255, 255), 0, true);
+        jLabel7.setBorder(nullborder);
+        jLabel5.setBorder(nullborder);
+        jLabel8.setBorder(nullborder);
+        jLabel9.setBorder(nullborder);
+        selected4 = false;
+        selected2 = false;
+        selected3 = false;
+        selected1 = false;
+    }
+
+    public static int checkClick() {
+        if (selected1) {
             return 1;
-        } else if(selected2) {
+        } else if (selected2) {
             return 2;
-        } else if(selected3) {
+        } else if (selected3) {
             return 3;
-        } else if(selected4){
+        } else if (selected4) {
             return 4;
         } else {
             return 0;
         }
-    }
-    
+    } 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel board;
     private javax.swing.JButton exitButton;
@@ -421,6 +441,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JLabel moneyView;
+    public static javax.swing.JLabel pearlPowerView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
     private javax.swing.JPanel timerStopPanel;
