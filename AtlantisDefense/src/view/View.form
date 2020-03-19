@@ -96,7 +96,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1180" y="430" width="130" height="50"/>
+          <AbsoluteConstraints x="1120" y="430" width="130" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -111,11 +111,11 @@
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1210" y="490" width="100" height="50"/>
+          <AbsoluteConstraints x="1160" y="490" width="170" height="50"/>
         </Constraint>
       </Constraints>
     </Component>

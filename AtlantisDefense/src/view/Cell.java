@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 public class Cell extends JLabel {
     private ImageIcon icon;
     private int xPos, yPos;
+    public int majom;
     
     Cell(ImageIcon icon, int x, int y){
         this.icon = icon;

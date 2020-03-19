@@ -5,7 +5,7 @@ public class BubbleTower extends Tower {
     {
         this.life = 20;
         this.spot = null;
-        this.price = 100;
+        this.price = 80;
         this.distance = 3;
         this.type = "bubble";
         

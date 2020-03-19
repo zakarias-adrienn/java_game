@@ -21,6 +21,7 @@ import model.BubbleTower;
 import model.ElectricTower;
 import model.IceTower;
 
+
 public class Board extends JPanel {
 
     public final Image sand, route, towerPlace, ice, bubble, gold, electric;
@@ -91,15 +92,22 @@ public class Board extends JPanel {
                                 }
                                 else {
                                     icon = new ImageIcon(ice);
-                                    tmp = new ElectricTower();
+                                    tmp = new IceTower();
                                 }
+                                if (Model.money - tmp.price >= 0)
+                                {
                                 thumb.setIcon(icon);
+                                Model.money -= tmp.price;
+                                System.out.println(Model.money);
+                                View.moneyView.setText(Integer.toString(Model.money));
                                 Model.towers.add(spotIndex, tmp);
                                 System.out.println(Model.towers);
                                 spotIndex++;
+                                }
                             }
                         }
                     });
+                    
                 }
                 this.add(thumb);
             }

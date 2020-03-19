@@ -31,6 +31,7 @@ public class View extends javax.swing.JFrame {
     private final Timer timerForEnemies;
     private boolean paused = false;
     private int i = 0;
+    
 
     private static boolean selected1 = false;
     private static boolean selected2 = false;
@@ -85,7 +86,7 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-          try {
+                  try {
 			board = new Board();
 		}
 		catch(IOException e){
@@ -147,13 +148,13 @@ public class View extends javax.swing.JFrame {
         timeView.setForeground(new java.awt.Color(255, 206, 159));
         timeView.setText("0");
         getContentPane().add(timeView);
-        timeView.setBounds(1180, 430, 130, 50);
+        timeView.setBounds(1120, 430, 130, 50);
 
         moneyView.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         moneyView.setForeground(new java.awt.Color(255, 206, 159));
         moneyView.setText("0");
         getContentPane().add(moneyView);
-        moneyView.setBounds(1210, 490, 100, 50);
+        moneyView.setBounds(1160, 490, 170, 50);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/sand-castle_medium.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,7 +420,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JLabel moneyView;
+    public static javax.swing.JLabel moneyView;
     private javax.swing.JLabel timeView;
     private javax.swing.JPanel timerContinuePanel;
     private javax.swing.JPanel timerStopPanel;
