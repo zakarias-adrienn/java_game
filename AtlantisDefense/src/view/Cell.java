@@ -63,7 +63,7 @@ public class Cell extends JLabel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponents(g);
-        if(life!=-1){
+        if(this.life!=-1){
             super.paintComponent(g);
             g.drawImage(this.img, 0, 0, null);
         } else {

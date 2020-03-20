@@ -85,6 +85,8 @@ public class Board extends JPanel {
                 thumb.setIcon(icon);
                 if (kagylo) {
                     thumb.setLife(Pearl.getLife());
+                    Pearl.setX(y);
+                    Pearl.setY(x);
                 }
                 if (r) {
                     routeCells.add(thumb);
@@ -154,7 +156,7 @@ public class Board extends JPanel {
         return routeCopies;
     }
 
-    public static void enemyComes(Image img, int speed) {
+    public static void enemyComes(Image img, int speed) throws IOException {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
         System.out.println("ellenség jön");
@@ -162,13 +164,21 @@ public class Board extends JPanel {
         ImageIcon icon = new ImageIcon(img);
         ImageIcon icon2 = new ImageIcon(route);
         routeCells2.get(0).setIcon(icon);
+        routeCells2.get(0).setLife(100);
         Timer timerForEnemy = new Timer(speed, new ActionListener() {
             int i = 1;
             @Override
             public void actionPerformed(ActionEvent e) {
                 // ha nincs megállítva!
                 if (i >= routeCells2.size()) {
-                    ((Timer) e.getSource()).stop();
+                    try {
+                        Pearl.decreaseLife();
+                        cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
+                        cells[Pearl.getX()][Pearl.getY()].repaint();
+                        ((Timer) e.getSource()).stop();
+                    } catch (IOException ex) {
+                        System.out.println("Képbetöltés nem sikerült!");
+                    }
                 } else {
                     routeCells2.get(i - 1).setIcon(icon2);
                     try {
