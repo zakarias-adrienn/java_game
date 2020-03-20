@@ -29,6 +29,7 @@ import model.GoldTower;
 import model.BubbleTower;
 import model.ElectricTower;
 import model.IceTower;
+import model.Pearl;
 
 public class Board extends JPanel {
 
@@ -83,7 +84,7 @@ public class Board extends JPanel {
                 Cell thumb = new Cell(icon, y, x);
                 thumb.setIcon(icon);
                 if (kagylo) {
-                    thumb.kagylo = true;
+                    thumb.setLife(Pearl.getLife());
                 }
                 if (r) {
                     routeCells.add(thumb);
@@ -115,7 +116,11 @@ public class Board extends JPanel {
                                 }
                                 if (Model.money - tmp.price >= 0) {
                                     thumb.setIcon(icon);
-                                    thumb.toronyLe = true;
+                                    try {
+                                        thumb.setLife(100);
+                                    } catch (IOException ex) {
+                                        System.out.println("Képbetöltés sikertelen");
+                                    }
                                     Model.money -= tmp.price;
                                     System.out.println(Model.money);
                                     View.moneyView.setText(Integer.toString(Model.money));
@@ -152,13 +157,13 @@ public class Board extends JPanel {
     public static void enemyComes(Image img, int speed) {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
+        System.out.println("ellenség jön");
         ArrayList<Cell> routeCells2 = orderRouteCells();
         ImageIcon icon = new ImageIcon(img);
         ImageIcon icon2 = new ImageIcon(route);
         routeCells2.get(0).setIcon(icon);
         Timer timerForEnemy = new Timer(speed, new ActionListener() {
             int i = 1;
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 // ha nincs megállítva!
@@ -166,7 +171,17 @@ public class Board extends JPanel {
                     ((Timer) e.getSource()).stop();
                 } else {
                     routeCells2.get(i - 1).setIcon(icon2);
+                    try {
+                        routeCells2.get(i-1).setLife(-1);
+                    } catch (IOException ex) {
+                        System.out.println("Képbetöltés sikertelen!");
+                    }
                     routeCells2.get(i).setIcon(icon);
+                    try {
+                        routeCells2.get(i).setLife(100);
+                    } catch (IOException ex) {
+                        System.out.println("Képbetöltés sikertelen!");
+                    }
                     i = i + 1;
                 }
 

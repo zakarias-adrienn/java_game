@@ -56,6 +56,7 @@ public class View extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
                     for (int i = 0; i < Model.readedEnemies.size(); ++i) {
+//                        System.out.println(elapsedTime());
                         if (Model.readedEnemies.get(i).startTime == elapsedTime()) {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje

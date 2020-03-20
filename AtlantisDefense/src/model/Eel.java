@@ -8,7 +8,7 @@ public class Eel extends Enemy {
     public Eel()
     {
         this.pos = new Point(0, 0);
-        this.life = 20;
+        this.life = 100;
         this.speed = 5;
         this.strength = 4;
         this.type = "electric";

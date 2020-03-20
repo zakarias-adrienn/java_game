@@ -9,7 +9,7 @@ public class GoldTower extends Tower {
     
     public GoldTower()
     {
-        this.life = 20;
+        this.life = 100;
         this.spot = null;
         this.price = 20;
         this.distance = 0;
