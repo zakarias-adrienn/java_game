@@ -56,7 +56,7 @@ public class View extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
                     for (int i = 0; i < Model.readedEnemies.size(); ++i) {
-//                        System.out.println(elapsedTime());
+//                      System.out.println(elapsedTime());
                         if (Model.readedEnemies.get(i).startTime == elapsedTime()) {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje
@@ -75,7 +75,7 @@ public class View extends javax.swing.JFrame {
     }
 
     public long elapsedTime() {
-        return (System.currentTimeMillis() - this.startTime) / 100;
+        return Math.round((System.currentTimeMillis() - this.startTime) / 100);
     }
 
     @SuppressWarnings("unchecked")
