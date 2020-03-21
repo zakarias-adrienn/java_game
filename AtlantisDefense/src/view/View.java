@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -417,6 +418,22 @@ public class View extends javax.swing.JFrame {
             return 0;
         }
     } 
+    
+    public static void createGameOverDialog(){
+        int result = JOptionPane.showConfirmDialog(null,
+                "A játék sajnos végetért.",
+                "FIGYELEM!",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+            if(result==JOptionPane.OK_OPTION || result==JOptionPane.CLOSED_OPTION){
+                Menu.v.setVisible(false);
+                Menu.v.dispose();
+                Menu menu = new Menu();
+                menu.setPreferredSize(new Dimension(1397, 842));
+                menu.pack();
+                menu.setVisible(true);
+            }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel board;

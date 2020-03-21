@@ -1,25 +1,13 @@
 package model;
 
-import java.awt.Color;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.Timer;
 import view.Board;
-import view.Menu;
 import view.View;
 
 public class Model {
@@ -138,20 +126,7 @@ public class Model {
                 Board.timers.get(i).stop();
             }
             System.out.println("GAME OVER");
-            // ez lehet a view-ba kellene kerüljön
-            int result = JOptionPane.showConfirmDialog(null,
-                "A játék sajnos végetért.",
-                "FIGYELEM!",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE);
-            if(result==JOptionPane.OK_OPTION || result==JOptionPane.CLOSED_OPTION){
-                Menu.v.setVisible(false);
-                Menu.v.dispose();
-                Menu menu = new Menu();
-                menu.setPreferredSize(new Dimension(1397, 842));
-                menu.pack();
-                menu.setVisible(true);
-            }
+            View.createGameOverDialog();
             return true;
         }
         return false;
