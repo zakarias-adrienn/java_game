@@ -1,12 +1,18 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 
@@ -110,6 +116,30 @@ public class Model {
     
     public static LevelItem getItem(int row, int col) {
         return level[row][col];
+    }
+    
+    public static boolean gameOver()
+    {
+        if(Pearl.getLife() <= 0)
+        {
+            System.out.println("GAME OVER");
+            Dialog d = new JDialog(AtlantisDefense.menu, "Súgó");
+        JTextArea txtAreaDetail = new JTextArea("A játék véget ért.");
+        txtAreaDetail.setEditable(false);
+        txtAreaDetail.setBackground(new Color(240, 248, 255));
+        txtAreaDetail.setForeground(Color.BLACK);
+        Font f = txtAreaDetail.getFont();
+        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+        txtAreaDetail.setFont(f2);
+        JScrollPane txtAreaScroll = new JScrollPane();
+        txtAreaScroll.setViewportView(txtAreaDetail);
+        d.add(txtAreaScroll);
+        d.pack();
+        d.setVisible(true);
+        d.setLocationRelativeTo(null);
+            return true;
+        }
+        return false;
     }
     
 

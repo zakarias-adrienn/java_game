@@ -1,5 +1,14 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.Font;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import view.View;
+
 public class Pearl {
     private static int life = 100;
     private static int x = 0;
@@ -10,7 +19,12 @@ public class Pearl {
     }
     
     public static void decreaseLife(){
-        life -= 10;
+        life -= 50;
+        if (life <= 0)
+        {
+            Model.gameOver();
+        }
+        System.out.println(life);
     }
     
     public static void setX(int xx){
