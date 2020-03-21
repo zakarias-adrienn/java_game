@@ -24,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    public static View v;
     
     public Menu() {
         initComponents();
@@ -206,7 +207,8 @@ public class Menu extends javax.swing.JFrame {
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
         // játék indítása
         this.setVisible(false);
-        new View().setVisible(true);
+        this.v = new View();
+        v.setVisible(true);
     }//GEN-LAST:event_level1ButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

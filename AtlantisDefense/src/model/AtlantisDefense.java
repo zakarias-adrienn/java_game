@@ -1,15 +1,14 @@
 package model;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import view.Menu;
 
 public class AtlantisDefense {
 
-    /**
-     * @param args the command line arguments
-     */
     public static Menu menu;
     public static Model model;
+    static Component Menu;
     
     public static void main(String[] args) {
         menu = new Menu(); 

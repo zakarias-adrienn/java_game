@@ -39,9 +39,11 @@ public class Board extends JPanel {
     public static ArrayList<Cell> routeCells;
     View view = null;
     int spotIndex = 0;
+    public static ArrayList<Timer> timers;
 
     public Board(View view) throws IOException {
         this.view = view;
+        timers = new ArrayList<>();
         sand = ResourceLoader.loadImage("res/homok.png");
         route = ResourceLoader.loadImage("res/ut.png");
         towerPlace = ResourceLoader.loadImage("res/toronyhely.png");
@@ -172,6 +174,8 @@ public class Board extends JPanel {
                 // ha nincs megállítva!
                 if (i >= routeCells2.size()) {
                     try {
+                        routeCells2.get(i - 1).setIcon(icon2);
+                        routeCells2.get(i - 1).setLife(-1);
                         Pearl.decreaseLife();
                         cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
                         cells[Pearl.getX()][Pearl.getY()].repaint();
@@ -198,5 +202,6 @@ public class Board extends JPanel {
             }
         });
         timerForEnemy.start();
+        timers.add(timerForEnemy);
     }
 }

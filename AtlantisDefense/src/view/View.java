@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -22,8 +23,8 @@ import model.Model;
 public class View extends javax.swing.JFrame {
 
     private final long startTime;
-    private final Timer timer;
-    private final Timer timerForEnemies;
+    public static Timer timer;
+    public static Timer timerForEnemies;
     public static boolean paused = false;
     private int i = 0;
 
@@ -77,6 +78,7 @@ public class View extends javax.swing.JFrame {
     public long elapsedTime() {
         return Math.round((System.currentTimeMillis() - this.startTime) / 100);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -276,6 +278,7 @@ public class View extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.setVisible(false);
+        this.dispose();
         Menu menu = new Menu();
         menu.setPreferredSize(new Dimension(1397, 842));
         menu.pack();
