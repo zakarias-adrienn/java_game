@@ -3,6 +3,7 @@ package model;
 public class ElectricTower extends Tower {
 
     public ElectricTower() {
+        super();
         this.life = 100;
         this.spot = null;
         this.price = 50;

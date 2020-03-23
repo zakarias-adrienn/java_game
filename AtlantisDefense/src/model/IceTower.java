@@ -3,6 +3,7 @@ package model;
 public class IceTower extends Tower {
     public IceTower()
     {
+        super();
         this.life = 100;
         this.spot = null;
         this.price = 100;

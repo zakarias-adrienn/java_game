@@ -11,10 +11,21 @@ public abstract class Enemy {
     
     public abstract void move();
     
-    public abstract void attack();
-    
     public void collosion() {
         
+    }
+    
+    public void setPos(int x, int y){
+        this.pos.x = x;
+        this.pos.y = y;
+    }
+    
+    public int getXPos(){
+        return this.pos.x;
+    }
+    
+    public int getYPos(){
+        return this.pos.y;
     }
     
     

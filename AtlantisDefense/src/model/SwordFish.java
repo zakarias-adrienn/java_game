@@ -18,7 +18,4 @@ public class SwordFish extends Enemy {
         
     }
     
-    public void attack() {
-        
-    }
 }

@@ -78,6 +78,7 @@ public class Cell extends JLabel {
         } else {
             super.paintComponent(g);
         }
+        
     }
     
     // cellára mindig meg kell majd hívni a setLife()-ot hogy változzon! -> paintComponentbe vagy valahol

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ import model.Tower;
 import model.GoldTower;
 import model.BubbleTower;
 import model.ElectricTower;
+import model.Enemy;
 import model.IceTower;
 import model.Pearl;
 
@@ -43,6 +45,7 @@ public class Board extends JPanel {
     public static ArrayList<Timer> timers;
 
     public Board(View view) throws IOException {
+        setBorder(BorderFactory.createLineBorder(Color.black));
         this.view = view;
         timers = new ArrayList<>();
         sand = ResourceLoader.loadImage("res/homok.png");
@@ -56,6 +59,7 @@ public class Board extends JPanel {
         cells = new Cell[13][15];
         routeCells = new ArrayList<>();
         setLayout(new GridLayout(13, 15));
+        setVisible(true);
         int w = 15;
         int h = 13;
         boolean r = false;
@@ -120,6 +124,8 @@ public class Board extends JPanel {
                                     tmp = new IceTower();
                                 }
                                 if (Model.money - tmp.price >= 0) {
+                                    tmp.setPos(thumb.getXPos(), thumb.getYPos());
+                                    tmp.startTimer();
                                     thumb.setIcon(icon);
                                     try {
                                         thumb.setLife(100);
@@ -129,6 +135,7 @@ public class Board extends JPanel {
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
                                     Model.towers.add(spotIndex, tmp);
+                                    timers.add(tmp.getTimer());
                                     System.out.println(Model.towers.size());
                                     spotIndex++;
                                 }
@@ -139,6 +146,7 @@ public class Board extends JPanel {
                 }
                 this.add(thumb);
             }
+            
         }
     }
 
@@ -158,7 +166,7 @@ public class Board extends JPanel {
         return routeCopies;
     }
 
-    public static void enemyComes(Image img, int speed) throws IOException {
+    public static void enemyComes(Image img, int speed, Enemy enemy) throws IOException {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
         if (!View.paused) {
@@ -168,6 +176,7 @@ public class Board extends JPanel {
             ImageIcon icon2 = new ImageIcon(route);
             routeCells2.get(0).setIcon(icon);
             routeCells2.get(0).setLife(100);
+            enemy.setPos(routeCells2.get(0).getXPos(), routeCells2.get(0).getYPos());
             Timer timerForEnemy = new Timer(speed, new ActionListener() {
                 int i = 1;
 
@@ -182,6 +191,7 @@ public class Board extends JPanel {
                                 Pearl.decreaseLife();
                                 cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
                                 cells[Pearl.getX()][Pearl.getY()].repaint();
+                                Model.enemies.remove(enemy);
                                 ((Timer) e.getSource()).stop();
                             } catch (IOException ex) {
                                 System.out.println("Képbetöltés nem sikerült!");
@@ -194,6 +204,7 @@ public class Board extends JPanel {
                                 System.out.println("Képbetöltés sikertelen!");
                             }
                             routeCells2.get(i).setIcon(icon);
+                            enemy.setPos(routeCells2.get(i).getXPos(), routeCells2.get(i).getYPos());
                             try {
                                 routeCells2.get(i).setLife(100);
                             } catch (IOException ex) {
@@ -207,5 +218,17 @@ public class Board extends JPanel {
             timerForEnemy.start();
             timers.add(timerForEnemy);
         }
+    }
+    
+    
+    
+    @Override
+    public void paintComponent(Graphics g){
+        // NEM AKAR VONALAT RAJZOLNIIII :(
+         super.paintComponent(g);
+         g.setColor(Color.YELLOW); 
+         g.drawLine(100,100,600,600);
+         System.out.println ("Inside paintComponent");
+        
     }
 }

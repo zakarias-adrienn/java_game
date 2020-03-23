@@ -20,7 +20,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import model.Eel;
+import model.Enemy;
+import model.Fugu;
+import model.GoldFish;
 import model.Model;
+import model.SwordFish;
 
 public class View extends javax.swing.JFrame {
 
@@ -39,6 +44,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
+        this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
         this.setTitle("Főképernyő");
@@ -62,11 +68,24 @@ public class View extends javax.swing.JFrame {
                 if (!paused) {
                     elapsed += 10;
                     for (int i = 0; i < Model.readedEnemies.size(); ++i) {
-                      System.out.println(elapsed);
                         if (Model.readedEnemies.get(i).startTime == elapsed) {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje
-                                Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed);
+                                Enemy enemy;
+                                if("electric".equals(Model.readedEnemies.get(i).type)){
+                                    enemy = new Eel();
+                                } 
+                                else if("ice".equals(Model.readedEnemies.get(i).type)){
+                                    enemy = new SwordFish();
+                                }
+                                else if("bubble".equals(Model.readedEnemies.get(i).type)) {
+                                    enemy = new Fugu();
+                                }
+                                else {
+                                    enemy = new GoldFish();
+                                }
+                                Model.enemies.add(enemy);
+                                Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed, enemy);
                             } catch (IOException ex) {
                                 System.out.println("Ellenség képét nem sikerült elérni.\n");
                             }
@@ -239,6 +258,7 @@ public class View extends javax.swing.JFrame {
         jScrollPane2.setBounds(210, 190, 2, 2);
 
         setBounds(0, 0, 1397, 872);
+        setVisible(true);
     }// </editor-fold>//GEN-END:initComponents
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -294,6 +314,9 @@ public class View extends javax.swing.JFrame {
         this.paused = false;
         timer.start();
         timerForEnemies.start();
+        for(int i = 0; i<Model.towers.size(); ++i){
+            Model.towers.get(i).getTimer().start();
+        }
     }//GEN-LAST:event_timerContinuePanelMouseClicked
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
@@ -301,6 +324,9 @@ public class View extends javax.swing.JFrame {
         timer.stop();
         this.paused = true;
         timerForEnemies.stop();
+        for(int i = 0; i<Model.towers.size(); ++i){
+            Model.towers.get(i).getTimer().stop();
+        }
     }//GEN-LAST:event_timerStopPanelMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

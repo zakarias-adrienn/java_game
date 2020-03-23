@@ -19,8 +19,4 @@ public class GoldFish extends Enemy {
         
     }
     
-    @Override
-    public void attack() {
-        
-    }
 }

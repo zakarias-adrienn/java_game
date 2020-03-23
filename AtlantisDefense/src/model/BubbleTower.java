@@ -3,6 +3,7 @@ package model;
 public class BubbleTower extends Tower {
     public BubbleTower()
     {
+        super();
         this.life = 100;
         this.spot = null;
         this.price = 80;
