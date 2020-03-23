@@ -19,7 +19,7 @@ public class Pearl {
     }
     
     public static void decreaseLife(){
-        life -= 50;
+        life -= 20;
         if (life <= 0)
         {
             Model.gameOver();
@@ -41,5 +41,9 @@ public class Pearl {
     
     public static int getY(){
         return y;
+    }
+    
+    public static void setLife(int life){
+        Pearl.life = life;
     }
 }

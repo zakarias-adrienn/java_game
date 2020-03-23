@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +24,12 @@ import model.Model;
 
 public class View extends javax.swing.JFrame {
 
-    private final long startTime;
+    private long startTime;
     public static Timer timer;
     public static Timer timerForEnemies;
+     public static Timer timerForElapsed;
     public static boolean paused = false;
+    private long elapsed = 0;
     private int i = 0;
 
     private static boolean selected1 = false;
@@ -53,13 +56,14 @@ public class View extends javax.swing.JFrame {
 
             }
         });
-        this.timerForEnemies = new Timer(100, new ActionListener() {
+        this.timerForEnemies = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
+                    elapsed += 10;
                     for (int i = 0; i < Model.readedEnemies.size(); ++i) {
-//                      System.out.println(elapsedTime());
-                        if (Model.readedEnemies.get(i).startTime == elapsedTime()) {
+                      System.out.println(elapsed);
+                        if (Model.readedEnemies.get(i).startTime == elapsed) {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje
                                 Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed);
@@ -76,9 +80,9 @@ public class View extends javax.swing.JFrame {
         timerForEnemies.start();
     }
 
-    public long elapsedTime() {
-        return Math.round((System.currentTimeMillis() - this.startTime) / 100);
-    }
+//    public long elapsedTime() {
+//            return Math.round((this.elapsed - this.startTime) / 100);
+//    }
     
 
     @SuppressWarnings("unchecked")
@@ -289,12 +293,14 @@ public class View extends javax.swing.JFrame {
     private void timerContinuePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerContinuePanelMouseClicked
         this.paused = false;
         timer.start();
+        timerForEnemies.start();
     }//GEN-LAST:event_timerContinuePanelMouseClicked
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
         // TODO add your handling code here:
         timer.stop();
         this.paused = true;
+        timerForEnemies.stop();
     }//GEN-LAST:event_timerStopPanelMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

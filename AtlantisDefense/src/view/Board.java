@@ -33,8 +33,9 @@ import model.Pearl;
 
 public class Board extends JPanel {
 
-    public final Image sand, towerPlace, ice, bubble, gold, electric, pearl;
+    public final Image sand, towerPlace, ice, bubble, electric, pearl;
     public static Image route;
+    public static Image gold;
     public static Cell[][] cells;
     public static ArrayList<Cell> routeCells;
     View view = null;
@@ -126,10 +127,9 @@ public class Board extends JPanel {
                                         System.out.println("Képbetöltés sikertelen");
                                     }
                                     Model.money -= tmp.price;
-                                    System.out.println(Model.money);
                                     View.moneyView.setText(Integer.toString(Model.money));
                                     Model.towers.add(spotIndex, tmp);
-                                    System.out.println(Model.towers);
+                                    System.out.println(Model.towers.size());
                                     spotIndex++;
                                 }
                                 view.resetBorder();
@@ -147,13 +147,13 @@ public class Board extends JPanel {
         ArrayList<Cell> routeCopies = new ArrayList<>();
         int k = 0;
         while (k < Model.route.size()) {
-           for(int i = 0; i<routeCells.size(); ++i){
-               if(routeCells.get(i).getXPos()==Model.route.get(k).x && routeCells.get(i).getYPos()==Model.route.get(k).y){
-                   routeCopies.add(routeCells.get(i));
-                   k = k+1;
-                   break;
-               }
-           }
+            for (int i = 0; i < routeCells.size(); ++i) {
+                if (routeCells.get(i).getXPos() == Model.route.get(k).x && routeCells.get(i).getYPos() == Model.route.get(k).y) {
+                    routeCopies.add(routeCells.get(i));
+                    k = k + 1;
+                    break;
+                }
+            }
         }
         return routeCopies;
     }
@@ -161,47 +161,51 @@ public class Board extends JPanel {
     public static void enemyComes(Image img, int speed) throws IOException {
         // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
-        System.out.println("ellenség jön");
-        ArrayList<Cell> routeCells2 = orderRouteCells();
-        ImageIcon icon = new ImageIcon(img);
-        ImageIcon icon2 = new ImageIcon(route);
-        routeCells2.get(0).setIcon(icon);
-        routeCells2.get(0).setLife(100);
-        Timer timerForEnemy = new Timer(speed, new ActionListener() {
-            int i = 1;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // ha nincs megállítva!
-                if (i >= routeCells2.size()) {
-                    try {
-                        routeCells2.get(i - 1).setIcon(icon2);
-                        routeCells2.get(i - 1).setLife(-1);
-                        Pearl.decreaseLife();
-                        cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
-                        cells[Pearl.getX()][Pearl.getY()].repaint();
-                        ((Timer) e.getSource()).stop();
-                    } catch (IOException ex) {
-                        System.out.println("Képbetöltés nem sikerült!");
-                    }
-                } else {
-                    routeCells2.get(i - 1).setIcon(icon2);
-                    try {
-                        routeCells2.get(i-1).setLife(-1);
-                    } catch (IOException ex) {
-                        System.out.println("Képbetöltés sikertelen!");
-                    }
-                    routeCells2.get(i).setIcon(icon);
-                    try {
-                        routeCells2.get(i).setLife(100);
-                    } catch (IOException ex) {
-                        System.out.println("Képbetöltés sikertelen!");
-                    }
-                    i = i + 1;
-                }
+        if (!View.paused) {
+            System.out.println("ellenség jön");
+            ArrayList<Cell> routeCells2 = orderRouteCells();
+            ImageIcon icon = new ImageIcon(img);
+            ImageIcon icon2 = new ImageIcon(route);
+            routeCells2.get(0).setIcon(icon);
+            routeCells2.get(0).setLife(100);
+            Timer timerForEnemy = new Timer(speed, new ActionListener() {
+                int i = 1;
 
-            }
-        });
-        timerForEnemy.start();
-        timers.add(timerForEnemy);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // ha nincs megállítva!
+                    if (!View.paused) {
+                        if (i >= routeCells2.size()) {
+                            try {
+                                routeCells2.get(i - 1).setIcon(icon2);
+                                routeCells2.get(i - 1).setLife(-1);
+                                Pearl.decreaseLife();
+                                cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
+                                cells[Pearl.getX()][Pearl.getY()].repaint();
+                                ((Timer) e.getSource()).stop();
+                            } catch (IOException ex) {
+                                System.out.println("Képbetöltés nem sikerült!");
+                            }
+                        } else {
+                            routeCells2.get(i - 1).setIcon(icon2);
+                            try {
+                                routeCells2.get(i - 1).setLife(-1);
+                            } catch (IOException ex) {
+                                System.out.println("Képbetöltés sikertelen!");
+                            }
+                            routeCells2.get(i).setIcon(icon);
+                            try {
+                                routeCells2.get(i).setLife(100);
+                            } catch (IOException ex) {
+                                System.out.println("Képbetöltés sikertelen!");
+                            }
+                            i = i + 1;
+                        }
+                    }
+                }
+            });
+            timerForEnemy.start();
+            timers.add(timerForEnemy);
+        }
     }
 }

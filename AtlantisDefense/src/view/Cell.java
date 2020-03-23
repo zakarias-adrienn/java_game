@@ -3,9 +3,12 @@ package view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import res.ResourceLoader;
+import static view.Board.gold;
 
 public class Cell extends JLabel {
     private ImageIcon icon;
@@ -13,8 +16,14 @@ public class Cell extends JLabel {
     public int majom;
     public Image img;
     private int life = -1;
+    public Image gold;
     
     Cell(ImageIcon icon, int x, int y){
+        try {
+            this.gold = ResourceLoader.loadImage("res/gold_bg.png");
+        } catch (IOException ex) {
+            Logger.getLogger(Cell.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.icon = icon;
         this.xPos = x;
         this.yPos = y;
@@ -69,7 +78,6 @@ public class Cell extends JLabel {
         } else {
             super.paintComponent(g);
         }
-        
     }
     
     // cellára mindig meg kell majd hívni a setLife()-ot hogy változzon! -> paintComponentbe vagy valahol
