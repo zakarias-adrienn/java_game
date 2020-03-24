@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -78,7 +79,6 @@ public class Cell extends JLabel {
         } else {
             super.paintComponent(g);
         }
-        
     }
     
     // cellára mindig meg kell majd hívni a setLife()-ot hogy változzon! -> paintComponentbe vagy valahol
