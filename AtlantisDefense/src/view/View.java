@@ -289,10 +289,12 @@ public class View extends javax.swing.JFrame {
                 + "  legkönnyebben az ElectricTower tudja megtenni.");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(240, 248, 255));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
+        txtAreaDetail.setForeground(new Color(0, 0, 81));
+        /*Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
+        txtAreaDetail.setFont(f2);*/
+        Font font = new Font("Tw Cen MT", Font.BOLD, 20);
+        txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
         txtAreaScroll.setViewportView(txtAreaDetail);
         d.add(txtAreaScroll);

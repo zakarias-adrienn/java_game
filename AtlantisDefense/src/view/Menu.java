@@ -184,10 +184,9 @@ public class Menu extends javax.swing.JFrame {
                 + "  akire leginkább hatásos: Eel.");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
+        txtAreaDetail.setForeground(new Color(0, 0, 81)/*Color.BLACK*/);
+        Font font = new Font("Tw Cen MT", Font.BOLD, 25);
+        txtAreaDetail.setFont(font);;
         JScrollPane txtAreaScroll = new JScrollPane();
         txtAreaScroll.setViewportView(txtAreaDetail);
         d.add(txtAreaScroll);
@@ -228,10 +227,12 @@ public class Menu extends javax.swing.JFrame {
                 + "  legkönnyebben az ElectricTower tudja megtenni.");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
+        txtAreaDetail.setForeground(new Color(0, 0, 81));
+        /*Font f = txtAreaDetail.getFont();
         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
+        txtAreaDetail.setFont(f2);*/
+        Font font = new Font("Tw Cen MT", Font.BOLD, 25);
+        txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
         txtAreaScroll.setViewportView(txtAreaDetail);
         d.add(txtAreaScroll);
@@ -250,10 +251,9 @@ public class Menu extends javax.swing.JFrame {
                 + "\t\tELTE IK, Szoftvertechnológia");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
+        txtAreaDetail.setForeground(new Color(0, 0, 81));
+        Font font = new Font("Tw Cen MT", Font.BOLD, 25);
+        txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
         txtAreaScroll.setViewportView(txtAreaDetail);
         d.add(txtAreaScroll);
@@ -274,10 +274,9 @@ public class Menu extends javax.swing.JFrame {
                 + "  sikeres teljesítése után válik elérhetővé.");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
-        txtAreaDetail.setForeground(Color.BLACK);
-        Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);
+        txtAreaDetail.setForeground(new Color(0, 0, 81));
+        Font font = new Font("Tw Cen MT", Font.BOLD, 25);
+        txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
         txtAreaScroll.setViewportView(txtAreaDetail);
         d.add(txtAreaScroll);
