@@ -43,6 +43,7 @@ public class Model {
         readLines = readFile("src/res/palya.txt");
 
         length = parseInt(readLines.get(1).split(" ")[0]);
+        System.err.println("len: "+length);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
         for (int i = 2; i < 14; ++i) {
@@ -75,18 +76,20 @@ public class Model {
 
         towers.clear(); //minden értéket null-ra állít
 
-        String[] routeString = readLines.get(length + 1).split(" ");
+        String[] routeString = readLines.get(length + 2).split(" ");
+        //System.out.println("w: " + width);
         for (int i = 0; i < routeString.length - 1; i += 2) {
             Point p = new Point(0, 0);
             p.x = parseInt(routeString[i]);
             p.y = parseInt(routeString[i + 1]);
+            System.out.println("p: " + p);
             route.add(p);
         }
 
-        int enemyNumber = parseInt(readLines.get(length + 2));
+        int enemyNumber = parseInt(readLines.get(length + 3));
 
         for (int i = 0; i < enemyNumber; ++i) {
-            String[] s = readLines.get(length + 3 + i).split(" ");
+            String[] s = readLines.get(length + 4 + i).split(" ");
             String type = s[0];
             int time = parseInt(s[1]);
             int speed = parseInt(s[2]);
