@@ -468,6 +468,14 @@ public class View extends javax.swing.JFrame {
                 menu.setVisible(true);
             }
     }
+    
+    public void createMoneyNotEnoughDialog(){
+        int result = JOptionPane.showConfirmDialog(null,
+                "Erre a toronyra nincs elég pénz!",
+                "FIGYELEM!",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel board;

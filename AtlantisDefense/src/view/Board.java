@@ -138,6 +138,8 @@ public class Board extends JPanel {
                                     timers.add(tmp.getTimer());
                                     System.out.println(Model.towers.size());
                                     spotIndex++;
+                                } else {
+                                    view.createMoneyNotEnoughDialog();
                                 }
                                 view.resetBorder();
                             }
