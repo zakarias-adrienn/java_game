@@ -141,7 +141,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         getContentPane().add(board);
-        board.setBounds(120, 100, 870, 650);
+        board.setBounds(120, 100, 870, 638);
 
         helpButton.setBackground(new java.awt.Color(250, 215, 172));
         helpButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
