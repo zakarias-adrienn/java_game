@@ -16,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -137,8 +138,9 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try{
+                                try{
 			board = new Board(this);
+            getContentPane().add(board);
 		}
 		catch(IOException e){
 			System.out.println(e.getMessage());
@@ -164,6 +166,11 @@ public class View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        fish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/fishanim.png"))); // NOI18N
+        fish.setText("jLabel10");
+        getContentPane().add(fish);
+        fish.setBounds(20, 90, 120, 110);
+
         board.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boardMouseClicked(evt);
@@ -171,11 +178,6 @@ public class View extends javax.swing.JFrame {
         });
         getContentPane().add(board);
         board.setBounds(120, 100, 870, 638);
-
-        fish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/fishanim.png"))); // NOI18N
-        fish.setText("jLabel10");
-        getContentPane().add(fish);
-        fish.setBounds(20, 0, 120, 110);
 
         helpButton.setBackground(new java.awt.Color(250, 215, 172));
         helpButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
