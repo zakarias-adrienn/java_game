@@ -87,12 +87,10 @@ public class Model {
         towers.clear(); //minden értéket null-ra állít
 
         String[] routeString = readLines.get(length + 2).split(" ");
-        //System.out.println("w: " + width);
         for (int i = 0; i < routeString.length - 1; i += 2) {
             Point p = new Point(0, 0);
             p.x = parseInt(routeString[i]);
             p.y = parseInt(routeString[i + 1]);
-            System.out.println("p: " + p);
             route.add(p);
         }
 

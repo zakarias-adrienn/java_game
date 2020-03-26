@@ -230,7 +230,6 @@ public class Board extends JPanel {
          super.paintComponent(g);
          g.setColor(Color.YELLOW); 
          g.drawLine(100,100,600,600);
-         System.out.println ("Inside paintComponent");
         
     }
 }
