@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,10 +33,12 @@ public class View extends javax.swing.JFrame {
     private long startTime;
     public static Timer timer;
     public static Timer timerForEnemies;
-     public static Timer timerForElapsed;
+    public static Timer timerForElapsed;
+    public static Timer timerForAnimation;
     public static boolean paused = false;
     private long elapsed = 0;
     private int i = 0;
+    private boolean plus = true;
 
     private static boolean selected1 = false;
     private static boolean selected2 = false;
@@ -55,13 +58,43 @@ public class View extends javax.swing.JFrame {
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //System.out.println("a");
+                /*Point tmp = timeView.getLocation();
+                int x = tmp.x + 10;
+                timeView.setLocation(x, tmp.y);*/
                 if (!paused) {
                     timeView.setText("" + i++);
-                    
+
                 }
 
             }
         });
+
+        this.timerForAnimation = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ///System.out.println("b");
+                if (!paused) {
+                    Point tmp = fish.getLocation();
+                    int x = 0;
+                    if (tmp.x > 1000) {
+                        plus = false;
+                    }
+                    else if (tmp.x < 0) {
+                        plus = true;
+                    }
+                    if (plus) {
+                        x = tmp.x + 10;
+                    } else {
+                        x = tmp.x - 10;
+                    }
+
+                    fish.setLocation(x, tmp.y);
+                }
+
+            }
+        });
+
         this.timerForEnemies = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,16 +105,13 @@ public class View extends javax.swing.JFrame {
                             try {
                                 // el kell induljon az ellenség, mert eljött az ideje
                                 Enemy enemy;
-                                if("electric".equals(Model.readedEnemies.get(i).type)){
+                                if ("electric".equals(Model.readedEnemies.get(i).type)) {
                                     enemy = new Eel();
-                                } 
-                                else if("ice".equals(Model.readedEnemies.get(i).type)){
+                                } else if ("ice".equals(Model.readedEnemies.get(i).type)) {
                                     enemy = new SwordFish();
-                                }
-                                else if("bubble".equals(Model.readedEnemies.get(i).type)) {
+                                } else if ("bubble".equals(Model.readedEnemies.get(i).type)) {
                                     enemy = new Fugu();
-                                }
-                                else {
+                                } else {
                                     enemy = new GoldFish();
                                 }
                                 Model.enemies.add(enemy);
@@ -97,24 +127,18 @@ public class View extends javax.swing.JFrame {
         });
         timer.start();
         timerForEnemies.start();
+        timerForAnimation.start();
     }
 
 //    public long elapsedTime() {
 //            return Math.round((this.elapsed - this.startTime) / 100);
 //    }
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try
-        {
-			board = new Board(this);
-		}
-		catch(IOException e){
-			System.out.println(e.getMessage());
-		}
+        board = new javax.swing.JPanel();
+        fish = new javax.swing.JLabel();
         helpButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         timeView = new javax.swing.JLabel();
@@ -142,6 +166,11 @@ public class View extends javax.swing.JFrame {
         });
         getContentPane().add(board);
         board.setBounds(120, 100, 870, 638);
+
+        fish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/fishanim.png"))); // NOI18N
+        fish.setText("jLabel10");
+        getContentPane().add(fish);
+        fish.setBounds(20, 0, 120, 110);
 
         helpButton.setBackground(new java.awt.Color(250, 215, 172));
         helpButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
@@ -241,24 +270,23 @@ public class View extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(1190, 210, 41, 16);
+        jLabel1.setBounds(1190, 210, 53, 23);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(1180, 210, 41, 16);
+        jLabel2.setBounds(1180, 210, 53, 23);
 
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1160, 190, 41, 16);
+        jLabel3.setBounds(1160, 190, 53, 23);
 
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1170, 190, 41, 16);
+        jLabel4.setBounds(1170, 190, 53, 23);
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(210, 190, 2, 2);
 
         setBounds(0, 0, 1397, 872);
-        setVisible(true);
     }// </editor-fold>//GEN-END:initComponents
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
@@ -318,7 +346,7 @@ public class View extends javax.swing.JFrame {
         this.paused = false;
         timer.start();
         timerForEnemies.start();
-        for(int i = 0; i<Model.towers.size(); ++i){
+        for (int i = 0; i < Model.towers.size(); ++i) {
             Model.towers.get(i).getTimer().start();
         }
     }//GEN-LAST:event_timerContinuePanelMouseClicked
@@ -328,7 +356,7 @@ public class View extends javax.swing.JFrame {
         timer.stop();
         this.paused = true;
         timerForEnemies.stop();
-        for(int i = 0; i<Model.towers.size(); ++i){
+        for (int i = 0; i < Model.towers.size(); ++i) {
             Model.towers.get(i).getTimer().stop();
         }
     }//GEN-LAST:event_timerStopPanelMouseClicked
@@ -453,25 +481,25 @@ public class View extends javax.swing.JFrame {
         } else {
             return 0;
         }
-    } 
-    
-    public static void createGameOverDialog(){
+    }
+
+    public static void createGameOverDialog() {
         int result = JOptionPane.showConfirmDialog(null,
                 "A játék sajnos végetért.",
                 "FIGYELEM!",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
-            if(result==JOptionPane.OK_OPTION || result==JOptionPane.CLOSED_OPTION){
-                Menu.v.setVisible(false);
-                Menu.v.dispose();
-                Menu menu = new Menu();
-                menu.setPreferredSize(new Dimension(1397, 842));
-                menu.pack();
-                menu.setVisible(true);
-            }
+        if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
+            Menu.v.setVisible(false);
+            Menu.v.dispose();
+            Menu menu = new Menu();
+            menu.setPreferredSize(new Dimension(1397, 842));
+            menu.pack();
+            menu.setVisible(true);
+        }
     }
-    
-    public void createMoneyNotEnoughDialog(){
+
+    public void createMoneyNotEnoughDialog() {
         int result = JOptionPane.showConfirmDialog(null,
                 "Erre a toronyra nincs elég pénz!",
                 "FIGYELEM!",
@@ -482,6 +510,7 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel board;
     private javax.swing.JButton exitButton;
+    private javax.swing.JLabel fish;
     private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
