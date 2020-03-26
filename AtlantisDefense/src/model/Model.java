@@ -33,6 +33,14 @@ public class Model {
         numberOfSpots = 0;
         pearlPower = 100;
         money = 200; // kezdetben mennyi legyen?
+        System.out.println("!!!!!!");
+        System.out.println(money);
+        System.out.println(money);
+        System.out.println(money);
+        System.out.println(money);
+        System.out.println(money);
+        System.out.println(money);
+        System.out.println("?????");
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         towerSpots = new ArrayList<>();
@@ -131,6 +139,7 @@ public class Model {
             System.out.println("GAME OVER");
             View.createGameOverDialog();
             Model.money = 200;
+            View.moneyView.setText("" + Model.money);
             Pearl.setLife(100);
             return true;
         }
