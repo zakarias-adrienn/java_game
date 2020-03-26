@@ -310,8 +310,8 @@ public class View extends javax.swing.JFrame {
         menu.setPreferredSize(new Dimension(1397, 842));
         menu.pack();
         menu.setVisible(true);
-                    Model.money = 200;
-            View.moneyView.setText("" + Model.money);
+        Model.money = Model.moneyDefaultValue;
+        View.moneyView.setText("" + Model.money);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void timerContinuePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerContinuePanelMouseClicked

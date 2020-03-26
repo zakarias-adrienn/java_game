@@ -11,6 +11,8 @@ import view.Board;
 import view.View;
 
 public class Model {
+    
+    public static final int moneyDefaultValue = 200; 
 
     public static int money;
     public static int pearlPower;
@@ -138,7 +140,7 @@ public class Model {
             }
             System.out.println("GAME OVER");
             View.createGameOverDialog();
-            Model.money = 200;
+            Model.money = moneyDefaultValue;
             View.moneyView.setText("" + Model.money);
             Pearl.setLife(100);
             return true;
