@@ -30,14 +30,7 @@ public abstract class Tower {
                 if ((Model.enemies.get(0).getXPos() == pos.x + 1 || Model.enemies.get(0).getXPos() == pos.x - 1 || Model.enemies.get(0).getXPos() == pos.x)
                         && (Model.enemies.get(0).getYPos() == pos.y + 1 || Model.enemies.get(0).getYPos() == pos.y - 1 || Model.enemies.get(0).getYPos() == pos.y)) {
                     System.out.println("Ellenség a hatókörömbe ért!");
-                    JLabel tmp = new javax.swing.JLabel();
-                    tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                    Menu.v.getContentPane().add(tmp);
-                    tmp.setBounds(98, 54, 503, 23);
-                    tmp.setForeground(Color.WHITE);
-                    Menu.v.getContentPane().setComponentZOrder(tmp, 0);
-                    tmp.setLocation(15, 200);
-                    System.out.println("" + tmp.getX());
+                    shoot();
                 }
             }
         });
