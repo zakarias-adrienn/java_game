@@ -12,7 +12,10 @@ public class ElectricTower extends Tower {
 
     }
 
-    public void shoot() {
+    @Override
+    public Bullet shoot() {
+        bullet = new Bullet(pos.x, pos.y);
+        return bullet;
 
     }
 }

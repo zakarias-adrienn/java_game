@@ -6,6 +6,7 @@ import view.Menu;
 
 public class BubbleTower extends Tower {
 
+    
     public BubbleTower() {
         super();
         this.life = 100;
@@ -16,8 +17,11 @@ public class BubbleTower extends Tower {
 
     }
 
-    public void shoot() {
-        JLabel tmp = new javax.swing.JLabel();
+    @Override
+    public Bullet shoot() {
+        bullet = new Bullet(pos.x, pos.y);
+        return bullet;
+        /*JLabel tmp = new javax.swing.JLabel();
         //tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         tmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bubble_bullet.png")));
         Menu.v.getContentPane().add(tmp);
@@ -28,6 +32,6 @@ public class BubbleTower extends Tower {
         //116,100: ott kezdődik a táblázat
         //57, 47: cellák magasság szélessége
         //28, 27: küzépre igazítja a golyót (alapból bal felső sarokba rakná)
-        System.out.println("" + pos.x + ", " + pos.y);
+        System.out.println("" + pos.x + ", " + pos.y);*/
     }
 }

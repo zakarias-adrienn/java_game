@@ -17,7 +17,9 @@ public class GoldTower extends Tower {
         this.type = "gold";
         
     }
-    public void shoot() {
+    @Override
+    public Bullet shoot() {
+        bullet = new Bullet(pos.x, pos.y);
         Timer timerForGoldTower = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,5 +32,6 @@ public class GoldTower extends Tower {
         });
         // valamikor le kell állítani!!!
         timerForGoldTower.start();
+        return bullet;
     }
 }

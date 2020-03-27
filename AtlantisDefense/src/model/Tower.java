@@ -17,9 +17,11 @@ public abstract class Tower {
     protected String type;
     private Timer towerTimer;
     protected Point pos;
+    public   Bullet bullet;
 
     public Tower() {
         this.pos = new Point();
+        this.bullet = new Bullet();
         this.towerTimer = new Timer(100, new ActionListener() {
 
             @Override
@@ -30,8 +32,11 @@ public abstract class Tower {
                 if ((Model.enemies.get(0).getXPos() == pos.x + 1 || Model.enemies.get(0).getXPos() == pos.x - 1 || Model.enemies.get(0).getXPos() == pos.x)
                         && (Model.enemies.get(0).getYPos() == pos.y + 1 || Model.enemies.get(0).getYPos() == pos.y - 1 || Model.enemies.get(0).getYPos() == pos.y)) {
                     System.out.println("Ellenség a hatókörömbe ért!");
-                    shoot();
+                    bullet = shoot();
+                    bullet.move(0, 0);
                 }
+                bullet.move(0, 0);
+                
             }
         });
     }
@@ -40,7 +45,7 @@ public abstract class Tower {
         this.towerTimer.start();
     }
 
-    public abstract void shoot();
+    public abstract Bullet shoot();
 
     public Timer getTimer() {
         return towerTimer;

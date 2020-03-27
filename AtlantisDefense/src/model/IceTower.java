@@ -11,7 +11,10 @@ public class IceTower extends Tower {
         this.type = "ice";
         
     }
-    public void shoot() {
-        
+    @Override
+    public Bullet shoot() {
+        bullet = new Bullet(pos.x, pos.y);
+        return bullet;
+
     }
 }
