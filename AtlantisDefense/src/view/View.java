@@ -117,6 +117,8 @@ public class View extends javax.swing.JFrame {
                                 }
                                 Model.enemies.add(enemy);
                                 Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed, enemy);
+                                System.out.println("enemy: " + Model.readedEnemies.get(i).type);
+                                System.out.println("enemy speed: " + Model.readedEnemies.get(i).speed);
                             } catch (IOException ex) {
                                 System.out.println("Ellenség képét nem sikerült elérni.\n");
                             }

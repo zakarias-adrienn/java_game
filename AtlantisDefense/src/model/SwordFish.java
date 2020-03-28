@@ -9,7 +9,7 @@ public class SwordFish extends Enemy {
     {
         this.pos = new Point(0, 0);
         this.life = 100;
-        this.speed = 10;
+        this.speed = 20;//10;
         this.strength = 4;
         this.type = "ice";
         
