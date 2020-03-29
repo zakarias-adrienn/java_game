@@ -1,11 +1,10 @@
 package model;
 
-import java.awt.Color;
-import javax.swing.JLabel;
-import view.Menu;
+import java.io.IOException;
+import java.util.ArrayList;
+import view.Board;
 
 public class BubbleTower extends Tower {
-
     
     public BubbleTower() {
         super();
@@ -14,13 +13,22 @@ public class BubbleTower extends Tower {
         this.price = 80;
         this.distance = 3;
         this.type = "bubble";
+        bullets = new ArrayList<>();
 
     }
 
     @Override
-    public Bullet shoot() {
-        bullet = new Bullet(pos.x, pos.y);
-        return bullet;
+    public void shoot() {
+        Bullet bullet = new Bullet(pos.x+1, pos.y+1);
+        this.life -= 10;
+        try {
+            Board.cells[this.pos.x][this.pos.y].setLife(this.life);
+            Board.cells[this.pos.x][this.pos.y].repaint();
+        } catch (IOException ex) {
+            System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
+        }
+        bullets.add(bullet);
+        bullet.move(0, 0);
         /*JLabel tmp = new javax.swing.JLabel();
         //tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         tmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bubble_bullet.png")));

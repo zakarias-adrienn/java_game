@@ -35,14 +35,6 @@ public class Model {
         numberOfSpots = 0;
         pearlPower = 100;
         money = 200; // kezdetben mennyi legyen?
-        System.out.println("!!!!!!");
-        System.out.println(money);
-        System.out.println(money);
-        System.out.println(money);
-        System.out.println(money);
-        System.out.println(money);
-        System.out.println(money);
-        System.out.println("?????");
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         towerSpots = new ArrayList<>();
@@ -53,7 +45,6 @@ public class Model {
         readLines = readFile("src/res/palya.txt");
 
         length = parseInt(readLines.get(1).split(" ")[0]);
-        System.err.println("len: "+length);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
         for (int i = 2; i < 14; ++i) {
@@ -83,7 +74,6 @@ public class Model {
 
             }
         }
-
         towers.clear(); //minden értéket null-ra állít
 
         String[] routeString = readLines.get(length + 2).split(" ");
@@ -136,7 +126,6 @@ public class Model {
             for(int i = 0; i<Board.timers.size(); ++i){
                 Board.timers.get(i).stop();
             }
-            System.out.println("GAME OVER");
             View.createGameOverDialog();
             Model.money = moneyDefaultValue;
             View.moneyView.setText("" + Model.money);

@@ -1,12 +1,10 @@
 package model;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JLabel;
+import java.util.ArrayList;
 import javax.swing.Timer;
-import view.Menu;
 
 public abstract class Tower {
 
@@ -17,35 +15,44 @@ public abstract class Tower {
     protected String type;
     private Timer towerTimer;
     protected Point pos;
-    public   Bullet bullet;
+    public ArrayList<Bullet> bullets;
 
     public Tower() {
         this.pos = new Point();
-        this.bullet = new Bullet();
-        this.towerTimer = new Timer(100, new ActionListener() {
+        this.towerTimer = new Timer(500, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO!!!!!!! LÖVÉS MEGVALÓSÍTÁSA
-                // az összes ellenségeen végig kell menni vagy csak azokon amiket támad
-                // kellene tudjon lőni
-                if ((Model.enemies.get(0).getXPos() == pos.x + 1 || Model.enemies.get(0).getXPos() == pos.x - 1 || Model.enemies.get(0).getXPos() == pos.x)
-                        && (Model.enemies.get(0).getYPos() == pos.y + 1 || Model.enemies.get(0).getYPos() == pos.y - 1 || Model.enemies.get(0).getYPos() == pos.y)) {
-                    System.out.println("Ellenség a hatókörömbe ért!");
-                    bullet = shoot();
-                    bullet.move(0, 0);
+                if (Model.enemies.size() > 0) {
+                    for (int i = 0; i < Model.enemies.size(); ++i) {
+                        if (enemyGotIn(i)) {
+                            System.out.println("Ellenség a hatókörömbe ért!");
+                            shoot(); // több golyó is létrejön egy ellenséghez
+                        }
+                    }
                 }
-                bullet.move(0, 0);
-                
             }
         });
+    }
+
+    public boolean enemyGotIn(int index) {
+        if ((Model.enemies.get(index).getXPos() == pos.x + 1
+                || Model.enemies.get(index).getXPos() == pos.x - 1
+                || Model.enemies.get(index).getXPos() == pos.x)
+                && (Model.enemies.get(index).getYPos() == pos.y + 1
+                || Model.enemies.get(index).getYPos() == pos.y - 1
+                || Model.enemies.get(index).getYPos() == pos.y)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void startTimer() {
         this.towerTimer.start();
     }
 
-    public abstract Bullet shoot();
+    public abstract void shoot();
 
     public Timer getTimer() {
         return towerTimer;

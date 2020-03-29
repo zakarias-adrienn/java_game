@@ -2,7 +2,10 @@ package model;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 import view.Menu;
 
 public class Bullet {
@@ -10,6 +13,7 @@ public class Bullet {
     public int speed = 3;
     public int rate;
     public JLabel bullet;
+    public Timer timerForBullet;
     
     public Bullet()
     {
@@ -19,6 +23,7 @@ public class Bullet {
     
     public Bullet(Integer towerX, Integer towerY)
     {
+        System.out.println("bullet");
         pos = new Point(116+28+57*(towerY-1), 100+23+47*(towerX-1));
         //116,100: ott kezdődik a táblázat
         //57, 47: cellák magasság szélessége
@@ -30,12 +35,19 @@ public class Bullet {
         bullet.setForeground(Color.WHITE);
         Menu.v.getContentPane().setComponentZOrder(bullet, 0);
         bullet.setLocation(pos.x, pos.y); // Golyót a toronyra igazítja)
-        System.out.println("" + towerX + ", " + towerY);
     }
     
     public void move(int x, int y) {
-        pos.x += speed;
-        pos.y += speed;
-        bullet.setLocation(pos.x, pos.y);
+        System.out.println("itt kellene mozogjon a golyó");
+        timerForBullet = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pos.x += speed;
+                pos.y += speed;
+                bullet.setLocation(pos.x, pos.y);
+            }
+        });
+        timerForBullet.start();
+        // meg kellene állítani, ha a pályáról leért vagy ha eltalált egy ellenséget
     }
 }

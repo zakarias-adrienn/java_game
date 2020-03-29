@@ -1,25 +1,17 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import res.ResourceLoader;
@@ -105,6 +97,9 @@ public class Board extends JPanel {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
+                            System.out.println("Kattintott hely koordinátái");
+                            System.out.println(thumb.getXPos());
+                            System.out.println(thumb.getYPos());
                             int imageNumber = View.checkClick();
                             if (imageNumber != 0) {
                                 ImageIcon icon;
@@ -124,7 +119,7 @@ public class Board extends JPanel {
                                     tmp = new IceTower();
                                 }
                                 if (Model.money - tmp.price >= 0) {
-                                    tmp.setPos(thumb.getXPos(), thumb.getYPos());
+                                    tmp.setPos(thumb.getXPos()-1, thumb.getYPos()-1);
                                     tmp.startTimer();
                                     thumb.setIcon(icon);
                                     try {

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class IceTower extends Tower {
     public IceTower()
     {
@@ -9,12 +11,14 @@ public class IceTower extends Tower {
         this.price = 100;
         this.distance = 3;
         this.type = "ice";
+        bullets = new ArrayList<>();
         
     }
     @Override
-    public Bullet shoot() {
-        bullet = new Bullet(pos.x, pos.y);
-        return bullet;
+    public void shoot() {
+        Bullet bullet = new Bullet(pos.x+1, pos.y+1);
+        bullets.add(bullet);
+        bullet.move(0, 0);
 
     }
 }
