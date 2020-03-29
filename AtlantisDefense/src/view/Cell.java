@@ -17,6 +17,7 @@ public class Cell extends JLabel {
     public Image img;
     private int life = -1;
     public Image gold;
+    private boolean isTower = false;
 
     Cell(ImageIcon icon, int x, int y) {
         try {
@@ -68,6 +69,22 @@ public class Cell extends JLabel {
     public void setLife(int life) throws IOException {
         this.life = life;
         getImage();
+    }
+    
+    public int getLife(){
+        return this.life;
+    }
+    
+    public void setIsTower(){
+        this.isTower = true;
+    }
+    
+    public void unsetIsTower(){
+        this.isTower = false;
+    }
+    
+    public boolean isTower(){
+        return this.isTower;
     }
 
     @Override

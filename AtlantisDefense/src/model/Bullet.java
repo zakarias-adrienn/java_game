@@ -37,7 +37,7 @@ public class Bullet {
     }
     
     public void move(int x, int y) {
-        System.out.println("itt kellene mozogjon a golyó");
+//        System.out.println("itt kellene mozogjon a golyó");
         timerForBullet = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

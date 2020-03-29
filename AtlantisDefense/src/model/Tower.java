@@ -26,7 +26,7 @@ public abstract class Tower {
                 if (Model.enemies.size() > 0) {
                     for (int i = 0; i < Model.enemies.size(); ++i) {
                         if (enemyGotIn(i)) {
-                            System.out.println("Ellenség a hatókörömbe ért!");
+//                            System.out.println("Ellenség a hatókörömbe ért!");
                             shoot(); // több golyó is létrejön egy ellenséghez
                         }
                     }

@@ -1,23 +1,23 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -492,7 +492,7 @@ public class View extends javax.swing.JFrame {
 
     public static void createGameOverDialog() {
         int result = JOptionPane.showConfirmDialog(null,
-                "A játék sajnos végetért.",
+                "A játék sajnos végetért. Veszítettél!",
                 "FIGYELEM!",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
@@ -504,6 +504,23 @@ public class View extends javax.swing.JFrame {
             menu.pack();
             menu.setVisible(true);
         }
+    }
+    
+    public static void createDialogForTower(){
+        JDialog j = new JDialog();
+        j.setTitle("Torony módosítása");
+        j.setLocationRelativeTo(Menu.v);
+        j.setSize(new Dimension(400, 200));
+        JPanel pan=new JPanel();
+        pan.setLayout(new GridLayout(3,1));
+        JButton button1 = new JButton("Torony feljavítása");
+        JButton button2 = new JButton("Csak a saját ellenségeit lőjje");
+        JButton button3 = new JButton("Minden ellenséget lőjjön");
+        pan.add(button1);
+        pan.add(button2);
+        pan.add(button3);
+        j.add(pan);
+        j.setVisible(true);
     }
 
     public void createMoneyNotEnoughDialog() {

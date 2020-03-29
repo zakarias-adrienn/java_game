@@ -117,13 +117,25 @@ public class Board extends JPanel {
                                     tmp = new IceTower();
                                 }
                                 if (Model.money - tmp.price >= 0) {
-                                    tmp.setPos(thumb.getXPos()-1, thumb.getYPos()-1);
+                                    tmp.setPos(thumb.getXPos() - 1, thumb.getYPos() - 1);
                                     tmp.startTimer();
                                     thumb.setIcon(icon);
+                                    thumb.setIsTower();
                                     try {
                                         thumb.setLife(100);
                                     } catch (IOException ex) {
                                         System.out.println("Képbetöltés sikertelen");
+                                    }
+                                    if (thumb.isTower()) {
+                                        thumb.addMouseListener(new MouseAdapter() {
+                                            @Override
+                                            public void mouseClicked(MouseEvent e) {
+                                                System.out.println("Toronyra kattintottak");
+                                                if(thumb.isTower()){ //még torony van itt
+                                                    View.createDialogForTower();
+                                                }
+                                            }
+                                        });
                                     }
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
@@ -141,11 +153,10 @@ public class Board extends JPanel {
                 }
                 this.add(thumb);
             }
-            
         }
     }
-    
-    public static void resetCellAfterTowerDeath(int x, int y){
+
+    public static void resetCellAfterTowerDeath(int x, int y) {
         ImageIcon icon = new ImageIcon(towerPlace);
         cells[x][y].setIcon(icon);
     }
@@ -219,15 +230,13 @@ public class Board extends JPanel {
             timers.add(timerForEnemy);
         }
     }
-    
-    
-    
+
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         // NEM AKAR VONALAT RAJZOLNIIII :(
-         super.paintComponent(g);
-         g.setColor(Color.YELLOW); 
-         g.drawLine(100,100,600,600);
-        
+        super.paintComponent(g);
+        g.setColor(Color.YELLOW);
+        g.drawLine(100, 100, 600, 600);
+
     }
 }
