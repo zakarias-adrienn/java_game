@@ -29,6 +29,12 @@ public class BubbleTower extends Tower {
         }
         bullets.add(bullet);
         bullet.move(0, 0);
+        System.out.println("Élet: " + life);
+        if(this.life==0){
+            Model.towers.remove(this);
+            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
+            this.towerTimer.stop();
+        }
         /*JLabel tmp = new javax.swing.JLabel();
         //tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         tmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bubble_bullet.png")));

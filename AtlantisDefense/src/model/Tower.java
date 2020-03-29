@@ -13,7 +13,7 @@ public abstract class Tower {
     public Integer price;
     protected Integer distance;
     protected String type;
-    private Timer towerTimer;
+    protected Timer towerTimer;
     protected Point pos;
     public ArrayList<Bullet> bullets;
 

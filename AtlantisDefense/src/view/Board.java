@@ -27,9 +27,10 @@ import model.Pearl;
 
 public class Board extends JPanel {
 
-    public final Image sand, towerPlace, ice, bubble, electric, pearl;
+    public final Image sand, ice, bubble, electric, pearl;
     public static Image route;
     public static Image gold;
+    public static Image towerPlace;
     public static Cell[][] cells;
     public static ArrayList<Cell> routeCells;
     View view = null;
@@ -97,9 +98,6 @@ public class Board extends JPanel {
                     thumb.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            System.out.println("Kattintott hely koordinátái");
-                            System.out.println(thumb.getXPos());
-                            System.out.println(thumb.getYPos());
                             int imageNumber = View.checkClick();
                             if (imageNumber != 0) {
                                 ImageIcon icon;
@@ -145,6 +143,11 @@ public class Board extends JPanel {
             }
             
         }
+    }
+    
+    public static void resetCellAfterTowerDeath(int x, int y){
+        ImageIcon icon = new ImageIcon(towerPlace);
+        cells[x][y].setIcon(icon);
     }
 
     // routeCell-t jó sorrendbe kellene tenni!

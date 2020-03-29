@@ -23,7 +23,6 @@ public class Bullet {
     
     public Bullet(Integer towerX, Integer towerY)
     {
-        System.out.println("bullet");
         pos = new Point(116+28+57*(towerY-1), 100+23+47*(towerX-1));
         //116,100: ott kezdődik a táblázat
         //57, 47: cellák magasság szélessége
