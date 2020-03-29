@@ -29,7 +29,6 @@ public class BubbleTower extends Tower {
         }
         bullets.add(bullet);
         bullet.move(0, 0);
-        System.out.println("Élet: " + life);
         if(this.life==0){
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
