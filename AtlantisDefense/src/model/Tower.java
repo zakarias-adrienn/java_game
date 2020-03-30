@@ -72,6 +72,10 @@ public abstract class Tower {
     public int getLife() {
         return this.life;
     }
+    
+    public void decreaseLife(){
+        this.life -= 10;
+    }
 
     class ToronyTimer implements ActionListener {
         private Tower t;

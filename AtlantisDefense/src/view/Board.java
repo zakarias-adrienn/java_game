@@ -205,6 +205,15 @@ public class Board extends JPanel {
                                 cells[Pearl.getX()][Pearl.getY()].repaint();
                                 Model.enemies.remove(enemy);
                                 ((Timer) e.getSource()).stop();
+                                for(int i = 0; i<Model.towers.size(); ++i){
+                                    if(Model.towers.get(i).getType().equals("gold")){
+                                        Model.towers.get(i).decreaseLife();
+                                        int x = Model.towers.get(i).getPos().x;
+                                        int y = Model.towers.get(i).getPos().y;
+                                        cells[x][y].setLife(Model.towers.get(i).getLife());
+                                        cells[x][y].repaint();
+                                    }
+                                }
                             } catch (IOException ex) {
                                 System.out.println("Képbetöltés nem sikerült!");
                             }

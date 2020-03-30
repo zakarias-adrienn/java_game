@@ -59,6 +59,7 @@ public class View extends javax.swing.JFrame {
     public View() {
         initComponents();
         View.j = new JDialog();
+        View.j.setLocationRelativeTo(Menu.v);
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
@@ -524,7 +525,6 @@ public class View extends javax.swing.JFrame {
 
     public static void createDialogForTower(int x, int y, Cell thumb) {
         View.j.setTitle("Torony módosítása");
-        View.j.setLocationRelativeTo(Menu.v);
         View.j.setSize(new Dimension(400, 200));
         JPanel outer = new JPanel(new BorderLayout());
         JPanel pan = new JPanel();
