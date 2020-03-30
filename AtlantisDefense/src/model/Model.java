@@ -37,7 +37,7 @@ public class Model {
         bulletTimers = new ArrayList<>();
         numberOfSpots = 0;
         pearlPower = 100;
-        money = 200; // kezdetben mennyi legyen?
+        money = moneyDefaultValue; // kezdetben mennyi legyen?
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         towerSpots = new ArrayList<>();

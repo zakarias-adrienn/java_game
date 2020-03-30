@@ -14,6 +14,8 @@ public class IceTower extends Tower {
         this.distance = 3;
         this.type = "ice";
         bullets = new ArrayList<>();
+        bullet_img = "/res/ice_bullet.png";
+        speed = 15;
         
     }
     
@@ -24,14 +26,14 @@ public class IceTower extends Tower {
     
     @Override
     public void shoot() {
-        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet5 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet6 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet7 = new Bullet(pos.x+1, pos.y+1);
-        Bullet bullet8 = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet5 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet6 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet7 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet8 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);

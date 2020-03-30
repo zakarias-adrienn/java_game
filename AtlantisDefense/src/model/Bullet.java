@@ -21,14 +21,15 @@ public class Bullet {
         bullet = new javax.swing.JLabel();
     }
     
-    public Bullet(Integer towerX, Integer towerY)
+    public Bullet(Integer towerX, Integer towerY, String bullet_img, Integer speed)
     {
+        this.speed = speed;
         pos = new Point(116+28+57*(towerY-1), 100+23+47*(towerX-1));
         //116,100: ott kezdődik a táblázat
         //57, 47: cellák magasság szélessége
         //28, 27: küzépre igazítja a golyót (alapból bal felső sarokba rakná
         bullet = new javax.swing.JLabel();
-        bullet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bubble_bullet.png")));
+        bullet.setIcon(new javax.swing.ImageIcon(getClass().getResource(bullet_img)));
         Menu.v.getContentPane().add(bullet);
         bullet.setBounds(98, 54, 30, 30);
         bullet.setForeground(Color.WHITE);

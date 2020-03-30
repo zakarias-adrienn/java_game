@@ -17,6 +17,8 @@ public abstract class Tower {
     protected Point pos;
     public boolean onlyMyEnemiesShooting;
     public ArrayList<Bullet> bullets;
+    String bullet_img;
+    int speed;
 
     public Tower(boolean isGoldTower) {
         this.onlyMyEnemiesShooting = false;

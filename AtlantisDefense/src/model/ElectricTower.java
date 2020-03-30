@@ -14,6 +14,8 @@ public class ElectricTower extends Tower {
         this.distance = 5;
         this.type = "electric";
         bullets = new ArrayList<>();
+        bullet_img = "/res/electric_bullet.png";
+        speed = 2;
     }
     
     @Override
@@ -23,7 +25,7 @@ public class ElectricTower extends Tower {
     
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
@@ -32,7 +34,7 @@ public class ElectricTower extends Tower {
             System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
         }
         bullets.add(bullet);
-        bullet.move("");
+        bullet.move("w");
         if(this.life==0){
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
