@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -522,15 +523,24 @@ public class View extends javax.swing.JFrame {
         j.setTitle("Torony módosítása");
         j.setLocationRelativeTo(Menu.v);
         j.setSize(new Dimension(400, 200));
+        JPanel outer = new JPanel(new BorderLayout());
         JPanel pan=new JPanel();
-        pan.setLayout(new GridLayout(3,1));
-        JButton button1 = new JButton("Torony feljavítása");
-        JButton button2 = new JButton("Csak a saját ellenségeit lőjje");
-        JButton button3 = new JButton("Minden ellenséget lőjjön");
+        GridLayout layout = new GridLayout(6,1);
+        pan.setLayout(layout);
+        JButton button1 = new JButton("Torony feljavítása - nagyobb életerő");
+        JButton button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
+        JButton button3 = new JButton("Csak a saját ellenségeit lőjje");
+        JButton button4 = new JButton("Minden ellenséget lőjjön");
+        JButton button5 = new JButton("Torony eladása");
+        JButton button6 = new JButton("Torony lecserélése másikra");
         pan.add(button1);
         pan.add(button2);
         pan.add(button3);
-        j.add(pan);
+        pan.add(button4);
+        pan.add(button5);
+        pan.add(button6);
+        outer.add(pan);
+        j.add(outer, BorderLayout.CENTER);
         j.setVisible(true);
     }
 
