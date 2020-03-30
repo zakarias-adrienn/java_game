@@ -58,7 +58,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        j = new JDialog();
+        View.j = new JDialog();
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
@@ -85,7 +85,7 @@ public class View extends javax.swing.JFrame {
         this.timerForAnimation = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ///System.out.println("b");
+                ///System.out.println("wasJustPlaced");
                 if (!paused) {
                     Point tmp = fish.getLocation();
                     int x = 0;
@@ -523,13 +523,9 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createDialogForTower(int x, int y, Cell thumb) {
-        if (j.isVisible()) {
-            j.setVisible(false);
-        }
-        j = new JDialog();
-        j.setTitle("Torony módosítása");
-        j.setLocationRelativeTo(Menu.v);
-        j.setSize(new Dimension(400, 200));
+        View.j.setTitle("Torony módosítása");
+        View.j.setLocationRelativeTo(Menu.v);
+        View.j.setSize(new Dimension(400, 200));
         JPanel outer = new JPanel(new BorderLayout());
         JPanel pan = new JPanel();
         GridLayout layout = new GridLayout(5, 1);
@@ -545,8 +541,8 @@ public class View extends javax.swing.JFrame {
         pan.add(button4);
         pan.add(button5);
         outer.add(pan);
-        j.add(outer, BorderLayout.CENTER);
-        j.setVisible(true);
+        View.j.add(outer, BorderLayout.CENTER);
+        View.j.setVisible(true);
 
         button1.addMouseListener(new MouseAdapter() {
             @Override
@@ -564,7 +560,9 @@ public class View extends javax.swing.JFrame {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
                     }   
             }
-                j.setVisible(false);
+                View.j.setVisible(false);
+                System.out.println(View.j.isVisible());
+                View.j.dispose();
         }});
         
         // csak a saját ellenségeit lőjje
@@ -573,7 +571,8 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
                 t.onlyMyEnemiesShooting = true;
-                j.setVisible(false);
+                View.j.setVisible(false);
+                View.j.dispose();
         }});
         
         // minden ellenséget lőjjön
@@ -582,13 +581,15 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
                 t.onlyMyEnemiesShooting = false;
-                j.setVisible(false);
+                View.j.setVisible(false);
+                View.j.dispose();
         }});
         
+        // torony eladása
         button5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("itt vagyok");
+                thumb.wasJustPlaced = true;
                 Tower t = findTower(x, y);
                 t.towerTimer.stop();
                 Model.towers.remove(t);
@@ -608,7 +609,8 @@ public class View extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
                 } 
-                j.setVisible(false);
+                View.j.setVisible(false);
+                View.j.dispose();
         }});
 }
     

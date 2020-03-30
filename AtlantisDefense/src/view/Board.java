@@ -130,8 +130,10 @@ public class Board extends JPanel {
                                             @Override
                                             public void mouseClicked(MouseEvent e) {
                                                 System.out.println("Toronyra kattintottak");
-                                                if(thumb.isTower()){ //még torony van itt
+                                                if(thumb.isTower() && !thumb.wasJustPlaced){ //még torony van itt
                                                     View.createDialogForTower(thumb.getXPos()-1, thumb.getYPos()-1, thumb);
+                                                } else if(thumb.wasJustPlaced==true) {
+                                                    thumb.wasJustPlaced = false;
                                                 }
                                             }
                                         });
