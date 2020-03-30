@@ -32,14 +32,19 @@ public abstract class Tower {
     }
 
     public abstract String getType();
-
+    
+    // toronynál nem talál az index
     public boolean enemyGotIn(int index) {
-        if ((Model.enemies.get(index).getXPos() == pos.x + 1
-                || Model.enemies.get(index).getXPos() == pos.x - 1
-                || Model.enemies.get(index).getXPos() == pos.x)
-                && (Model.enemies.get(index).getYPos() == pos.y + 1
-                || Model.enemies.get(index).getYPos() == pos.y - 1
-                || Model.enemies.get(index).getYPos() == pos.y)) {
+        if ((Model.enemies.get(index).getXPos() == this.pos.x + 2
+                || Model.enemies.get(index).getXPos() == this.pos.x 
+                || Model.enemies.get(index).getXPos() == this.pos.x +1)
+                && (Model.enemies.get(index).getYPos() == this.pos.y + 2
+                || Model.enemies.get(index).getYPos() == this.pos.y
+                || Model.enemies.get(index).getYPos() == this.pos.y+1)) {
+            System.out.println(Model.enemies.get(index).getXPos());
+            System.out.println(Model.enemies.get(index).getYPos());
+            System.out.println(this.pos.x);
+            System.out.println(this.pos.y);
             return true;
         } else {
             return false;

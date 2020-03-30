@@ -50,6 +50,11 @@ public class View extends javax.swing.JFrame {
     private long elapsed = 0;
     private int i = 0;
     private boolean plus = true;
+    public static JButton button1;
+    public static JButton button2;
+    public static JButton button3;
+    public static JButton button4;
+    public static JButton button5;
 
     private static boolean selected1 = false;
     private static boolean selected2 = false;
@@ -60,6 +65,26 @@ public class View extends javax.swing.JFrame {
         initComponents();
         View.j = new JDialog();
         View.j.setLocationRelativeTo(Menu.v);
+        View.j.setTitle("Torony módosítása");
+        View.j.setSize(new Dimension(400, 200));
+        JPanel outer = new JPanel(new BorderLayout());
+        JPanel pan = new JPanel();
+        GridLayout layout = new GridLayout(5, 1);
+        pan.setLayout(layout);
+        button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
+        button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
+        button3 = new JButton("Csak a saját ellenségeit lőjje");
+        button4 = new JButton("Minden ellenséget lőjjön");
+        button5 = new JButton("Torony eladása");
+        pan.add(button1);
+        pan.add(button2);
+        pan.add(button3);
+        pan.add(button4);
+        pan.add(button5);
+        outer.add(pan);
+        View.j.add(outer, BorderLayout.CENTER);
+        
+        
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
@@ -524,25 +549,17 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createDialogForTower(int x, int y, Cell thumb) {
-        View.j.setTitle("Torony módosítása");
-        View.j.setSize(new Dimension(400, 200));
-        JPanel outer = new JPanel(new BorderLayout());
-        JPanel pan = new JPanel();
-        GridLayout layout = new GridLayout(5, 1);
-        pan.setLayout(layout);
-        JButton button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
-        JButton button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
-        JButton button3 = new JButton("Csak a saját ellenségeit lőjje");
-        JButton button4 = new JButton("Minden ellenséget lőjjön");
-        JButton button5 = new JButton("Torony eladása");
-        pan.add(button1);
-        pan.add(button2);
-        pan.add(button3);
-        pan.add(button4);
-        pan.add(button5);
-        outer.add(pan);
-        View.j.add(outer, BorderLayout.CENTER);
         View.j.setVisible(true);
+        Tower t = findTower(x, y);
+        if(t.getType().equals("gold")){
+            button2.setEnabled(false);
+            button3.setEnabled(false);
+            button4.setEnabled(false);
+        }else{
+            button2.setEnabled(true);
+            button3.setEnabled(true);
+            button4.setEnabled(true);
+        }
 
         button1.addMouseListener(new MouseAdapter() {
             @Override
@@ -570,9 +587,11 @@ public class View extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
-                t.onlyMyEnemiesShooting = true;
-                View.j.setVisible(false);
-                View.j.dispose();
+                if(button3.isEnabled()){
+                    t.onlyMyEnemiesShooting = true;
+                    View.j.setVisible(false);
+                    View.j.dispose();
+                }
         }});
         
         // minden ellenséget lőjjön
@@ -580,9 +599,11 @@ public class View extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
-                t.onlyMyEnemiesShooting = false;
-                View.j.setVisible(false);
-                View.j.dispose();
+                if(button4.isEnabled()){
+                    t.onlyMyEnemiesShooting = false;
+                    View.j.setVisible(false);
+                    View.j.dispose();
+                }
         }});
         
         // torony eladása
