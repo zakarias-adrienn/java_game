@@ -9,6 +9,8 @@ public abstract class Enemy {
     protected int speed;
     protected String type;
     
+    public abstract String getType();
+    
     public abstract void move();
     
     public void collosion() {

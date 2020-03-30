@@ -14,8 +14,15 @@ public class SwordFish extends Enemy {
         this.type = "ice";
         
     }
+    
+    @Override
     public void move() {
         
+    }
+    
+    @Override
+    public String getType(){
+        return "ice";
     }
     
 }

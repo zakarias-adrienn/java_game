@@ -17,6 +17,12 @@ public class GoldTower extends Tower {
         this.type = "gold";
         
     }
+    
+    @Override
+    public String getType(){
+        return "gold";
+    }
+    
     @Override
     public void shoot() {
         this.towerTimer = new Timer(4000, new ActionListener() {

@@ -532,20 +532,18 @@ public class View extends javax.swing.JFrame {
         j.setSize(new Dimension(400, 200));
         JPanel outer = new JPanel(new BorderLayout());
         JPanel pan = new JPanel();
-        GridLayout layout = new GridLayout(6, 1);
+        GridLayout layout = new GridLayout(5, 1);
         pan.setLayout(layout);
         JButton button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
         JButton button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
         JButton button3 = new JButton("Csak a saját ellenségeit lőjje");
         JButton button4 = new JButton("Minden ellenséget lőjjön");
         JButton button5 = new JButton("Torony eladása");
-        JButton button6 = new JButton("Torony lecserélése másikra");
         pan.add(button1);
         pan.add(button2);
         pan.add(button3);
         pan.add(button4);
         pan.add(button5);
-        pan.add(button6);
         outer.add(pan);
         j.add(outer, BorderLayout.CENTER);
         j.setVisible(true);
@@ -569,6 +567,24 @@ public class View extends javax.swing.JFrame {
                 j.setVisible(false);
         }});
         
+        // csak a saját ellenségeit lőjje
+        button3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Tower t = findTower(x, y);
+                t.onlyMyEnemiesShooting = true;
+                j.setVisible(false);
+        }});
+        
+        // minden ellenséget lőjjön
+        button4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Tower t = findTower(x, y);
+                t.onlyMyEnemiesShooting = false;
+                j.setVisible(false);
+        }});
+        
         button5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -580,13 +596,14 @@ public class View extends javax.swing.JFrame {
                 Model.money += moneyForTower;
                 moneyView.setText("" + Model.money);
                 try {
+                    thumb.unsetIsTower();
                     Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].unsetIsTower();
                     Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
                     Image img = ResourceLoader.loadImage("res/toronyhely.png");
                     ImageIcon icon = new ImageIcon(img);
                     Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setIcon(icon);
                     Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].unsetIsTower();
+                    thumb.unsetIsTower();
                     Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].repaint();
                 } catch (IOException ex) {
                     System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");

@@ -14,6 +14,12 @@ public class GoldFish extends Enemy {
         this.type = "gold";
         
     }
+    
+    @Override
+    public String getType(){
+        return "gold";
+    }
+    
     @Override
     public void move() {
         

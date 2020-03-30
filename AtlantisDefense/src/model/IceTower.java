@@ -16,6 +16,12 @@ public class IceTower extends Tower {
         bullets = new ArrayList<>();
         
     }
+    
+    @Override
+    public String getType(){
+        return "ice";
+    }
+    
     @Override
     public void shoot() {
         Bullet bullet = new Bullet(pos.x+1, pos.y+1);

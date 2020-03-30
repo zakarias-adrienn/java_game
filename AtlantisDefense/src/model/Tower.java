@@ -15,30 +15,21 @@ public abstract class Tower {
     protected String type;
     public Timer towerTimer;
     protected Point pos;
+    public boolean onlyMyEnemiesShooting;
     public ArrayList<Bullet> bullets;
 
     public Tower(boolean isGoldTower) {
+        this.onlyMyEnemiesShooting = false;
         this.pos = new Point();
-        if(!isGoldTower){
-            this.towerTimer = new Timer(500, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (Model.enemies.size() > 0) {
-                    for (int i = 0; i < Model.enemies.size(); ++i) {
-                        if (enemyGotIn(i)) {
-//                            System.out.println("Ellenség a hatókörömbe ért!");
-                            shoot(); // több golyó is létrejön egy ellenséghez
-                        }
-                    }
-                }
-            }
-        });
-       } else {
+        if (!isGoldTower) {
+            this.towerTimer = new Timer(500, new ToronyTimer(this));
+        } else {
             System.out.println("gold");
             this.shoot();
         }
     }
+
+    public abstract String getType();
 
     public boolean enemyGotIn(int index) {
         if ((Model.enemies.get(index).getXPos() == pos.x + 1
@@ -67,16 +58,47 @@ public abstract class Tower {
         this.pos.x = xx;
         this.pos.y = yy;
     }
-    
-    public Point getPos(){
+
+    public Point getPos() {
         return pos;
     }
-    
-    public void increaseLife(){
+
+    public void increaseLife() {
         this.life = 100;
     }
-    
-    public int getLife(){
+
+    public int getLife() {
         return this.life;
+    }
+
+    class ToronyTimer implements ActionListener {
+        private Tower t;
+        
+        public ToronyTimer(Tower tower) {
+            t = tower;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Model.enemies.size() > 0) {
+                if (!t.onlyMyEnemiesShooting) {
+                    for (int i = 0; i < Model.enemies.size(); ++i) {
+                        if (enemyGotIn(i)) {
+//                            System.out.println("Ellenség a hatókörömbe ért!");
+                            shoot(); // több golyó is létrejön egy ellenséghez
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < Model.enemies.size(); ++i) {
+                        if (Model.enemies.get(i).getType().equals(t.getType())) {
+                            if (enemyGotIn(i)) {
+                                shoot();
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
     }
 }

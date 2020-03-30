@@ -16,6 +16,11 @@ public class BubbleTower extends Tower {
         bullets = new ArrayList<>();
 
     }
+    
+    @Override
+    public String getType(){
+        return "bubble";
+    }
 
     @Override
     public void shoot() {

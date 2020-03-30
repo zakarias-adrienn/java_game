@@ -14,7 +14,13 @@ public class Eel extends Enemy {
         this.type = "electric";
         
     }
+    
+    @Override
+    public String getType(){
+        return "electric";
+    }
+
+    @Override
     public void move() {
-        
     }
 }

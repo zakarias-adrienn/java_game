@@ -15,7 +15,12 @@ public class ElectricTower extends Tower {
         this.type = "electric";
         bullets = new ArrayList<>();
     }
-
+    
+    @Override
+    public String getType(){
+        return "electric";
+    }
+    
     @Override
     public void shoot() {
         Bullet bullet = new Bullet(pos.x+1, pos.y+1);
