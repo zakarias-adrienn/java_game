@@ -24,7 +24,10 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1);
+        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
@@ -32,8 +35,14 @@ public class BubbleTower extends Tower {
         } catch (IOException ex) {
             System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
         }
-        bullets.add(bullet);
-        bullet.move("nw");
+        bullets.add(bullet1);
+        bullets.add(bullet2);
+        bullets.add(bullet3);
+        bullets.add(bullet4);
+        bullet1.move("n");
+        bullet2.move("e");
+        bullet3.move("s");
+        bullet4.move("w");
         if(this.life==0){
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
