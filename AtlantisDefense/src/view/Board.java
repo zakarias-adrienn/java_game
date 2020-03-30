@@ -131,14 +131,14 @@ public class Board extends JPanel {
                                             public void mouseClicked(MouseEvent e) {
                                                 System.out.println("Toronyra kattintottak");
                                                 if(thumb.isTower()){ //még torony van itt
-                                                    View.createDialogForTower();
+                                                    View.createDialogForTower(thumb.getXPos()-1, thumb.getYPos()-1, thumb);
                                                 }
                                             }
                                         });
                                     }
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
-                                    Model.towers.add(spotIndex, tmp);
+                                    Model.towers.add(tmp);
                                     timers.add(tmp.getTimer());
                                     System.out.println(Model.towers.size());
                                     spotIndex++;

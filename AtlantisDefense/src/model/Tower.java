@@ -13,7 +13,7 @@ public abstract class Tower {
     public Integer price;
     protected Integer distance;
     protected String type;
-    protected Timer towerTimer;
+    public Timer towerTimer;
     protected Point pos;
     public ArrayList<Bullet> bullets;
 
@@ -66,5 +66,17 @@ public abstract class Tower {
     public void setPos(int xx, int yy) {
         this.pos.x = xx;
         this.pos.y = yy;
+    }
+    
+    public Point getPos(){
+        return pos;
+    }
+    
+    public void increaseLife(){
+        this.life = 100;
+    }
+    
+    public int getLife(){
+        return this.life;
     }
 }

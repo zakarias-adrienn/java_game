@@ -7,14 +7,20 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -29,6 +35,8 @@ import model.Fugu;
 import model.GoldFish;
 import model.Model;
 import model.SwordFish;
+import model.Tower;
+import res.ResourceLoader;
 
 public class View extends javax.swing.JFrame {
 
@@ -64,8 +72,8 @@ public class View extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("a");
                 /*Point tmp = timeView.getLocation();
-                int x = tmp.x + 10;
-                timeView.setLocation(x, tmp.y);*/
+                 int x = tmp.x + 10;
+                 timeView.setLocation(x, tmp.y);*/
                 if (!paused) {
                     timeView.setText("" + i++);
 
@@ -83,8 +91,7 @@ public class View extends javax.swing.JFrame {
                     int x = 0;
                     if (tmp.x > 1000) {
                         plus = false;
-                    }
-                    else if (tmp.x < 0) {
+                    } else if (tmp.x < 0) {
                         plus = true;
                     }
                     if (plus) {
@@ -329,8 +336,8 @@ public class View extends javax.swing.JFrame {
         txtAreaDetail.setBackground(new Color(240, 248, 255));
         txtAreaDetail.setForeground(new Color(0, 0, 81));
         /*Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);*/
+         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
+         txtAreaDetail.setFont(f2);*/
         Font font = new Font("Tw Cen MT", Font.BOLD, 20);
         txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
@@ -514,9 +521,9 @@ public class View extends javax.swing.JFrame {
             menu.setVisible(true);
         }
     }
-    
-    public static void createDialogForTower(){
-        if(j.isVisible()){
+
+    public static void createDialogForTower(int x, int y, Cell thumb) {
+        if (j.isVisible()) {
             j.setVisible(false);
         }
         j = new JDialog();
@@ -524,10 +531,10 @@ public class View extends javax.swing.JFrame {
         j.setLocationRelativeTo(Menu.v);
         j.setSize(new Dimension(400, 200));
         JPanel outer = new JPanel(new BorderLayout());
-        JPanel pan=new JPanel();
-        GridLayout layout = new GridLayout(6,1);
+        JPanel pan = new JPanel();
+        GridLayout layout = new GridLayout(6, 1);
         pan.setLayout(layout);
-        JButton button1 = new JButton("Torony feljavítása - nagyobb életerő");
+        JButton button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
         JButton button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
         JButton button3 = new JButton("Csak a saját ellenségeit lőjje");
         JButton button4 = new JButton("Minden ellenséget lőjjön");
@@ -542,9 +549,62 @@ public class View extends javax.swing.JFrame {
         outer.add(pan);
         j.add(outer, BorderLayout.CENTER);
         j.setVisible(true);
-    }
 
-    public void createMoneyNotEnoughDialog() {
+        button1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(Model.money>=50){
+                    Model.money -= 50;
+                    moneyView.setText("" + Model.money);
+                    // meg kell keresni az ezen a helyen levő tornyot s növelni az életerejét
+                    Tower t = findTower(x, y);
+                    t.increaseLife();
+                    try {
+                        thumb.setLife(100);
+                        thumb.repaint();
+                    } catch (IOException ex) {
+                        System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
+                    }   
+            }
+                j.setVisible(false);
+        }});
+        
+        button5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("itt vagyok");
+                Tower t = findTower(x, y);
+                t.towerTimer.stop();
+                Model.towers.remove(t);
+                int moneyForTower = Math.round(t.getLife()/10);
+                Model.money += moneyForTower;
+                moneyView.setText("" + Model.money);
+                try {
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].unsetIsTower();
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
+                    Image img = ResourceLoader.loadImage("res/toronyhely.png");
+                    ImageIcon icon = new ImageIcon(img);
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setIcon(icon);
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].unsetIsTower();
+                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].repaint();
+                } catch (IOException ex) {
+                    System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                } 
+                j.setVisible(false);
+        }});
+}
+    
+public static Tower findTower(int x, int y){
+    for(int i = 0; i<Model.towers.size(); ++i){
+        if(Model.towers.get(i).getPos().x==x && Model.towers.get(i).getPos().y==y){
+            return Model.towers.get(i);
+        }
+    }
+    return null;
+}
+
+public void createMoneyNotEnoughDialog() {
         int result = JOptionPane.showConfirmDialog(null,
                 "Erre a toronyra nincs elég pénz!",
                 "FIGYELEM!",

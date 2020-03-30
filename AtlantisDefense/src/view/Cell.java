@@ -3,8 +3,6 @@ package view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import res.ResourceLoader;
@@ -15,15 +13,9 @@ public class Cell extends JLabel {
     private int xPos, yPos;
     public Image img;
     private int life = -1;
-    public Image gold;
     private boolean isTower = false;
 
     Cell(ImageIcon icon, int x, int y) {
-        try {
-            this.gold = ResourceLoader.loadImage("res/gold_bg.png");
-        } catch (IOException ex) {
-            Logger.getLogger(Cell.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.icon = icon;
         this.xPos = x;
         this.yPos = y;
