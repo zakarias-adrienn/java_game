@@ -17,7 +17,6 @@ public class EnemyReaded {
     }
     
     public Image getImage() throws IOException{
-        /// TODO: különböző képeket rakni
         if("electric".equals(type)){
             img = ResourceLoader.loadImage("res/eel_small.png");
             return img;

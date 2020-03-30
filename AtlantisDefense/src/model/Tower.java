@@ -17,9 +17,10 @@ public abstract class Tower {
     protected Point pos;
     public ArrayList<Bullet> bullets;
 
-    public Tower() {
+    public Tower(boolean isGoldTower) {
         this.pos = new Point();
-        this.towerTimer = new Timer(500, new ActionListener() {
+        if(!isGoldTower){
+            this.towerTimer = new Timer(500, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,6 +34,10 @@ public abstract class Tower {
                 }
             }
         });
+       } else {
+            System.out.println("gold");
+            this.shoot();
+        }
     }
 
     public boolean enemyGotIn(int index) {

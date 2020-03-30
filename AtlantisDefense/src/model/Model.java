@@ -7,6 +7,7 @@ import java.io.FileReader;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 import view.Board;
 import view.View;
 
@@ -30,8 +31,10 @@ public class Model {
     public static LevelItem[][] level;
     public static ArrayList<EnemyReaded> readedEnemies;
     private ArrayList<String> readLines;
+    public static ArrayList<Timer> bulletTimers;
 
     public Model() {
+        bulletTimers = new ArrayList<>();
         numberOfSpots = 0;
         pearlPower = 100;
         money = 200; // kezdetben mennyi legyen?
@@ -121,6 +124,7 @@ public class Model {
 
     public static boolean gameOver() {
         if (Pearl.getLife() <= 0) {
+            View.j.setVisible(false);
             View.timer.stop();
             View.timerForEnemies.stop();
             for(int i = 0; i<Board.timers.size(); ++i){

@@ -47,6 +47,13 @@ public class Bullet {
             }
         });
         timerForBullet.start();
+        Model.bulletTimers.add(timerForBullet);
         // meg kellene állítani, ha a pályáról leért vagy ha eltalált egy ellenséget
     }
 }
+
+// pénz nem áll le!
+// GoldTower ne termeljen annyi pénzt
+// több életereje legyen
+// lövés? -> moveTo fgv -> 
+// bulletHell

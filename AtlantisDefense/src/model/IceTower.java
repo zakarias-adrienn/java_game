@@ -7,7 +7,7 @@ import view.Board;
 public class IceTower extends Tower {
     public IceTower()
     {
-        super();
+        super(false);
         this.life = 100;
         this.spot = null;
         this.price = 100;

@@ -36,6 +36,7 @@ public class View extends javax.swing.JFrame {
     public static Timer timerForEnemies;
     public static Timer timerForElapsed;
     public static Timer timerForAnimation;
+    public static JDialog j;
     public static boolean paused = false;
     private long elapsed = 0;
     private int i = 0;
@@ -48,6 +49,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
+        j = new JDialog();
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
@@ -356,6 +358,9 @@ public class View extends javax.swing.JFrame {
         for (int i = 0; i < Model.towers.size(); ++i) {
             Model.towers.get(i).getTimer().start();
         }
+        for (int i = 0; i < Model.bulletTimers.size(); ++i) {
+            Model.bulletTimers.get(i).start();
+        }
     }//GEN-LAST:event_timerContinuePanelMouseClicked
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
@@ -365,6 +370,9 @@ public class View extends javax.swing.JFrame {
         timerForEnemies.stop();
         for (int i = 0; i < Model.towers.size(); ++i) {
             Model.towers.get(i).getTimer().stop();
+        }
+        for (int i = 0; i < Model.bulletTimers.size(); ++i) {
+            Model.bulletTimers.get(i).stop();
         }
     }//GEN-LAST:event_timerStopPanelMouseClicked
 
@@ -507,7 +515,10 @@ public class View extends javax.swing.JFrame {
     }
     
     public static void createDialogForTower(){
-        JDialog j = new JDialog();
+        if(j.isVisible()){
+            j.setVisible(false);
+        }
+        j = new JDialog();
         j.setTitle("Torony módosítása");
         j.setLocationRelativeTo(Menu.v);
         j.setSize(new Dimension(400, 200));

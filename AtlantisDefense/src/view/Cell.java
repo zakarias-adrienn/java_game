@@ -13,7 +13,6 @@ public class Cell extends JLabel {
 
     private ImageIcon icon;
     private int xPos, yPos;
-    public int majom;
     public Image img;
     private int life = -1;
     public Image gold;

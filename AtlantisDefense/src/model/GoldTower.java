@@ -9,7 +9,7 @@ public class GoldTower extends Tower {
     
     public GoldTower()
     {
-        super();
+        super(true);
         this.life = 100;
         this.spot = null;
         this.price = 20;
@@ -19,10 +19,9 @@ public class GoldTower extends Tower {
     }
     @Override
     public void shoot() {
-        Timer timerForGoldTower = new Timer(3000, new ActionListener() {
+        this.towerTimer = new Timer(4000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ha megvan állítva?
                 if (!View.paused) {
                     Model.money += 5;
                     View.moneyView.setText(Integer.toString(Model.money));
@@ -30,6 +29,6 @@ public class GoldTower extends Tower {
             }
         });
         // valamikor le kell állítani!!!
-        timerForGoldTower.start();
+        this.towerTimer.start();
     }
 }

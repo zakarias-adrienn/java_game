@@ -105,7 +105,6 @@ public class Board extends JPanel {
                                 if (imageNumber == 1) {
                                     icon = new ImageIcon(gold);
                                     tmp = new GoldTower();
-                                    tmp.shoot(); // elindul az aranytermelés
                                 } else if (imageNumber == 2) {
                                     icon = new ImageIcon(bubble);
                                     tmp = new BubbleTower();
@@ -116,7 +115,7 @@ public class Board extends JPanel {
                                     icon = new ImageIcon(ice);
                                     tmp = new IceTower();
                                 }
-                                if (Model.money - tmp.price >= 0) {
+                                if (Model.money - tmp.price >= 0 && !thumb.isTower()) {
                                     tmp.setPos(thumb.getXPos() - 1, thumb.getYPos() - 1);
                                     tmp.startTimer();
                                     thumb.setIcon(icon);
@@ -143,7 +142,7 @@ public class Board extends JPanel {
                                     timers.add(tmp.getTimer());
                                     System.out.println(Model.towers.size());
                                     spotIndex++;
-                                } else {
+                                } else if(Model.money - tmp.price < 0) {
                                     view.createMoneyNotEnoughDialog();
                                 }
                                 view.resetBorder();
