@@ -36,13 +36,51 @@ public class Bullet {
         bullet.setLocation(pos.x, pos.y); // Golyót a toronyra igazítja)
     }
     
-    public void move(int x, int y) {
+    public void move(String direction) {
 //        System.out.println("itt kellene mozogjon a golyó");
         timerForBullet = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (direction.equals("n"))
+                {
+                //pos.x -= speed;
+                pos.y -= speed;
+                }
+                else if (direction.equals("ne"))
+                {
+                pos.x += speed;
+                pos.y -= speed;
+                }
+                else if (direction.equals("e"))
+                {
+                pos.x += speed;
+                //pos.y += speed;
+                }
+                else if (direction.equals("se"))
+                {
                 pos.x += speed;
                 pos.y += speed;
+                }
+                else if (direction.equals("s"))
+                {
+                //pos.x -= speed;
+                pos.y += speed;
+                }
+                else if (direction.equals("sw"))
+                {
+                pos.x -= speed;
+                pos.y += speed;
+                }
+                else if (direction.equals("w"))
+                {
+                pos.x -= speed;
+                //pos.y -= speed;
+                }
+                else if (direction.equals("nw"))
+                {
+                pos.x -= speed;
+                pos.y -= speed;
+                }
                 bullet.setLocation(pos.x, pos.y);
             }
         });

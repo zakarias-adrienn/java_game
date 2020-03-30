@@ -33,7 +33,7 @@ public class IceTower extends Tower {
             System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
         }
         bullets.add(bullet);
-        bullet.move(0, 0);
+        bullet.move("");
         if(this.life==0){
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);

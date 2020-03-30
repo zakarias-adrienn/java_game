@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         //this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        level2Button.setEnabled(true);
     }
 
     /**
