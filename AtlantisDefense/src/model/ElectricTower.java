@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 import view.Board;
+import view.Menu;
 
 public class ElectricTower extends Tower {
 
@@ -25,7 +26,18 @@ public class ElectricTower extends Tower {
     
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        for (int i = 0; i<distance; i++)
+        {
+            for (int j = 0; j<distance; j++)
+            {
+                if (!(i == distance/2 && j == distance/2))
+                {
+                    bullets.add(new Bullet(pos.x+i+1-distance/2, pos.y+j+1-distance/2, bullet_img, speed));
+                    
+                }
+            }
+            //Bullet bullet = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        }
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
@@ -33,8 +45,8 @@ public class ElectricTower extends Tower {
         } catch (IOException ex) {
             System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
         }
-        bullets.add(bullet);
-        bullet.move("w");
+        //bullets.add(bullet);
+        //bullet.move("w");
         if(this.life==0){
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
