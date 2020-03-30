@@ -12,8 +12,8 @@ import view.Board;
 import view.View;
 
 public class Model {
-    
-    public static final int moneyDefaultValue = 200; 
+
+    public static final int moneyDefaultValue = 200;
 
     public static int money;
     public static int pearlPower;
@@ -126,8 +126,15 @@ public class Model {
         if (Pearl.getLife() <= 0) {
             View.j.setVisible(false);
             View.timer.stop();
+            View.timerForAnimation.stop();
             View.timerForEnemies.stop();
-            for(int i = 0; i<Board.timers.size(); ++i){
+            for (int i = 0; i < Model.bulletTimers.size(); ++i) {
+                Model.bulletTimers.get(i).stop();
+            }
+            for (int i = 0; i < Model.towers.size(); ++i) {
+                Model.towers.get(i).getTimer().start();
+            }
+            for (int i = 0; i < Board.timers.size(); ++i) {
                 Board.timers.get(i).stop();
             }
             View.createGameOverDialog();
