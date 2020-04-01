@@ -200,6 +200,12 @@ public class Board extends JPanel {
                             try {
                                 routeCells2.get(i - 1).setIcon(icon2);
                                 routeCells2.get(i - 1).setLife(-1);
+                                if(Model.money>=10){
+                                    Model.money -= 10;
+                                }else {
+                                    Model.money = 0;
+                                }
+                                View.moneyView.setText("" + Model.money);
                                 Pearl.decreaseLife();
                                 cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
                                 cells[Pearl.getX()][Pearl.getY()].repaint();

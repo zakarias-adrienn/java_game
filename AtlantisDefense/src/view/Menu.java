@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.Color;
@@ -11,20 +6,16 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author anwol
- */
+
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
     public static View v;
+    public static boolean level1ButtonClicked = false;
+    public static boolean level2ButtonClicked = false;
+    public static boolean level3ButtonClicked = false;
     
     public Menu() {
         initComponents();
@@ -199,6 +190,9 @@ public class Menu extends javax.swing.JFrame {
     private void level2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        Menu.level2ButtonClicked = true;
+        Menu.level1ButtonClicked = false;
+        Menu.level3ButtonClicked = false;
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level2ButtonActionPerformed
@@ -208,11 +202,17 @@ public class Menu extends javax.swing.JFrame {
         /*this.setVisible(false);
         this.v = new View();
         v.setVisible(true);*/
+        Menu.level2ButtonClicked = false;
+        Menu.level1ButtonClicked = false;
+        Menu.level3ButtonClicked = true;
     }//GEN-LAST:event_level3ButtonActionPerformed
 
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
         // játék indítása
         this.setVisible(false);
+        Menu.level2ButtonClicked = false;
+        Menu.level1ButtonClicked = true;
+        Menu.level3ButtonClicked = false;
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level1ButtonActionPerformed

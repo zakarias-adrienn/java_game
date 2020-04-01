@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import view.Board;
+import view.Menu;
 import view.View;
 
 public class Model {
@@ -45,7 +46,13 @@ public class Model {
         route = new ArrayList<>();
         readedEnemies = new ArrayList<>();
         round = 1;
-        readLines = readFile("src/res/palya2.txt");
+        if(Menu.level1ButtonClicked){
+            readLines = readFile("src/res/palya.txt");
+        }else if(Menu.level2ButtonClicked){
+            readLines = readFile("src/res/palya2.txt");
+        }else {
+            readLines = readFile("src/res/palya3.txt");
+        }
 
         length = parseInt(readLines.get(1).split(" ")[0]);
         width = parseInt(readLines.get(1).split(" ")[1]);
