@@ -23,6 +23,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -45,6 +46,7 @@ public class View extends javax.swing.JFrame {
     public static Timer timerForEnemies;
     public static Timer timerForElapsed;
     public static Timer timerForAnimation;
+    public static Timer timerForCollosion;
     public static JDialog j;
     public static boolean paused = false;
     private long elapsed = 0;
@@ -56,6 +58,8 @@ public class View extends javax.swing.JFrame {
     public static JButton button4;
     public static JButton button5;
 
+    public static JLabel debugTarget;
+
     private static boolean selected1 = false;
     private static boolean selected2 = false;
     private static boolean selected3 = false;
@@ -63,6 +67,8 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
+        
+        
         View.j = new JDialog();
         View.j.setLocationRelativeTo(Menu.v);
         View.j.setTitle("Torony módosítása");
@@ -83,8 +89,7 @@ public class View extends javax.swing.JFrame {
         pan.add(button5);
         outer.add(pan);
         View.j.add(outer, BorderLayout.CENTER);
-        
-        
+
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
@@ -132,6 +137,32 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        debugTarget = new javax.swing.JLabel();
+        debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
+        getContentPane().add(debugTarget);
+        debugTarget.setBounds(98, 54, 30, 30);
+        debugTarget.setForeground(Color.WHITE);
+        getContentPane().setComponentZOrder(debugTarget, 0);
+        this.timerForCollosion = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("-------");
+                //csak nekem segít egyelőre
+                for (int i = 0; i < Model.enemies.size(); ++i) {
+
+                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
+                    Model.enemies.get(i).collosion();
+
+                    debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
+                    if (Model.enemies.size() >1) 
+                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
+                    if (Model.enemies.size() >2)
+                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
+                }
+
+            }
+        });
+
         this.timerForEnemies = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -165,6 +196,7 @@ public class View extends javax.swing.JFrame {
         timer.start();
         timerForEnemies.start();
         timerForAnimation.start();
+        timerForCollosion.start();
     }
 
 //    public long elapsedTime() {
@@ -551,11 +583,11 @@ public class View extends javax.swing.JFrame {
     public static void createDialogForTower(int x, int y, Cell thumb) {
         View.j.setVisible(true);
         Tower t = findTower(x, y);
-        if(t.getType().equals("gold")){
+        if (t.getType().equals("gold")) {
             button2.setEnabled(false);
             button3.setEnabled(false);
             button4.setEnabled(false);
-        }else{
+        } else {
             button2.setEnabled(true);
             button3.setEnabled(true);
             button4.setEnabled(true);
@@ -564,7 +596,7 @@ public class View extends javax.swing.JFrame {
         button1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(Model.money>=50){
+                if (Model.money >= 50) {
                     Model.money -= 50;
                     moneyView.setText("" + Model.money);
                     // meg kell keresni az ezen a helyen levő tornyot s növelni az életerejét
@@ -575,37 +607,40 @@ public class View extends javax.swing.JFrame {
                         thumb.repaint();
                     } catch (IOException ex) {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
-                    }   
-            }
+                    }
+                }
                 View.j.setVisible(false);
                 System.out.println(View.j.isVisible());
                 View.j.dispose();
-        }});
-        
+            }
+        });
+
         // csak a saját ellenségeit lőjje
         button3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
-                if(button3.isEnabled()){
+                if (button3.isEnabled()) {
                     t.onlyMyEnemiesShooting = true;
                     View.j.setVisible(false);
                     View.j.dispose();
                 }
-        }});
-        
+            }
+        });
+
         // minden ellenséget lőjjön
         button4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
-                if(button4.isEnabled()){
+                if (button4.isEnabled()) {
                     t.onlyMyEnemiesShooting = false;
                     View.j.setVisible(false);
                     View.j.dispose();
                 }
-        }});
-        
+            }
+        });
+
         // torony eladása
         button5.addMouseListener(new MouseAdapter() {
             @Override
@@ -614,37 +649,38 @@ public class View extends javax.swing.JFrame {
                 Tower t = findTower(x, y);
                 t.towerTimer.stop();
                 Model.towers.remove(t);
-                int moneyForTower = Math.round(t.getLife()/10);
+                int moneyForTower = Math.round(t.getLife() / 10);
                 Model.money += moneyForTower;
                 moneyView.setText("" + Model.money);
                 try {
                     thumb.unsetIsTower();
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].unsetIsTower();
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
                     Image img = ResourceLoader.loadImage("res/toronyhely.png");
                     ImageIcon icon = new ImageIcon(img);
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setIcon(icon);
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].setLife(0);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
                     thumb.unsetIsTower();
-                    Board.cells[thumb.getXPos()-1][thumb.getYPos()-1].repaint();
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
                 } catch (IOException ex) {
                     System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
-                } 
+                }
                 View.j.setVisible(false);
                 View.j.dispose();
-        }});
-}
-    
-public static Tower findTower(int x, int y){
-    for(int i = 0; i<Model.towers.size(); ++i){
-        if(Model.towers.get(i).getPos().x==x && Model.towers.get(i).getPos().y==y){
-            return Model.towers.get(i);
-        }
+            }
+        });
     }
-    return null;
-}
 
-public void createMoneyNotEnoughDialog() {
+    public static Tower findTower(int x, int y) {
+        for (int i = 0; i < Model.towers.size(); ++i) {
+            if (Model.towers.get(i).getPos().x == x && Model.towers.get(i).getPos().y == y) {
+                return Model.towers.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void createMoneyNotEnoughDialog() {
         int result = JOptionPane.showConfirmDialog(null,
                 "Erre a toronyra nincs elég pénz!",
                 "FIGYELEM!",
