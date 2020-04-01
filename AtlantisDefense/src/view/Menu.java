@@ -198,10 +198,16 @@ public class Menu extends javax.swing.JFrame {
 
     private void level2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        this.v = new View();
+        v.setVisible(true);
     }//GEN-LAST:event_level2ButtonActionPerformed
 
     private void level3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ButtonActionPerformed
         // TODO add your handling code here:
+        /*this.setVisible(false);
+        this.v = new View();
+        v.setVisible(true);*/
     }//GEN-LAST:event_level3ButtonActionPerformed
 
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed

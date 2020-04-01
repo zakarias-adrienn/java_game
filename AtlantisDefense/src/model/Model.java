@@ -45,17 +45,29 @@ public class Model {
         route = new ArrayList<>();
         readedEnemies = new ArrayList<>();
         round = 1;
-        readLines = readFile("src/res/palya.txt");
+        readLines = readFile("src/res/palya2.txt");
 
         length = parseInt(readLines.get(1).split(" ")[0]);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
-        for (int i = 2; i < 14; ++i) {
+        for (int i = 2; i < 15; ++i) {
             String[] row = readLines.get(i).split(" ");
             for (int j = 0; j < width; ++j) {
+                System.out.println("i: " + i);
+                System.out.println("j: " + j);
+                System.out.println(parseInt(row[j]));
                 table[i - 2][j] = parseInt(row[j]);
             }
         }
+        /*
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.println("i: " + i);
+                System.out.println("j: " + j);
+                System.out.println(table[i][j]);
+            }
+        }*/
+        
         level = new LevelItem[length][width];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
@@ -71,6 +83,7 @@ public class Model {
                         numberOfSpots++;
                         break;
                     case 3:
+                        System.out.println("kagylo");
                         level[i][j] = LevelItem.PEARL;
                         break;
                 }
