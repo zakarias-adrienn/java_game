@@ -11,7 +11,7 @@ public class IceTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 100;
-        this.distance = 3;
+        this.distance = 6;
         this.type = "ice";
         bullets = new ArrayList<>();
         bullet_img = "/res/ice_bullet.png";
@@ -26,14 +26,14 @@ public class IceTower extends Tower {
     
     @Override
     public void shoot() {
-        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet5 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet6 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet7 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet8 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet5 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet6 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet7 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet8 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);

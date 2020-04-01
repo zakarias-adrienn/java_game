@@ -32,7 +32,7 @@ public class ElectricTower extends Tower {
             {
                 if (!(i == distance/2 && j == distance/2))
                 {
-                    bullets.add(new Bullet(pos.x+i+1-distance/2, pos.y+j+1-distance/2, bullet_img, speed));
+                    bullets.add(new Bullet(pos.x+i+1-distance/2, pos.y+j+1-distance/2, bullet_img, speed, distance));
                     
                 }
             }
@@ -44,6 +44,10 @@ public class ElectricTower extends Tower {
             Board.cells[this.pos.x][this.pos.y].repaint();
         } catch (IOException ex) {
             System.out.println("Nem sikerült a torony életerejét frissíteni a healthbaron.");
+        }
+        for (int i = 0; i<bullets.size(); i++)
+        {
+            bullets.get(i).move("stay");
         }
         //bullets.add(bullet);
         //bullet.move("w");

@@ -11,7 +11,7 @@ public class BubbleTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 80;
-        this.distance = 3;
+        this.distance = 40;
         this.type = "bubble";
         bullets = new ArrayList<>();
         bullet_img = "/res/bubble_bullet.png";
@@ -26,10 +26,10 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
-        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
-        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
+        Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
+        Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
