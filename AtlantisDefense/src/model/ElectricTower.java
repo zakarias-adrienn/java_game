@@ -38,6 +38,7 @@ public class ElectricTower extends Tower {
             }
             //Bullet bullet = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
         }
+        Model.allBullets.addAll(bullets);
         this.life -= 10;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);

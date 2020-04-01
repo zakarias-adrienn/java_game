@@ -26,6 +26,7 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
+        System.out.println(bullets.size());
         Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
@@ -41,6 +42,7 @@ public class BubbleTower extends Tower {
         bullets.add(bullet2);
         bullets.add(bullet3);
         bullets.add(bullet4);
+        Model.allBullets.addAll(bullets);
         bullet1.move("n");
         bullet2.move("e");
         bullet3.move("s");

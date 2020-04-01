@@ -49,6 +49,7 @@ public class IceTower extends Tower {
         bullets.add(bullet6);
         bullets.add(bullet7);
         bullets.add(bullet8);
+        Model.allBullets.addAll(bullets);
         bullet1.move("n");
         bullet2.move("e");
         bullet3.move("s");

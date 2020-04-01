@@ -14,7 +14,7 @@ import view.View;
 
 public class Model {
 
-    public static final int moneyDefaultValue = 200;
+    public static final int moneyDefaultValue = 2000; //debug miatt nagyobbra állítottam.
 
     public static int money;
     public static int pearlPower;
@@ -33,8 +33,10 @@ public class Model {
     public static ArrayList<EnemyReaded> readedEnemies;
     private ArrayList<String> readLines;
     public static ArrayList<Timer> bulletTimers;
+    public static ArrayList<Bullet> allBullets;
 
     public Model() {
+        allBullets = new ArrayList<>();
         bulletTimers = new ArrayList<>();
         numberOfSpots = 0;
         pearlPower = 100;
