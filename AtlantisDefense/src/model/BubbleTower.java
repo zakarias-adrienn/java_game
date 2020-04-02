@@ -11,11 +11,11 @@ public class BubbleTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 80;
-        this.distance = 40;
+        this.distance = 30;
         this.type = "bubble";
         bullets = new ArrayList<>();
         bullet_img = "/res/bubble_bullet.png";
-        speed = 3;
+        speed = 5;
 
     }
     
