@@ -67,28 +67,6 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        
-        
-        View.j = new JDialog();
-        View.j.setLocationRelativeTo(Menu.v);
-        View.j.setTitle("Torony módosítása");
-        View.j.setSize(new Dimension(400, 200));
-        JPanel outer = new JPanel(new BorderLayout());
-        JPanel pan = new JPanel();
-        GridLayout layout = new GridLayout(5, 1);
-        pan.setLayout(layout);
-        button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
-        button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
-        button3 = new JButton("Csak a saját ellenségeit lőjje");
-        button4 = new JButton("Minden ellenséget lőjjön");
-        button5 = new JButton("Torony eladása");
-        pan.add(button1);
-        pan.add(button2);
-        pan.add(button3);
-        pan.add(button4);
-        pan.add(button5);
-        outer.add(pan);
-        View.j.add(outer, BorderLayout.CENTER);
 
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
@@ -146,11 +124,11 @@ public class View extends javax.swing.JFrame {
         this.timerForCollosion = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("-------");
+//                System.out.println("-------");
                 //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
 
-                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
+//                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
                     Model.enemies.get(i).collosion();
 
                     debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
@@ -581,6 +559,26 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createDialogForTower(int x, int y, Cell thumb) {
+        View.j = new JDialog();
+        View.j.setLocationRelativeTo(Menu.v);
+        View.j.setTitle("Torony módosítása");
+        View.j.setSize(new Dimension(400, 200));
+        JPanel outer = new JPanel(new BorderLayout());
+        JPanel pan = new JPanel();
+        GridLayout layout = new GridLayout(5, 1);
+        pan.setLayout(layout);
+        button1 = new JButton("Torony feljavítása - életerő feljavítása - 50 tallérba kerül");
+        button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
+        button3 = new JButton("Csak a saját ellenségeit lőjje");
+        button4 = new JButton("Minden ellenséget lőjjön");
+        button5 = new JButton("Torony eladása");
+        pan.add(button1);
+        pan.add(button2);
+        pan.add(button3);
+        pan.add(button4);
+        pan.add(button5);
+        outer.add(pan);
+        View.j.add(outer, BorderLayout.CENTER);
         View.j.setVisible(true);
         Tower t = findTower(x, y);
         if (t.getType().equals("gold")) {
@@ -610,7 +608,7 @@ public class View extends javax.swing.JFrame {
                     }
                 }
                 View.j.setVisible(false);
-                System.out.println(View.j.isVisible());
+//                System.out.println(View.j.isVisible());
                 View.j.dispose();
             }
         });
@@ -645,28 +643,30 @@ public class View extends javax.swing.JFrame {
         button5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                thumb.wasJustPlaced = true;
                 Tower t = findTower(x, y);
-                t.towerTimer.stop();
-                Model.towers.remove(t);
-                int moneyForTower = Math.round(t.getLife() / 10);
-                Model.money += moneyForTower;
-                moneyView.setText("" + Model.money);
-                try {
-                    thumb.unsetIsTower();
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                    Image img = ResourceLoader.loadImage("res/toronyhely.png");
-                    ImageIcon icon = new ImageIcon(img);
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                    thumb.unsetIsTower();
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
-                } catch (IOException ex) {
-                    System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                if(t!=null){
+                    thumb.wasJustPlaced = true;
+                    t.towerTimer.stop();
+                    Model.towers.remove(t);
+                    int moneyForTower = Math.round(t.getLife() / 10);
+                    Model.money += moneyForTower;
+                    moneyView.setText("" + Model.money);
                 }
-                View.j.setVisible(false);
-                View.j.dispose();
+                    try {
+                        thumb.unsetIsTower();
+                        thumb.isMouseListenerActive = false;
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                        Image img = ResourceLoader.loadImage("res/toronyhely.png");
+                        ImageIcon icon = new ImageIcon(img);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
+                    } catch (IOException ex) {
+                        System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                    }
+                    View.j.setVisible(false);
+                    View.j.dispose();
             }
         });
     }

@@ -10,7 +10,7 @@ public class Pearl {
     }
     
     public static void decreaseLife(){
-        life -= 20;
+        life -= 10;
         if (life <= 0)
         {
             Model.gameOver();

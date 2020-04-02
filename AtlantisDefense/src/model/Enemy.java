@@ -24,7 +24,7 @@ public abstract class Enemy {
 
         int precision = 15;
         Point enemyAbsoulutePos = new Point((116 + 28 + 57 * (pos.y - 1)), (100 + 23 + 47 * (pos.x - 1)));
-        System.out.println(Model.allBullets.size());
+//        System.out.println(Model.allBullets.size());
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
                 System.out.println("HIT");

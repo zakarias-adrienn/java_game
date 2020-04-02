@@ -3,8 +3,10 @@ package model;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.Timer;
+import view.Board;
 
 public abstract class Tower {
 
@@ -27,7 +29,6 @@ public abstract class Tower {
             this.towerTimer = new Timer(500, new ToronyTimer(this));
         } else {
             System.out.println("gold");
-            this.shoot();
         }
     }
 
@@ -41,10 +42,10 @@ public abstract class Tower {
                 && (Model.enemies.get(index).getYPos() == this.pos.y + 2
                 || Model.enemies.get(index).getYPos() == this.pos.y
                 || Model.enemies.get(index).getYPos() == this.pos.y+1)) {
-            System.out.println(Model.enemies.get(index).getXPos());
-            System.out.println(Model.enemies.get(index).getYPos());
-            System.out.println(this.pos.x);
-            System.out.println(this.pos.y);
+//            System.out.println(Model.enemies.get(index).getXPos());
+//            System.out.println(Model.enemies.get(index).getYPos());
+//            System.out.println(this.pos.x);
+//            System.out.println(this.pos.y);
             return true;
         } else {
             return false;
@@ -79,7 +80,22 @@ public abstract class Tower {
     }
     
     public void decreaseLife(){
-        this.life -= 10;
+        this.life -= 20;
+    }
+    
+    // csak a goldTowernél használom egyelőre, a többinél a shoot metódusban van, de lehet jó lenne a többinél is kiszedni onnan
+    public void checkLife(){
+        if(this.life==0){
+            Model.towers.remove(this);
+            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
+            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
+            try {
+                Board.cells[this.pos.x][this.pos.y].setLife(-1);
+            } catch (IOException ex) {
+                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
+            }
+            this.towerTimer.stop();
+        }
     }
 
     class ToronyTimer implements ActionListener {

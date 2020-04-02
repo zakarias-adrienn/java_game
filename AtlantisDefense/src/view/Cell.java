@@ -15,6 +15,7 @@ public class Cell extends JLabel {
     private int life = -1;
     private boolean isTower = false;
     public boolean wasJustPlaced = false;
+    public boolean isMouseListenerActive = false;
 
     Cell(ImageIcon icon, int x, int y) {
         this.icon = icon;

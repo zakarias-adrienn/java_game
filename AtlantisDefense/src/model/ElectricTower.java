@@ -56,6 +56,11 @@ public class ElectricTower extends Tower {
             Model.towers.remove(this);
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
+            try {
+                Board.cells[this.pos.x][this.pos.y].setLife(-1);
+            } catch (IOException ex) {
+                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
+            }
             this.towerTimer.stop();
         }
     }

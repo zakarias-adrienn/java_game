@@ -2,6 +2,8 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.Board;
 
 public class BubbleTower extends Tower {
@@ -26,7 +28,7 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
-        System.out.println(bullets.size());
+//        System.out.println(bullets.size());
         Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
@@ -49,7 +51,16 @@ public class BubbleTower extends Tower {
         bullet4.move("w");
         if(this.life==0){
             Model.towers.remove(this);
+            System.out.println("Tűnj el csík");
+            System.out.println(this.pos.x);
+            System.out.println(this.pos.x);
+            System.out.println("***************");
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
+            try {
+                Board.cells[this.pos.x][this.pos.y].setLife(-1);
+            } catch (IOException ex) {
+                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
+            }
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
             this.towerTimer.stop();
         }

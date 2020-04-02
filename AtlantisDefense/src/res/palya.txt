@@ -26,4 +26,8 @@ electric 310 300
 bubble 340 400
 ice 380 250
 ice 410 250
+electric 450 300
+bubble 480 400
+ice 510 250
+ice 530 250
 

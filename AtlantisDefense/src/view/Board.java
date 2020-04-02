@@ -105,6 +105,7 @@ public class Board extends JPanel {
                                 if (imageNumber == 1) {
                                     icon = new ImageIcon(gold);
                                     tmp = new GoldTower();
+                                    tmp.shoot();
                                 } else if (imageNumber == 2) {
                                     icon = new ImageIcon(bubble);
                                     tmp = new BubbleTower();
@@ -120,37 +121,27 @@ public class Board extends JPanel {
                                     tmp.startTimer();
                                     thumb.setIcon(icon);
                                     thumb.setIsTower();
+                                    thumb.isMouseListenerActive = true;
+                                    thumb.wasJustPlaced = true;
                                     try {
                                         thumb.setLife(100);
                                     } catch (IOException ex) {
                                         System.out.println("Képbetöltés sikertelen");
                                     }
-                                    if (thumb.isTower()) {
-                                        thumb.addMouseListener(new MouseAdapter() {
-                                            @Override
-                                            public void mouseClicked(MouseEvent e) {
-                                                System.out.println("Toronyra kattintottak");
-                                                if(thumb.isTower() && !thumb.wasJustPlaced){ //még torony van itt
-                                                    View.createDialogForTower(thumb.getXPos()-1, thumb.getYPos()-1, thumb);
-                                                } else if(thumb.wasJustPlaced==true) {
-                                                    thumb.wasJustPlaced = false;
-                                                }
-                                            }
-                                        });
-                                    }
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
                                     Model.towers.add(tmp);
                                     timers.add(tmp.getTimer());
-                                    System.out.println(Model.towers.size());
+//                                    System.out.println(Model.towers.size());
                                     spotIndex++;
-                                } else if(Model.money - tmp.price < 0) {
+                                } else if (Model.money - tmp.price < 0) {
                                     view.createMoneyNotEnoughDialog();
                                 }
                                 view.resetBorder();
                             }
                         }
                     });
+                    thumb.addMouseListener(new myMouseAdapter(thumb));
                 }
                 this.add(thumb);
             }
@@ -200,9 +191,9 @@ public class Board extends JPanel {
                             try {
                                 routeCells2.get(i - 1).setIcon(icon2);
                                 routeCells2.get(i - 1).setLife(-1);
-                                if(Model.money>=10){
+                                if (Model.money >= 10) {
                                     Model.money -= 10;
-                                }else {
+                                } else {
                                     Model.money = 0;
                                 }
                                 View.moneyView.setText("" + Model.money);
@@ -211,9 +202,10 @@ public class Board extends JPanel {
                                 cells[Pearl.getX()][Pearl.getY()].repaint();
                                 Model.enemies.remove(enemy);
                                 ((Timer) e.getSource()).stop();
-                                for(int i = 0; i<Model.towers.size(); ++i){
-                                    if(Model.towers.get(i).getType().equals("gold")){
+                                for (int i = 0; i < Model.towers.size(); ++i) {
+                                    if (Model.towers.get(i).getType().equals("gold")) {
                                         Model.towers.get(i).decreaseLife();
+                                        Model.towers.get(i).checkLife();
                                         int x = Model.towers.get(i).getPos().x;
                                         int y = Model.towers.get(i).getPos().y;
                                         cells[x][y].setLife(Model.towers.get(i).getLife());
@@ -254,5 +246,26 @@ public class Board extends JPanel {
         g.setColor(Color.YELLOW);
         g.drawLine(100, 100, 600, 600);
 
+    }
+
+    class myMouseAdapter extends MouseAdapter {
+
+        private Cell thumb;
+
+        public myMouseAdapter(Cell thumb) {
+            this.thumb = thumb;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+//          System.out.println("Toronyra kattintottak");
+            if (thumb.isMouseListenerActive) {
+                if (thumb.isTower() && !thumb.wasJustPlaced) { //még torony van itt
+                    View.createDialogForTower(thumb.getXPos() - 1, thumb.getYPos() - 1, thumb);
+                } else if (thumb.wasJustPlaced == true) {
+                    thumb.wasJustPlaced = false;
+                }
+            }
+        }
     }
 }
