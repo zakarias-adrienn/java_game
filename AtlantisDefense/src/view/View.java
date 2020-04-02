@@ -67,6 +67,46 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
+<<<<<<< HEAD
+=======
+        
+        
+        View.j = new JDialog();
+        View.j.setLocationRelativeTo(Menu.v);
+        View.j.setTitle("Torony módosítása");
+        View.j.setSize(new Dimension(400, 200));
+        JPanel outer = new JPanel(new BorderLayout());
+        JPanel pan = new JPanel();
+        GridLayout layout = new GridLayout(5, 1);
+        pan.setLayout(layout);
+        button1 = new JButton("Torony feljavítása - életerő feljavítása (50 tallér)");
+        button1.setBackground(new java.awt.Color(250, 215, 172));
+        button1.setForeground(new java.awt.Color(0, 0, 51));
+        button1.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
+        button2.setBackground(new java.awt.Color(0, 0, 51));
+        button2.setForeground(new java.awt.Color(250, 215, 172));
+        button2.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        button3 = new JButton("Csak a saját ellenségeit lőjje");
+        button3.setBackground(new java.awt.Color(250, 215, 172));
+        button3.setForeground(new java.awt.Color(0, 0, 51));
+        button3.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        button4 = new JButton("Minden ellenséget lőjjön");
+        button4.setBackground(new java.awt.Color(0, 0, 51));
+        button4.setForeground(new java.awt.Color(250, 215, 172));
+        button4.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        button5 = new JButton("Torony eladása");
+        button5.setBackground(new java.awt.Color(250, 215, 172));
+        button5.setForeground(new java.awt.Color(0, 0, 51));
+        button5.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        pan.add(button1);
+        pan.add(button2);
+        pan.add(button3);
+        pan.add(button4);
+        pan.add(button5);
+        outer.add(pan);
+        View.j.add(outer, BorderLayout.CENTER);
+>>>>>>> 9f8b22e34d4eae97591e966c208bb4c25a6a16c1
 
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
