@@ -9,7 +9,7 @@ import view.Menu;
 public abstract class Enemy {
 
     protected Point pos; // x, y helyett
-    protected int life;
+    public int life;
     protected int strength;
     protected int speed;
     protected String type;
@@ -28,6 +28,7 @@ public abstract class Enemy {
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
                 System.out.println("HIT");
+                this.life -= 5;
                 JLabel hit = new javax.swing.JLabel();
                 hit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/hit.png")));
                 Menu.v.getContentPane().add(hit);
@@ -35,6 +36,7 @@ public abstract class Enemy {
                 hit.setForeground(Color.WHITE);
                 Menu.v.getContentPane().setComponentZOrder(hit, 0);
                 hit.setLocation(Model.allBullets.get(i).pos.x, Model.allBullets.get(i).pos.y);
+               
             }
         }
         return new Point((116 + 28 + 57 * (pos.y - 1)), (100 + 23 + 47 * (pos.x - 1)));

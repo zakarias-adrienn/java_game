@@ -152,27 +152,28 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        debugTarget = new javax.swing.JLabel();
+        /*debugTarget = new javax.swing.JLabel();
         debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
         getContentPane().add(debugTarget);
         debugTarget.setBounds(98, 54, 30, 30);
         debugTarget.setForeground(Color.WHITE);
-        getContentPane().setComponentZOrder(debugTarget, 0);
+        getContentPane().setComponentZOrder(debugTarget, 0);*/
         this.timerForCollosion = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                System.out.println("-------");
+                System.out.println("-------");
                 //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
 
 //                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
                     Model.enemies.get(i).collosion();
+                    System.out.println(Model.enemies.get(i).life);
 
-                    debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
+                    /*debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
                     if (Model.enemies.size() >1) 
                     debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
                     if (Model.enemies.size() >2)
-                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
+                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);*/
                 }
 
             }
