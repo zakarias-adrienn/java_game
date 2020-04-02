@@ -8,11 +8,13 @@ import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import model.Model;
 
 
 public class Menu extends javax.swing.JFrame {
 
     public static View v;
+    public static Model model;
     public static boolean level1ButtonClicked = false;
     public static boolean level2ButtonClicked = false;
     public static boolean level3ButtonClicked = false;
@@ -26,6 +28,8 @@ public class Menu extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         level2Button.setEnabled(true);
+        level3Button.setEnabled(true);
+        //model = new Model();
     }
 
     /**
@@ -189,30 +193,38 @@ public class Menu extends javax.swing.JFrame {
 
     private void level2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ButtonActionPerformed
         // TODO add your handling code here:
+        System.out.println("gomb2 menu");
+        //this.model = new Model();
         this.setVisible(false);
         Menu.level2ButtonClicked = true;
         Menu.level1ButtonClicked = false;
         Menu.level3ButtonClicked = false;
+        this.model = new Model();
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level2ButtonActionPerformed
 
     private void level3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ButtonActionPerformed
         // TODO add your handling code here:
-        /*this.setVisible(false);
-        this.v = new View();
-        v.setVisible(true);*/
+        this.setVisible(false);
         Menu.level2ButtonClicked = false;
         Menu.level1ButtonClicked = false;
         Menu.level3ButtonClicked = true;
+        this.model = new Model();
+        this.v = new View();
+        v.setVisible(true);
+        
     }//GEN-LAST:event_level3ButtonActionPerformed
 
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
         // játék indítása
+        System.out.println("gomb1 menu");
+        
         this.setVisible(false);
         Menu.level2ButtonClicked = false;
         Menu.level1ButtonClicked = true;
         Menu.level3ButtonClicked = false;
+        this.model = new Model();
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level1ButtonActionPerformed

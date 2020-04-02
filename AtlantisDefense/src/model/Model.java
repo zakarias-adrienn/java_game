@@ -34,7 +34,8 @@ public class Model {
     private ArrayList<String> readLines;
     public static ArrayList<Timer> bulletTimers;
     public static ArrayList<Bullet> allBullets;
-
+    public int l;
+    
     public Model() {
         allBullets = new ArrayList<>();
         bulletTimers = new ArrayList<>();
@@ -48,22 +49,26 @@ public class Model {
         route = new ArrayList<>();
         readedEnemies = new ArrayList<>();
         round = 1;
+ 
+        //System.out.println("l modelben:" +l);
         if(Menu.level1ButtonClicked){
             readLines = readFile("src/res/palya.txt");
+            System.out.println("gomb1");
         }else if(Menu.level2ButtonClicked){
             readLines = readFile("src/res/palya2.txt");
-        }else {
+            System.out.println("gomb2");
+        }else if(Menu.level3ButtonClicked) {
+            System.out.println("gomb3");
             readLines = readFile("src/res/palya3.txt");
         }
 
         length = parseInt(readLines.get(1).split(" ")[0]);
+        System.out.println("length: "+length);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
         for (int i = 2; i < 15; ++i) {
             String[] row = readLines.get(i).split(" ");
             for (int j = 0; j < width; ++j) {
-                System.out.println("i: " + i);
-                System.out.println("j: " + j);
                 System.out.println(parseInt(row[j]));
                 table[i - 2][j] = parseInt(row[j]);
             }
@@ -92,7 +97,6 @@ public class Model {
                         numberOfSpots++;
                         break;
                     case 3:
-                        System.out.println("kagylo");
                         level[i][j] = LevelItem.PEARL;
                         break;
                 }

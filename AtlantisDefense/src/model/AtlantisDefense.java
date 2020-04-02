@@ -7,7 +7,6 @@ import view.Menu;
 public class AtlantisDefense {
 
     public static Menu menu;
-    public static Model model;
     static Component Menu;
     
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class AtlantisDefense {
         menu.pack();
         menu.setVisible(true);
         
-        model = new Model();
+        //model = new Model();
     }
     
 }
