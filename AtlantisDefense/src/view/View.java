@@ -67,8 +67,6 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-<<<<<<< HEAD
-=======
         
         
         View.j = new JDialog();
@@ -106,7 +104,6 @@ public class View extends javax.swing.JFrame {
         pan.add(button5);
         outer.add(pan);
         View.j.add(outer, BorderLayout.CENTER);
->>>>>>> 9f8b22e34d4eae97591e966c208bb4c25a6a16c1
 
         this.setVisible(true);
         URL url = View.class.getClassLoader().getResource("res/fish.png");
