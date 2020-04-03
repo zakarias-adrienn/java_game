@@ -30,10 +30,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import model.BubbleTower;
 import model.Eel;
+import model.ElectricTower;
 import model.Enemy;
 import model.Fugu;
 import model.GoldFish;
+import model.IceTower;
 import model.Model;
 import model.SwordFish;
 import model.Tower;
@@ -57,6 +60,7 @@ public class View extends javax.swing.JFrame {
     public static JButton button3;
     public static JButton button4;
     public static JButton button5;
+    public static JButton button6;
 
     public static JLabel debugTarget;
 
@@ -67,8 +71,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        
-        
+
         View.j = new JDialog();
         View.j.setLocationRelativeTo(Menu.v);
         View.j.setTitle("Torony módosítása");
@@ -153,27 +156,27 @@ public class View extends javax.swing.JFrame {
         });
 
         /*debugTarget = new javax.swing.JLabel();
-        debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
-        getContentPane().add(debugTarget);
-        debugTarget.setBounds(98, 54, 30, 30);
-        debugTarget.setForeground(Color.WHITE);
-        getContentPane().setComponentZOrder(debugTarget, 0);*/
+         debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
+         getContentPane().add(debugTarget);
+         debugTarget.setBounds(98, 54, 30, 30);
+         debugTarget.setForeground(Color.WHITE);
+         getContentPane().setComponentZOrder(debugTarget, 0);*/
         this.timerForCollosion = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("-------");
+//                System.out.println("-------");
                 //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
 
 //                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
                     Model.enemies.get(i).collosion();
-                    System.out.println(Model.enemies.get(i).life);
+//                    System.out.println(Model.enemies.get(i).life);
 
                     /*debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
-                    if (Model.enemies.size() >1) 
-                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
-                    if (Model.enemies.size() >2)
-                    debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);*/
+                     if (Model.enemies.size() >1) 
+                     debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
+                     if (Model.enemies.size() >2)
+                     debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);*/
                 }
 
             }
@@ -605,16 +608,20 @@ public class View extends javax.swing.JFrame {
         View.j.setSize(new Dimension(400, 200));
         JPanel outer = new JPanel(new BorderLayout());
         JPanel pan = new JPanel();
-        GridLayout layout = new GridLayout(5, 1);
+        GridLayout layout = new GridLayout(6, 1);
         pan.setLayout(layout);
         button1 = new JButton("Torony feljavítása - életerő feljavítása (50 tallér)");
         button1.setBackground(new java.awt.Color(250, 215, 172));
         button1.setForeground(new java.awt.Color(0, 0, 51));
         button1.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
-        button2 = new JButton("Torony feljavítása - több irányba tudjon lőni");
+        button2 = new JButton("Torony feljavítása - arany szint (100 tallér)");
         button2.setBackground(new java.awt.Color(0, 0, 51));
         button2.setForeground(new java.awt.Color(250, 215, 172));
         button2.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
+        button6 = new JButton("Torony feljavítása - vörös szint (200 tallér)");
+        button6.setBackground(new java.awt.Color(0, 0, 51));
+        button6.setForeground(new java.awt.Color(250, 215, 172));
+        button6.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
         button3 = new JButton("Csak a saját ellenségeit lőjje");
         button3.setBackground(new java.awt.Color(250, 215, 172));
         button3.setForeground(new java.awt.Color(0, 0, 51));
@@ -629,6 +636,7 @@ public class View extends javax.swing.JFrame {
         button5.setFont(new java.awt.Font("Tw Cen MT", Font.BOLD, 17));
         pan.add(button1);
         pan.add(button2);
+        pan.add(button6);
         pan.add(button3);
         pan.add(button4);
         pan.add(button5);
@@ -640,6 +648,7 @@ public class View extends javax.swing.JFrame {
             button2.setEnabled(false);
             button3.setEnabled(false);
             button4.setEnabled(false);
+            button6.setEnabled(false);
         } else {
             button2.setEnabled(true);
             button3.setEnabled(true);
@@ -699,7 +708,7 @@ public class View extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
-                if(t!=null){
+                if (t != null) {
                     thumb.wasJustPlaced = true;
                     t.towerTimer.stop();
                     Model.towers.remove(t);
@@ -707,21 +716,123 @@ public class View extends javax.swing.JFrame {
                     Model.money += moneyForTower;
                     moneyView.setText("" + Model.money);
                 }
-                    try {
-                        thumb.unsetIsTower();
-                        thumb.isMouseListenerActive = false;
-                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
-                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                        Image img = ResourceLoader.loadImage("res/toronyhely.png");
-                        ImageIcon icon = new ImageIcon(img);
-                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
-                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
-                    } catch (IOException ex) {
-                        System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                try {
+                    thumb.unsetIsTower();
+                    thumb.isMouseListenerActive = false;
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                    Image img = ResourceLoader.loadImage("res/toronyhely.png");
+                    ImageIcon icon = new ImageIcon(img);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
+                } catch (IOException ex) {
+                    System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                }
+                View.j.setVisible(false);
+                View.j.dispose();
+            }
+        });
+
+        // torony feljavítása arany szint, speedet még nem változtatja
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
+                if (button2.isEnabled()) {
+                    Tower t = findTower(x, y);
+                    if (Model.money - 100 >= 0) {
+                        Model.money = Model.money - 100;
+                        moneyView.setText("" + Model.money);
+                        Image img = null;
+                        ImageIcon icon;
+                        if (t instanceof BubbleTower) {
+                            t.setDistance(35);
+                            try {
+                                img = ResourceLoader.loadImage("res/bubble_bg_2.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else if (t instanceof ElectricTower) {
+                            t.setDistance(7);
+                            try {
+                                img = ResourceLoader.loadImage("res/electric_bg_2.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else {
+                            t.setDistance(8);
+                            try {
+                                img = ResourceLoader.loadImage("res/ice_bg_2.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        }
+                        icon = new ImageIcon(img);
+                        Board.cells[t.getPos().x][t.getPos().y].setIcon(icon);
+                        t.increaseLife();
+                        try {
+                            Board.cells[t.getPos().x][t.getPos().y].setLife(100);
+                            Board.cells[t.getPos().x][t.getPos().y].repaint();
+                        } catch (IOException ex) {
+                            System.out.println("Nem sikerült az életerőt feljavítani.");
+                        }
+                        View.j.setVisible(false);
+                        View.j.dispose();
                     }
-                    View.j.setVisible(false);
-                    View.j.dispose();
+                }
+            }
+        });
+        
+        
+        // torony feljavítása vörös szint, még a speedet nem változtatja
+        // goldTowert is lehessen? -> ne legyenek potyába a képek?
+        button6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
+                if (button6.isEnabled()) {
+                    Tower t = findTower(x, y);
+                    if (Model.money - 200 >= 0) {
+                        Model.money = Model.money - 200;
+                        moneyView.setText("" + Model.money);
+                        Image img = null;
+                        ImageIcon icon;
+                        if (t instanceof BubbleTower) {
+                            t.setDistance(40);
+                            try {
+                                img = ResourceLoader.loadImage("res/bubble_bg_3.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else if (t instanceof ElectricTower) {
+                            t.setDistance(7);
+                            try {
+                                img = ResourceLoader.loadImage("res/electric_bg_3.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else {
+                            t.setDistance(9);
+                            try {
+                                img = ResourceLoader.loadImage("res/ice_bg_3.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        }
+                        icon = new ImageIcon(img);
+                        Board.cells[t.getPos().x][t.getPos().y].setIcon(icon);
+                        t.increaseLife();
+                        try {
+                            Board.cells[t.getPos().x][t.getPos().y].setLife(100);
+                            Board.cells[t.getPos().x][t.getPos().y].repaint();
+                        } catch (IOException ex) {
+                            System.out.println("Nem sikerült az életerőt feljavítani.");
+                        }
+                        View.j.setVisible(false);
+                        View.j.dispose();
+                    }
+                }
             }
         });
     }

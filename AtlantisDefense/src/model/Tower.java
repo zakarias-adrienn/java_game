@@ -75,6 +75,10 @@ public abstract class Tower {
         this.life = 100;
     }
 
+    public void setDistance(int distance){
+        this.distance = distance;
+    }
+    
     public int getLife() {
         return this.life;
     }

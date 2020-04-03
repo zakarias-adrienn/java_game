@@ -34,7 +34,7 @@ public abstract class Enemy {
 //        System.out.println(Model.allBullets.size());
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
-                System.out.println("HIT");
+//                System.out.println("HIT");
                 this.life -= 5;
                 try {
                     // itt kell a cellán a helatbart változtatni

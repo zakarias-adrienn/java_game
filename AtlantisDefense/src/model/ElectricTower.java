@@ -19,6 +19,7 @@ public class ElectricTower extends Tower {
         speed = 2;
     }
     
+    
     @Override
     public String getType(){
         return "electric";

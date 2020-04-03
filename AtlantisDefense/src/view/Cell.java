@@ -24,7 +24,9 @@ public class Cell extends JLabel {
     }
 
     public void getImage() throws IOException {
-        if (this.life == 0) {
+        if(this.life==-1){
+            this.img = null;
+        }else if (this.life == 0) {
             this.img = ResourceLoader.loadImage("res/toronyhely.png");
         } else if (this.life > 0 && this.life < 10) {
             this.img = ResourceLoader.loadImage("res/hb0.png");
@@ -83,7 +85,7 @@ public class Cell extends JLabel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
-        if (this.life != -1 && this.life != 0) {
+        if (this.life>=0) {
             super.paintComponent(g);
             g.drawImage(this.img, 0, 0, null);
         } else {
