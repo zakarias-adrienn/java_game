@@ -23,6 +23,7 @@ public class Model {
     public static ArrayList<Tower> towers;
     private ArrayList<JLabel> towerSpots; // ? JLabel lesz?
     private Integer numberOfSpots;
+    private static int enemyNumber;
     private int round;
     private ArrayList<Bullet> bullets;
     public static ArrayList<Point> route;
@@ -34,9 +35,12 @@ public class Model {
     private ArrayList<String> readLines;
     public static ArrayList<Timer> bulletTimers;
     public static ArrayList<Bullet> allBullets;
-    public int l;
+    public static int deadEnemyNum;
+    public static int arrivedEnemyNum;
+    public static Menu menu = null;
+    public static int l;
     
-    public Model() {
+    public Model(Menu menu) {
         allBullets = new ArrayList<>();
         bulletTimers = new ArrayList<>();
         numberOfSpots = 0;
@@ -49,17 +53,20 @@ public class Model {
         route = new ArrayList<>();
         readedEnemies = new ArrayList<>();
         round = 1;
+        deadEnemyNum = 0;
+        arrivedEnemyNum = 0;
+        this.menu = menu;
  
         //System.out.println("l modelben:" +l);
         if(Menu.level1ButtonClicked){
             readLines = readFile("src/res/palya.txt");
-//            System.out.println("gomb1");
+            l = 1;
         }else if(Menu.level2ButtonClicked){
             readLines = readFile("src/res/palya2.txt");
-//            System.out.println("gomb2");
+            l = 2;
         }else if(Menu.level3ButtonClicked) {
-//            System.out.println("gomb3");
             readLines = readFile("src/res/palya3.txt");
+            l = 3;
         }
 
         length = parseInt(readLines.get(1).split(" ")[0]);
@@ -113,7 +120,7 @@ public class Model {
             route.add(p);
         }
 
-        int enemyNumber = parseInt(readLines.get(length + 3));
+        enemyNumber = parseInt(readLines.get(length + 3));
 
         for (int i = 0; i < enemyNumber; ++i) {
             String[] s = readLines.get(length + 4 + i).split(" ");
@@ -164,6 +171,31 @@ public class Model {
                 Board.timers.get(i).stop();
             }
             View.createGameOverDialog();
+            Model.money = moneyDefaultValue;
+            View.moneyView.setText("" + Model.money);
+            Pearl.setLife(100);
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean checkWin(){
+        if (Pearl.getLife() > 0  && deadEnemyNum+arrivedEnemyNum == enemyNumber){
+            View.j.setVisible(false);
+            View.timer.stop();
+            View.timerForAnimation.stop();
+            View.timerForEnemies.stop();
+            for (int i = 0; i < Model.bulletTimers.size(); ++i) {
+                Model.bulletTimers.get(i).stop();
+            }
+            for (int i = 0; i < Model.towers.size(); ++i) {
+                Model.towers.get(i).getTimer().start();
+            }
+            for (int i = 0; i < Board.timers.size(); ++i) {
+                Board.timers.get(i).stop();
+            }
+            View.createWinDialog();
+            menu.setButton(l+1);
             Model.money = moneyDefaultValue;
             View.moneyView.setText("" + Model.money);
             Pearl.setLife(100);

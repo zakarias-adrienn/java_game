@@ -598,6 +598,22 @@ public class View extends javax.swing.JFrame {
             menu.setVisible(true);
         }
     }
+    
+    public static void createWinDialog() {
+        int result = JOptionPane.showConfirmDialog(null,
+                "Gratulálok, győztél!\n Elérhető a következő szint.",
+                "GRATULÁLOK!",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
+            Menu.v.setVisible(false);
+            Menu.v.dispose();
+            Menu menu = new Menu();
+            menu.setPreferredSize(new Dimension(1397, 842));
+            menu.pack();
+            menu.setVisible(true);
+        }
+    }
 
     public static void createDialogForTower(int x, int y, Cell thumb) {
         View.j = new JDialog();

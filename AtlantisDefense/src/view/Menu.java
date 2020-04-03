@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import model.Model;
 
-
 public class Menu extends javax.swing.JFrame {
 
     public static View v;
@@ -18,7 +17,7 @@ public class Menu extends javax.swing.JFrame {
     public static boolean level1ButtonClicked = false;
     public static boolean level2ButtonClicked = false;
     public static boolean level3ButtonClicked = false;
-    
+
     public Menu() {
         initComponents();
         URL url = Menu.class.getClassLoader().getResource("res/fish.png");
@@ -27,8 +26,11 @@ public class Menu extends javax.swing.JFrame {
         //this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        level2Button.setEnabled(true);
-        level3Button.setEnabled(true);
+        level2Button.setEnabled(false);
+        level3Button.setEnabled(false);
+
+        //level2Button.setEnabled(true);
+        //level3Button.setEnabled(true);
         //model = new Model();
     }
 
@@ -118,7 +120,7 @@ public class Menu extends javax.swing.JFrame {
         level2Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         level2Button.setForeground(new java.awt.Color(0, 0, 51));
         level2Button.setText("2. pálya");
-        level2Button.setEnabled(false);
+        //level2Button.setEnabled(false);
         level2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 level2ButtonActionPerformed(evt);
@@ -131,7 +133,7 @@ public class Menu extends javax.swing.JFrame {
         level3Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         level3Button.setForeground(new java.awt.Color(0, 0, 51));
         level3Button.setText("3. pálya");
-        level3Button.setEnabled(false);
+        //level3Button.setEnabled(false);
         level3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 level3ButtonActionPerformed(evt);
@@ -199,7 +201,7 @@ public class Menu extends javax.swing.JFrame {
         Menu.level2ButtonClicked = true;
         Menu.level1ButtonClicked = false;
         Menu.level3ButtonClicked = false;
-        this.model = new Model();
+        this.model = new Model(this);
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level2ButtonActionPerformed
@@ -210,21 +212,21 @@ public class Menu extends javax.swing.JFrame {
         Menu.level2ButtonClicked = false;
         Menu.level1ButtonClicked = false;
         Menu.level3ButtonClicked = true;
-        this.model = new Model();
+        this.model = new Model(this);
         this.v = new View();
         v.setVisible(true);
-        
+
     }//GEN-LAST:event_level3ButtonActionPerformed
 
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
         // játék indítása
         System.out.println("gomb1 menu");
-        
+
         this.setVisible(false);
         Menu.level2ButtonClicked = false;
         Menu.level1ButtonClicked = true;
         Menu.level3ButtonClicked = false;
-        this.model = new Model();
+        this.model = new Model(this);
         this.v = new View();
         v.setVisible(true);
     }//GEN-LAST:event_level1ButtonActionPerformed
@@ -303,6 +305,17 @@ public class Menu extends javax.swing.JFrame {
         d.setVisible(true);
         d.setLocationRelativeTo(null);
     }//GEN-LAST:event_hintsButton1ActionPerformed
+
+    public void setButton(int i) {
+
+        if (i == 2) {
+            System.out.println("Button: " + level2Button);
+            level2Button.setEnabled(true);
+            System.out.println("Button: " + level2Button);
+        } else if (i == 3) {
+            level3Button.setEnabled(true);
+        }
+    }
 
     /**
      * @param args the command line arguments

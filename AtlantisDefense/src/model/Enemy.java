@@ -61,6 +61,8 @@ public abstract class Enemy {
     public void checkLife(){
         if(this.life==0){
             Model.enemies.remove(this);
+            Model.deadEnemyNum++;
+            Model.checkWin();
             Board.resetCellAfterEnemyDeath(this.pos.x-1, this.pos.y-1);
             try {
                 Board.cells[this.pos.x-1][this.pos.y-1].setLife(-1);

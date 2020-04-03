@@ -207,7 +207,9 @@ public class Board extends JPanel {
                                 cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife()-10);
                                 cells[Pearl.getX()][Pearl.getY()].repaint();
                                 Pearl.decreaseLife();
+                                Model.arrivedEnemyNum++;
                                 Model.enemies.remove(enemy);
+                                Model.checkWin();
                                 ((Timer) e.getSource()).stop();
                                 for (int i = 0; i < Model.towers.size(); ++i) {
                                     if (Model.towers.get(i).getType().equals("gold")) {
