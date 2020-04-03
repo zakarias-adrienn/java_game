@@ -619,9 +619,9 @@ public class View extends javax.swing.JFrame {
         View.j = new JDialog();
         URL url = View.class.getClassLoader().getResource("res/fish.png");
         View.j.setIconImage(Toolkit.getDefaultToolkit().getImage(url));
-        View.j.setLocationRelativeTo(Menu.v);
         View.j.setTitle("Torony módosítása");
         View.j.setSize(new Dimension(400, 200));
+        View.j.setLocationRelativeTo(Menu.v);
         JPanel outer = new JPanel(new BorderLayout());
         JPanel pan = new JPanel();
         GridLayout layout = new GridLayout(6, 1);
