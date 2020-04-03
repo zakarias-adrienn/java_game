@@ -26,8 +26,6 @@ public class Menu extends javax.swing.JFrame {
         //this.setSize(600, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        level2Button.setEnabled(false);
-        level3Button.setEnabled(false);
 
         //level2Button.setEnabled(true);
         //level3Button.setEnabled(true);
@@ -120,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
         level2Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         level2Button.setForeground(new java.awt.Color(0, 0, 51));
         level2Button.setText("2. pálya");
-        //level2Button.setEnabled(false);
+        level2Button.setEnabled(false);
         level2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 level2ButtonActionPerformed(evt);
@@ -133,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
         level3Button.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         level3Button.setForeground(new java.awt.Color(0, 0, 51));
         level3Button.setText("3. pálya");
-        //level3Button.setEnabled(false);
+        level3Button.setEnabled(false);
         level3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 level3ButtonActionPerformed(evt);
@@ -359,8 +357,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton hintsButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton level1Button;
-    private javax.swing.JButton level2Button;
-    private javax.swing.JButton level3Button;
+    public javax.swing.JButton level2Button;
+    public javax.swing.JButton level3Button;
     private javax.swing.JButton towersButton;
     // End of variables declaration//GEN-END:variables
 }

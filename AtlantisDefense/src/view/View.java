@@ -30,6 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import model.AtlantisDefense;
 import model.BubbleTower;
 import model.Eel;
 import model.ElectricTower;
@@ -600,8 +601,13 @@ public class View extends javax.swing.JFrame {
     }
     
     public static void createWinDialog() {
+        String message = "Gratulálok, győztél!\n Elérhető a következő szint.";
+        if (AtlantisDefense.level3Opened)
+        {
+            message = "Gratulálok, győztél!\n Sikeresen megvédted Atlantist és annak igazgyöngyét!\n Ha gondolod játszd újra a pályákat!";
+        }
         int result = JOptionPane.showConfirmDialog(null,
-                "Gratulálok, győztél!\n Elérhető a következő szint.",
+                message,
                 "GRATULÁLOK!",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
@@ -612,6 +618,21 @@ public class View extends javax.swing.JFrame {
             menu.setPreferredSize(new Dimension(1397, 842));
             menu.pack();
             menu.setVisible(true);
+            System.out.println("HAHÓ");
+            System.out.println(menu.level3Button.isEnabled() + ", " + AtlantisDefense.level2Opened);
+            if (!AtlantisDefense.level2Opened)
+            {
+                menu.level2Button.setEnabled(true);
+                AtlantisDefense.level2Opened = true;
+            }
+            else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened)
+            {
+                System.out.println("ITTT MEGVAGYOK MÉG?");
+                menu.level2Button.setEnabled(true);
+                menu.level3Button.setEnabled(true);
+                AtlantisDefense.level3Opened = true;
+            }
+            System.out.println("HAHÓ2");
         }
     }
 

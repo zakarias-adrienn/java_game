@@ -195,10 +195,11 @@ public class Model {
                 Board.timers.get(i).stop();
             }
             View.createWinDialog();
-            menu.setButton(l+1);
+            //menu.setButton(l+1);
             Model.money = moneyDefaultValue;
             View.moneyView.setText("" + Model.money);
             Pearl.setLife(100);
+            System.out.println("HOL VAGYUNKM???????????????????????????????");
             return true;
         }
         return false;
