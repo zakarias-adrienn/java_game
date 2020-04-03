@@ -51,16 +51,12 @@ public class BubbleTower extends Tower {
         bullet4.move("w");
         if(this.life==0){
             Model.towers.remove(this);
-            System.out.println("Tűnj el csík");
-            System.out.println(this.pos.x);
-            System.out.println(this.pos.x);
-            System.out.println("***************");
-            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             try {
                 Board.cells[this.pos.x][this.pos.y].setLife(-1);
             } catch (IOException ex) {
                 System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
             }
+            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
             this.towerTimer.stop();
         }

@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -152,6 +154,11 @@ public class Board extends JPanel {
         ImageIcon icon = new ImageIcon(towerPlace);
         cells[x][y].setIcon(icon);
     }
+    
+    public static void resetCellAfterEnemyDeath(int x, int y) {
+        ImageIcon icon = new ImageIcon(route);
+        cells[x][y].setIcon(icon);
+    }
 
     // routeCell-t jó sorrendbe kellene tenni!
     public static ArrayList<Cell> orderRouteCells() {
@@ -225,9 +232,9 @@ public class Board extends JPanel {
                             routeCells2.get(i).setIcon(icon);
                             enemy.setPos(routeCells2.get(i).getXPos(), routeCells2.get(i).getYPos());
                             try {
-                                routeCells2.get(i).setLife(100);
+                                routeCells2.get(i).setLife(enemy.life);
                             } catch (IOException ex) {
-                                System.out.println("Képbetöltés sikertelen!");
+                                System.out.println("Nem sikerült az ellenség életerejét frissíteni a helathbaron.");
                             }
                             i = i + 1;
                         }
@@ -235,6 +242,7 @@ public class Board extends JPanel {
                 }
             });
             timerForEnemy.start();
+            enemy.enemyTimer = timerForEnemy;
             timers.add(timerForEnemy);
         }
     }

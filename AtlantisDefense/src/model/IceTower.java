@@ -60,13 +60,13 @@ public class IceTower extends Tower {
         bullet8.move("nw");
         if(this.life==0){
             Model.towers.remove(this);
-            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
-            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
             try {
                 Board.cells[this.pos.x][this.pos.y].setLife(-1);
             } catch (IOException ex) {
                 System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
             }
+            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
+            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
             this.towerTimer.stop();
         }
 
