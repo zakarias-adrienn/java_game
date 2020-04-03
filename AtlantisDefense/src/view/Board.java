@@ -204,9 +204,9 @@ public class Board extends JPanel {
                                     Model.money = 0;
                                 }
                                 View.moneyView.setText("" + Model.money);
-                                Pearl.decreaseLife();
-                                cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife());
+                                cells[Pearl.getX()][Pearl.getY()].setLife(Pearl.getLife()-10);
                                 cells[Pearl.getX()][Pearl.getY()].repaint();
+                                Pearl.decreaseLife();
                                 Model.enemies.remove(enemy);
                                 ((Timer) e.getSource()).stop();
                                 for (int i = 0; i < Model.towers.size(); ++i) {
