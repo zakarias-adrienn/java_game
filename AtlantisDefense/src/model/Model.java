@@ -14,7 +14,7 @@ import view.View;
 
 public class Model {
 
-    public static final int moneyDefaultValue = 250; //debug miatt nagyobbra állítottam.
+    public static final int moneyDefaultValue = 2000; //debug miatt nagyobbra állítottam.
 
     public static int money;
     public static int pearlPower;

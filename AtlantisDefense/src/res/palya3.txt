@@ -19,4 +19,11 @@ electric 10 500
 ice 50 400
 bubble 80 600
 gold 150 300
+bubble 180 600
+electric 240 500
+ice 260 400
+gold 290 300
+bubble 330 600
+ice 370 400
+electric 430 500
 

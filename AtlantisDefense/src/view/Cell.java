@@ -26,8 +26,10 @@ public class Cell extends JLabel {
     public void getImage() throws IOException {
         if(this.life==-1){
             this.img = null;
-        }else if (this.life == 0) {
+        }else if (this.life == 0 && this.isTower) {
             this.img = ResourceLoader.loadImage("res/toronyhely.png");
+        } else if (this.life == 0 && !this.isTower) {
+            this.img = ResourceLoader.loadImage("res/ut.png");
         } else if (this.life > 0 && this.life < 10) {
             this.img = ResourceLoader.loadImage("res/hb0.png");
         } else if (this.life >= 10 && this.life < 20) {
