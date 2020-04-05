@@ -14,6 +14,7 @@ public abstract class Tower {
     protected Integer spot;
     public Integer price;
     protected Integer distance;
+    public int raiseMoneyValue = 0; // GoldTowerhez kell csak;
     protected String type;
     public Timer towerTimer;
     protected Point pos;

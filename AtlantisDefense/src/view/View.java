@@ -682,14 +682,13 @@ public class View extends javax.swing.JFrame {
         View.j.setVisible(true);
         Tower t = findTower(x, y);
         if (t.getType().equals("gold")) {
-            button2.setEnabled(false);
             button3.setEnabled(false);
             button4.setEnabled(false);
-            button6.setEnabled(false);
         } else {
             button2.setEnabled(true);
             button3.setEnabled(true);
             button4.setEnabled(true);
+            button6.setEnabled(true);
         }
 
         button1.addMouseListener(new MouseAdapter() {
@@ -797,10 +796,17 @@ public class View extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
-                        } else {
+                        } else if(t instanceof IceTower) {
                             t.setDistance(8);
                             try {
                                 img = ResourceLoader.loadImage("res/ice_bg_2.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else {
+                            t.raiseMoneyValue = 10;
+                            try {
+                                img = ResourceLoader.loadImage("res/gold_bg_2.png");
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
@@ -816,6 +822,9 @@ public class View extends javax.swing.JFrame {
                         }
                         View.j.setVisible(false);
                         View.j.dispose();
+                    } else {
+                        // ha nincs elég pénze
+                        View.createMoneyNotEnoughDialog();
                     }
                 }
             }
@@ -849,10 +858,17 @@ public class View extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
-                        } else {
+                        } else if(t instanceof IceTower) {
                             t.setDistance(9);
                             try {
                                 img = ResourceLoader.loadImage("res/ice_bg_3.png");
+                            } catch (IOException ex) {
+                                System.out.println("Nem sikerült az upgrade kép betöltése.");
+                            }
+                        } else {
+                            t.raiseMoneyValue = 15;
+                            try {
+                                img = ResourceLoader.loadImage("res/gold_bg_3.png");
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
@@ -868,6 +884,9 @@ public class View extends javax.swing.JFrame {
                         }
                         View.j.setVisible(false);
                         View.j.dispose();
+                    }else {
+                        // ha nincs elég pénze
+                        View.createMoneyNotEnoughDialog();
                     }
                 }
             }
@@ -883,9 +902,9 @@ public class View extends javax.swing.JFrame {
         return null;
     }
 
-    public void createMoneyNotEnoughDialog() {
+    public static void createMoneyNotEnoughDialog() {
         int result = JOptionPane.showConfirmDialog(null,
-                "Erre a toronyra nincs elég pénz!",
+                "Ehhez sajnos nincs elég pénzed!",
                 "FIGYELEM!",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE);

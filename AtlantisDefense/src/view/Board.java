@@ -137,7 +137,7 @@ public class Board extends JPanel {
 //                                    System.out.println(Model.towers.size());
                                     spotIndex++;
                                 } else if (Model.money - tmp.price < 0) {
-                                    view.createMoneyNotEnoughDialog();
+                                    View.createMoneyNotEnoughDialog();
                                 }
                                 view.resetBorder();
                             }

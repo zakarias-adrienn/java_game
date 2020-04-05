@@ -10,6 +10,7 @@ public class GoldTower extends Tower {
     public GoldTower()
     {
         super(true);
+        this.raiseMoneyValue = 5;
         this.life = 100;
         this.spot = null;
         this.price = 20;
@@ -29,7 +30,7 @@ public class GoldTower extends Tower {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!View.paused) {
-                    Model.money += 5;
+                    Model.money += raiseMoneyValue;
                     View.moneyView.setText(Integer.toString(Model.money));
                 }
             }
