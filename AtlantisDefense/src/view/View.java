@@ -44,7 +44,6 @@ public class View extends javax.swing.JFrame {
     private long startTime;
     public static Timer timerForMoneyView;
     public static Timer timerForEnemiesComing;
-    public static Timer timerForAnimation;
     public static Timer timerForCollosion;
     public static Timer goldTowerTimer;
     public static Timer otherTowerTimer;
@@ -70,7 +69,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        
+
         View.j = new JDialog();
         View.j.setLocationRelativeTo(Menu.v);
         View.j.setTitle("Torony módosítása");
@@ -130,48 +129,24 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        this.timerForAnimation = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ///System.out.println("wasJustPlaced");
-                if (!paused) {
-                    Point tmp = fish.getLocation();
-                    int x = 0;
-                    if (tmp.x > 1000) {
-                        plus = false;
-                    } else if (tmp.x < 0) {
-                        plus = true;
-                    }
-                    if (plus) {
-                        x = tmp.x + 10;
-                    } else {
-                        x = tmp.x - 10;
-                    }
-
-                    fish.setLocation(x, tmp.y);
-                }
-
-            }
-        });
-        
         View.otherTowerTimer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
-                    for(int i = 0; i<Model.towers.size(); ++i){
+                    for (int i = 0; i < Model.towers.size(); ++i) {
                         Model.towers.get(i).readyForShoot();
                     }
                 }
             }
         });
         View.otherTowerTimer.start();
-        
+
         View.goldTowerTimer = new Timer(4000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!View.paused) {
-                    for(int i = 0; i<Model.towers.size(); ++i){
-                        if(Model.towers.get(i) instanceof GoldTower){
+                    for (int i = 0; i < Model.towers.size(); ++i) {
+                        if (Model.towers.get(i) instanceof GoldTower) {
                             Model.towers.get(i).shoot();
                         }
                     }
@@ -181,13 +156,27 @@ public class View extends javax.swing.JFrame {
         });
 //        View.goldTowerTimers.add(t);
         View.goldTowerTimer.start();
-        
+
         View.bulletTimer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(int i = 0; i<Model.allBullets.size(); ++i){
+                for (int i = 0; i < Model.allBullets.size(); ++i) {
                     Model.allBullets.get(i).move();
                 }
+                Point tmp = fish.getLocation();
+                int x = 0;
+                if (tmp.x > 1000) {
+                    plus = false;
+                } else if (tmp.x < 0) {
+                    plus = true;
+                }
+                if (plus) {
+                    x = tmp.x + 10;
+                } else {
+                    x = tmp.x - 10;
+                }
+
+                fish.setLocation(x, tmp.y);
             }
         });
         View.bulletTimer.start();
@@ -218,7 +207,7 @@ public class View extends javax.swing.JFrame {
 
             }
         });
-        
+
         // ez hozza létre az ellenségeket amikor eljött az idejük
         this.timerForEnemiesComing = new Timer(1000, new ActionListener() {
             @Override
@@ -252,7 +241,6 @@ public class View extends javax.swing.JFrame {
         });
         timerForMoneyView.start();
         timerForEnemiesComing.start();
-        timerForAnimation.start();
         timerForCollosion.start();
     }
 
@@ -618,7 +606,6 @@ public class View extends javax.swing.JFrame {
     public static void createGameOverDialog() {
         View.j.setVisible(false);
         View.timerForMoneyView.stop();
-        View.timerForAnimation.stop();
         View.timerForEnemiesComing.stop();
         View.otherTowerTimer.stop();
         View.bulletTimer.stop();
@@ -640,12 +627,11 @@ public class View extends javax.swing.JFrame {
             menu.setVisible(true);
         }
     }
-    
+
     public static void createWinDialog() {
         View.j.setVisible(false);
         View.timerForMoneyView.stop();
         View.otherTowerTimer.stop();
-        View.timerForAnimation.stop();
         View.timerForEnemiesComing.stop();
         View.bulletTimer.stop();
         View.otherTowerTimer.stop();
@@ -653,8 +639,7 @@ public class View extends javax.swing.JFrame {
             Board.timers.get(i).stop();
         }
         String message = "Gratulálok, győztél!\n Elérhető a következő szint.";
-        if (AtlantisDefense.level3Opened)
-        {
+        if (AtlantisDefense.level3Opened) {
             message = "Gratulálok, győztél!\n Sikeresen megvédted Atlantist és annak igazgyöngyét!\n Ha gondolod játszd újra a pályákat!";
         }
         int result = JOptionPane.showConfirmDialog(null,
@@ -671,13 +656,10 @@ public class View extends javax.swing.JFrame {
             menu.setVisible(true);
             System.out.println("HAHÓ");
             System.out.println(menu.level3Button.isEnabled() + ", " + AtlantisDefense.level2Opened);
-            if (!AtlantisDefense.level2Opened)
-            {
+            if (!AtlantisDefense.level2Opened) {
                 menu.level2Button.setEnabled(true);
                 AtlantisDefense.level2Opened = true;
-            }
-            else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened)
-            {
+            } else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened) {
                 System.out.println("ITTT MEGVAGYOK MÉG?");
                 menu.level2Button.setEnabled(true);
                 menu.level3Button.setEnabled(true);
@@ -758,13 +740,13 @@ public class View extends javax.swing.JFrame {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
                     }
                 } else {
-                        // ha nincs elég pénze
-                        View.createMoneyNotEnoughDialog();
-                    }
+                    // ha nincs elég pénze
+                    View.createMoneyNotEnoughDialog();
+                }
                 View.j.setVisible(false);
 //                System.out.println(View.j.isVisible());
                 View.j.dispose();
-            } 
+            }
         });
 
         // csak a saját ellenségeit lőjje
@@ -850,7 +832,7 @@ public class View extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
-                        } else if(t instanceof IceTower) {
+                        } else if (t instanceof IceTower) {
                             t.setDistance(8);
                             try {
                                 img = ResourceLoader.loadImage("res/ice_bg_2.png");
@@ -883,8 +865,7 @@ public class View extends javax.swing.JFrame {
                 }
             }
         });
-        
-        
+
         // torony feljavítása vörös szint, még a speedet nem változtatja
         // goldTowert is lehessen? -> ne legyenek potyába a képek?
         button6.addMouseListener(new MouseAdapter() {
@@ -912,7 +893,7 @@ public class View extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
-                        } else if(t instanceof IceTower) {
+                        } else if (t instanceof IceTower) {
                             t.setDistance(9);
                             try {
                                 img = ResourceLoader.loadImage("res/ice_bg_3.png");
@@ -938,7 +919,7 @@ public class View extends javax.swing.JFrame {
                         }
                         View.j.setVisible(false);
                         View.j.dispose();
-                    }else {
+                    } else {
                         // ha nincs elég pénze
                         View.createMoneyNotEnoughDialog();
                     }
