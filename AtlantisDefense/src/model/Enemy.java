@@ -3,13 +3,9 @@ package model;
 import java.awt.Color;
 import java.awt.Point;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import view.Board;
-import static view.Board.cells;
 import view.Menu;
 
 public abstract class Enemy {
@@ -23,8 +19,6 @@ public abstract class Enemy {
 
     public abstract String getType();
 
-    public abstract void move();
-
     public Point collosion() {
         //System.out.println("" + (116 + 28 + 57 * (pos.y - 1)) + ", " + (100 + 23 + 47 * (pos.x - 1)));
         //pos = new Point(116 + 28 + 57 * (towerY - 1), 100 + 23 + 47 * (towerX - 1));
@@ -35,7 +29,7 @@ public abstract class Enemy {
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
 //                System.out.println("HIT");
-                this.life -= 50;
+                this.life -= 10;
                 try {
                     // itt kell a cellán a healthbart változtatni
                     Board.cells[this.pos.x-1][this.pos.y-1].setLife(this.life);

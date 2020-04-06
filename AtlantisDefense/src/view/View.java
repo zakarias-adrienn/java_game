@@ -2,9 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -16,10 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -37,6 +32,7 @@ import model.ElectricTower;
 import model.Enemy;
 import model.Fugu;
 import model.GoldFish;
+import model.GoldTower;
 import model.IceTower;
 import model.Model;
 import model.SwordFish;
@@ -51,6 +47,9 @@ public class View extends javax.swing.JFrame {
     public static Timer timerForElapsed;
     public static Timer timerForAnimation;
     public static Timer timerForCollosion;
+    public static Timer goldTowerTimer;
+    public static Timer otherTowerTimer;
+    public static Timer bulletTimer;
     public static JDialog j;
     public static boolean paused = false;
     private long elapsed = 0;
@@ -72,7 +71,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-
+        
         View.j = new JDialog();
         View.j.setLocationRelativeTo(Menu.v);
         View.j.setTitle("Torony módosítása");
@@ -155,6 +154,44 @@ public class View extends javax.swing.JFrame {
 
             }
         });
+        
+        View.otherTowerTimer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!paused) {
+                    for(int i = 0; i<Model.towers.size(); ++i){
+                        Model.towers.get(i).readyForShoot();
+                    }
+                }
+            }
+        });
+        View.otherTowerTimer.start();
+        
+        View.goldTowerTimer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!View.paused) {
+                    for(int i = 0; i<Model.towers.size(); ++i){
+                        if(Model.towers.get(i) instanceof GoldTower){
+                            Model.towers.get(i).shoot();
+                        }
+                    }
+                    View.moneyView.setText(Integer.toString(Model.money));
+                }
+            }
+        });
+//        View.goldTowerTimers.add(t);
+        View.goldTowerTimer.start();
+        
+        View.bulletTimer = new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i<Model.allBullets.size(); ++i){
+                    Model.allBullets.get(i).move();
+                }
+            }
+        });
+        View.bulletTimer.start();
 
         /*debugTarget = new javax.swing.JLabel();
          debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
@@ -182,7 +219,8 @@ public class View extends javax.swing.JFrame {
 
             }
         });
-
+        
+        // ez hozza létre az ellenségeket amikor eljött az idejük
         this.timerForEnemies = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -441,12 +479,9 @@ public class View extends javax.swing.JFrame {
         this.paused = false;
         timer.start();
         timerForEnemies.start();
-        for (int i = 0; i < Model.towers.size(); ++i) {
-            Model.towers.get(i).getTimer().start();
-        }
-        for (int i = 0; i < Model.bulletTimers.size(); ++i) {
-            Model.bulletTimers.get(i).start();
-        }
+        otherTowerTimer.start();
+        goldTowerTimer.start();
+        bulletTimer.start();
     }//GEN-LAST:event_timerContinuePanelMouseClicked
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
@@ -454,12 +489,9 @@ public class View extends javax.swing.JFrame {
         timer.stop();
         this.paused = true;
         timerForEnemies.stop();
-        for (int i = 0; i < Model.towers.size(); ++i) {
-            Model.towers.get(i).getTimer().stop();
-        }
-        for (int i = 0; i < Model.bulletTimers.size(); ++i) {
-            Model.bulletTimers.get(i).stop();
-        }
+        otherTowerTimer.stop();
+        goldTowerTimer.stop();
+        bulletTimer.stop();
     }//GEN-LAST:event_timerStopPanelMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -585,6 +617,16 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createGameOverDialog() {
+        View.j.setVisible(false);
+        View.timer.stop();
+        View.timerForAnimation.stop();
+        View.timerForEnemies.stop();
+        View.otherTowerTimer.stop();
+        View.bulletTimer.stop();
+        View.otherTowerTimer.stop();
+        for (int i = 0; i < Board.timers.size(); ++i) {
+            Board.timers.get(i).stop();
+        }
         int result = JOptionPane.showConfirmDialog(null,
                 "A játék sajnos végetért. Veszítettél!",
                 "FIGYELEM!",
@@ -601,6 +643,16 @@ public class View extends javax.swing.JFrame {
     }
     
     public static void createWinDialog() {
+        View.j.setVisible(false);
+        View.timer.stop();
+        View.otherTowerTimer.stop();
+        View.timerForAnimation.stop();
+        View.timerForEnemies.stop();
+        View.bulletTimer.stop();
+        View.otherTowerTimer.stop();
+        for (int i = 0; i < Board.timers.size(); ++i) {
+            Board.timers.get(i).stop();
+        }
         String message = "Gratulálok, győztél!\n Elérhető a következő szint.";
         if (AtlantisDefense.level3Opened)
         {
@@ -807,7 +859,7 @@ public class View extends javax.swing.JFrame {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
                         } else {
-                            t.raiseMoneyValue = 10;
+                            t.setRaiseMoneyValue(10);
                             try {
                                 img = ResourceLoader.loadImage("res/gold_bg_2.png");
                             } catch (IOException ex) {
@@ -869,7 +921,7 @@ public class View extends javax.swing.JFrame {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
                         } else {
-                            t.raiseMoneyValue = 15;
+                            t.setRaiseMoneyValue(15);
                             try {
                                 img = ResourceLoader.loadImage("res/gold_bg_3.png");
                             } catch (IOException ex) {

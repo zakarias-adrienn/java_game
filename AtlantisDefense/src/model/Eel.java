@@ -20,7 +20,4 @@ public class Eel extends Enemy {
         return "electric";
     }
 
-    @Override
-    public void move() {
-    }
 }

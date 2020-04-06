@@ -10,8 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -107,7 +105,6 @@ public class Board extends JPanel {
                                 if (imageNumber == 1) {
                                     icon = new ImageIcon(gold);
                                     tmp = new GoldTower();
-                                    tmp.shoot();
                                 } else if (imageNumber == 2) {
                                     icon = new ImageIcon(bubble);
                                     tmp = new BubbleTower();
@@ -120,7 +117,6 @@ public class Board extends JPanel {
                                 }
                                 if (Model.money - tmp.price >= 0 && !thumb.isTower()) {
                                     tmp.setPos(thumb.getXPos() - 1, thumb.getYPos() - 1);
-                                    tmp.startTimer();
                                     thumb.setIcon(icon);
                                     thumb.setIsTower();
                                     thumb.isMouseListenerActive = true;
@@ -133,7 +129,6 @@ public class Board extends JPanel {
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
                                     Model.towers.add(tmp);
-                                    timers.add(tmp.getTimer());
 //                                    System.out.println(Model.towers.size());
                                     spotIndex++;
                                 } else if (Model.money - tmp.price < 0) {
@@ -192,7 +187,6 @@ public class Board extends JPanel {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // ha nincs megállítva!
                     if (!View.paused) {
                         if (i >= routeCells2.size()) {
                             try {
@@ -251,11 +245,7 @@ public class Board extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        // NEM AKAR VONALAT RAJZOLNIIII :(
         super.paintComponent(g);
-        g.setColor(Color.YELLOW);
-        g.drawLine(100, 100, 600, 600);
-
     }
 
     class myMouseAdapter extends MouseAdapter {

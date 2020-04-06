@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -8,6 +9,7 @@ import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import static model.AtlantisDefense.menu;
 import model.Model;
 
 public class Menu extends javax.swing.JFrame {

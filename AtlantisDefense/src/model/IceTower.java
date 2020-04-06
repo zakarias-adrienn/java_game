@@ -50,14 +50,14 @@ public class IceTower extends Tower {
         bullets.add(bullet7);
         bullets.add(bullet8);
         Model.allBullets.addAll(bullets);
-        bullet1.move("n");
-        bullet2.move("e");
-        bullet3.move("s");
-        bullet4.move("w");
-        bullet5.move("ne");
-        bullet6.move("se");
-        bullet7.move("sw");
-        bullet8.move("nw");
+        bullet1.direction = "n";
+        bullet2.direction = "e";
+        bullet3.direction = "s";
+        bullet4.direction = "w";
+        bullet5.direction = "ne";
+        bullet6.direction = "se";
+        bullet7.direction = "sw";
+        bullet8.direction = "nw";
         if(this.life==0){
             Model.towers.remove(this);
             try {
@@ -67,7 +67,6 @@ public class IceTower extends Tower {
             }
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-            this.towerTimer.stop();
         }
 
     }

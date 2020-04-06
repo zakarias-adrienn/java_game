@@ -1,8 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.Timer;
@@ -14,7 +12,7 @@ public abstract class Tower {
     protected Integer spot;
     public Integer price;
     protected Integer distance;
-    public int raiseMoneyValue = 0; // GoldTowerhez kell csak;
+    protected int raiseMoneyValue = 0; // GoldTowerhez kell csak
     protected String type;
     public Timer towerTimer;
     protected Point pos;
@@ -26,23 +24,26 @@ public abstract class Tower {
     public Tower(boolean isGoldTower) {
         this.onlyMyEnemiesShooting = false;
         this.pos = new Point();
-        if (!isGoldTower) {
-            this.towerTimer = new Timer(500, new ToronyTimer(this));
-        } else {
-            System.out.println("gold");
-        }
     }
 
     public abstract String getType();
-    
+
+    public int getRaiseMoneyValue() {
+        return raiseMoneyValue;
+    }
+
+    public void setRaiseMoneyValue(int value) {
+        this.raiseMoneyValue = value;
+    }
+
     // toronynál nem talál az index
     public boolean enemyGotIn(int index) {
         if ((Model.enemies.get(index).getXPos() == this.pos.x + 2
-                || Model.enemies.get(index).getXPos() == this.pos.x 
-                || Model.enemies.get(index).getXPos() == this.pos.x +1)
+                || Model.enemies.get(index).getXPos() == this.pos.x
+                || Model.enemies.get(index).getXPos() == this.pos.x + 1)
                 && (Model.enemies.get(index).getYPos() == this.pos.y + 2
                 || Model.enemies.get(index).getYPos() == this.pos.y
-                || Model.enemies.get(index).getYPos() == this.pos.y+1)) {
+                || Model.enemies.get(index).getYPos() == this.pos.y + 1)) {
 //            System.out.println(Model.enemies.get(index).getXPos());
 //            System.out.println(Model.enemies.get(index).getYPos());
 //            System.out.println(this.pos.x);
@@ -53,15 +54,32 @@ public abstract class Tower {
         }
     }
 
-    public void startTimer() {
-        this.towerTimer.start();
+    public void readyForShoot() {
+        if (!(this instanceof GoldTower)) {
+            if (Model.enemies.size() > 0) {
+                if (!this.onlyMyEnemiesShooting) {
+                    for (int i = 0; i < Model.enemies.size(); ++i) {
+                        if (enemyGotIn(i)) {
+                            System.out.println("Ellenség a hatókörömbe ért!");
+                            shoot(); // több golyó is létrejön egy ellenséghez
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < Model.enemies.size(); ++i) {
+                        if (Model.enemies.get(i).getType().equals(this.getType())) {
+                            if (enemyGotIn(i)) {
+                                shoot();
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
     }
 
     public abstract void shoot();
 
-    public Timer getTimer() {
-        return towerTimer;
-    }
 
     public void setPos(int xx, int yy) {
         this.pos.x = xx;
@@ -76,21 +94,21 @@ public abstract class Tower {
         this.life = 100;
     }
 
-    public void setDistance(int distance){
+    public void setDistance(int distance) {
         this.distance = distance;
     }
-    
+
     public int getLife() {
         return this.life;
     }
-    
-    public void decreaseLife(){
+
+    public void decreaseLife() {
         this.life -= 20;
     }
-    
+
     // csak a goldTowernél használom egyelőre, a többinél a shoot metódusban van, de lehet jó lenne a többinél is kiszedni onnan
-    public void checkLife(){
-        if(this.life==0){
+    public void checkLife() {
+        if (this.life == 0) {
             Model.towers.remove(this);
             try {
                 Board.cells[this.pos.x][this.pos.y].setLife(-1);
@@ -100,37 +118,6 @@ public abstract class Tower {
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
             this.towerTimer.stop();
-        }
-    }
-
-    class ToronyTimer implements ActionListener {
-        private Tower t;
-        
-        public ToronyTimer(Tower tower) {
-            t = tower;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (Model.enemies.size() > 0) {
-                if (!t.onlyMyEnemiesShooting) {
-                    for (int i = 0; i < Model.enemies.size(); ++i) {
-                        if (enemyGotIn(i)) {
-//                            System.out.println("Ellenség a hatókörömbe ért!");
-                            shoot(); // több golyó is létrejön egy ellenséghez
-                        }
-                    }
-                } else {
-                    for (int i = 0; i < Model.enemies.size(); ++i) {
-                        if (Model.enemies.get(i).getType().equals(t.getType())) {
-                            if (enemyGotIn(i)) {
-                                shoot();
-                            }
-                        }
-                    }
-                }
-                
-            }
         }
     }
 }

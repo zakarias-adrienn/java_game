@@ -3,7 +3,6 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 import view.Board;
-import view.Menu;
 
 public class ElectricTower extends Tower {
 
@@ -49,7 +48,7 @@ public class ElectricTower extends Tower {
         }
         for (int i = 0; i<bullets.size(); i++)
         {
-            bullets.get(i).move("stay");
+            bullets.get(i).direction = "stay";
         }
         //bullets.add(bullet);
         //bullet.move("w");
@@ -62,7 +61,6 @@ public class ElectricTower extends Tower {
             }
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-            this.towerTimer.stop();
         }
     }
 }

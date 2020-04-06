@@ -2,8 +2,6 @@ package model;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import view.Menu;
@@ -17,6 +15,7 @@ public class Bullet {
     public Timer timerForBullet;
     public int distance = 10;
     public int elapsedDistance = 0;
+    public String direction = null;
 
     public Bullet() {
         pos = new Point();
@@ -39,54 +38,42 @@ public class Bullet {
         bullet.setLocation(pos.x, pos.y); // Golyót a toronyra igazítja)
     }
 
-    public void move(String direction) {
-//        System.out.println("itt kellene mozogjon a golyó");
-        timerForBullet = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (elapsedDistance > distance) {
-                    pos.y = -50;
-                    pos.x = -50;
-                    bullet.setLocation(pos.x, pos.y); //csak kihelyezi a golyót a látómezőből. nem elegáns, valahogy meg kéne szüntetni az objektumot. viszont stabilan működik.
-                    return;
-                }
-                if (direction.equals("n")) {
-                    //pos.x -= speed;
-                    pos.y -= speed;
-                } else if (direction.equals("ne")) {
-                    pos.x += speed;
-                    pos.y -= speed;
-                } else if (direction.equals("e")) {
-                    pos.x += speed;
-                    //pos.y += speed;
-                } else if (direction.equals("se")) {
-                    pos.x += speed;
-                    pos.y += speed;
-                } else if (direction.equals("s")) {
-                    //pos.x -= speed;
-                    pos.y += speed;
-                } else if (direction.equals("sw")) {
-                    pos.x -= speed;
-                    pos.y += speed;
-                } else if (direction.equals("w")) {
-                    pos.x -= speed;
-                    //pos.y -= speed;
-                } else if (direction.equals("nw")) {
-                    pos.x -= speed;
-                    pos.y -= speed;
-                }
-                else if (direction.equals("stop"))
-                {
-                    //pos.x = pos.y;
-                    //pos.y = pos.x
-                    bullet.setLocation(pos.x, pos.y);
-                }
-                bullet.setLocation(pos.x, pos.y);
-                elapsedDistance++;
-            }
-        });
-        timerForBullet.start();
-        Model.bulletTimers.add(timerForBullet);
-        // meg kellene állítani, ha a pályáról leért vagy ha eltalált egy ellenséget
+    public void move() {
+        if (elapsedDistance > distance) {
+            pos.y = -50;
+            pos.x = -50;
+            bullet.setLocation(pos.x, pos.y); //csak kihelyezi a golyót a látómezőből. nem elegáns, valahogy meg kéne szüntetni az objektumot. viszont stabilan működik.
+            Model.allBullets.remove(this);
+            return;
+        }
+        if (this.direction.equals("n")) {
+            //pos.x -= speed;
+            pos.y -= speed;
+        } else if (this.direction.equals("ne")) {
+            pos.x += speed;
+            pos.y -= speed;
+        } else if (this.direction.equals("e")) {
+            pos.x += speed;
+            //pos.y += speed;
+        } else if (this.direction.equals("se")) {
+            pos.x += speed;
+            pos.y += speed;
+        } else if (this.direction.equals("s")) {
+            //pos.x -= speed;
+            pos.y += speed;
+        } else if (this.direction.equals("sw")) {
+            pos.x -= speed;
+            pos.y += speed;
+        } else if (this.direction.equals("w")) {
+            pos.x -= speed;
+            //pos.y -= speed;
+        } else if (this.direction.equals("nw")) {
+            pos.x -= speed;
+            pos.y -= speed;
+        } else if (this.direction.equals("stop")) {
+            bullet.setLocation(pos.x, pos.y);
+        }
+        bullet.setLocation(pos.x, pos.y);
+        elapsedDistance++;
     }
 }

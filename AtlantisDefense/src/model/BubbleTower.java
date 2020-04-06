@@ -25,6 +25,7 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
+      
 //        System.out.println(bullets.size());
         Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
@@ -42,10 +43,10 @@ public class BubbleTower extends Tower {
         bullets.add(bullet3);
         bullets.add(bullet4);
         Model.allBullets.addAll(bullets);
-        bullet1.move("n");
-        bullet2.move("e");
-        bullet3.move("s");
-        bullet4.move("w");
+        bullet1.direction = "n";
+        bullet2.direction = "e";
+        bullet3.direction = "s";
+        bullet4.direction = "w";
         if(this.life==0){
             Model.towers.remove(this);
             try {
@@ -55,7 +56,6 @@ public class BubbleTower extends Tower {
             }
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-            this.towerTimer.stop();
         }
         /*JLabel tmp = new javax.swing.JLabel();
         //tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

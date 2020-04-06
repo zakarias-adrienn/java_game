@@ -15,11 +15,6 @@ public class Fugu extends Enemy {
     }
     
     @Override
-    public void move() {
-        
-    }
-    
-    @Override
     public String getType(){
         return "bubble";
     }

@@ -19,10 +19,4 @@ public class GoldFish extends Enemy {
     public String getType(){
         return "gold";
     }
-    
-    @Override
-    public void move() {
-        
-    }
-    
 }
