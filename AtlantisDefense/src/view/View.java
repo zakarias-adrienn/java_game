@@ -583,7 +583,7 @@ public class View extends javax.swing.JFrame {
             Board.timers.get(i).stop();
         }
         int result = JOptionPane.showConfirmDialog(null,
-                "A játék sajnos végetért. Veszítettél!",
+                "A játék sajnos végetért. Veszítettél! \nLegyőzött ellenségek száma: " + Model.deadEnemyNum,
                 "FIGYELEM!",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
