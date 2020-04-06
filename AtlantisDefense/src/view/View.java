@@ -706,11 +706,14 @@ public class View extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
                     }
-                }
+                } else {
+                        // ha nincs elég pénze
+                        View.createMoneyNotEnoughDialog();
+                    }
                 View.j.setVisible(false);
 //                System.out.println(View.j.isVisible());
                 View.j.dispose();
-            }
+            } 
         });
 
         // csak a saját ellenségeit lőjje
