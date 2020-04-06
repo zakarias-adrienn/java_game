@@ -138,6 +138,15 @@ public class Model {
     public static LevelItem getItem(int row, int col) {
         return level[row][col];
     }
+    
+    public static Tower findTower(int x, int y) {
+        for (int i = 0; i < Model.towers.size(); ++i) {
+            if (Model.towers.get(i).getPos().x == x && Model.towers.get(i).getPos().y == y) {
+                return Model.towers.get(i);
+            }
+        }
+        return null;
+    }
 
     public static boolean gameOver() {
         if (Pearl.getLife() <= 0) {

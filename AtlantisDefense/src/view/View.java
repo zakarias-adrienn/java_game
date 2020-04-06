@@ -686,7 +686,7 @@ public class View extends javax.swing.JFrame {
         outer.add(pan);
         View.j.add(outer, BorderLayout.CENTER);
         View.j.setVisible(true);
-        Tower t = findTower(x, y);
+        Tower t = Model.findTower(x, y);
         if (t.getType().equals("gold")) {
             button3.setEnabled(false);
             button4.setEnabled(false);
@@ -700,7 +700,7 @@ public class View extends javax.swing.JFrame {
         button1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Tower t = findTower(x, y);
+                Tower t = Model.findTower(x, y);
                 if (Model.money >= 50 && t != null) {
                     Model.money -= 50;
                     moneyView.setText("" + Model.money);
@@ -725,7 +725,7 @@ public class View extends javax.swing.JFrame {
         button3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Tower t = findTower(x, y);
+                Tower t = Model.findTower(x, y);
                 if (button3.isEnabled()) {
                     if(t != null){
                         t.onlyMyEnemiesShooting = true;
@@ -740,7 +740,7 @@ public class View extends javax.swing.JFrame {
         button4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Tower t = findTower(x, y);
+                Tower t = Model.findTower(x, y);
                 if (button4.isEnabled()) {
                     if(t!=null){
                         t.onlyMyEnemiesShooting = false;
@@ -755,7 +755,7 @@ public class View extends javax.swing.JFrame {
         button5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Tower t = findTower(x, y);
+                Tower t = Model.findTower(x, y);
                 if (t != null) {
                     thumb.wasJustPlaced = true;
                     Model.towers.remove(t);
@@ -788,7 +788,7 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
                 if (button2.isEnabled()) {
-                    Tower t = findTower(x, y);
+                    Tower t = Model.findTower(x, y);
                     if (Model.money - 100 >= 0 && t!=null) {
                         Model.money = Model.money - 100;
                         moneyView.setText("" + Model.money);
@@ -847,7 +847,7 @@ public class View extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (button6.isEnabled()) {
-                    Tower t = findTower(x, y);
+                    Tower t = Model.findTower(x, y);
                     if (Model.money - 200 >= 0 && t!=null) {
                         Model.money = Model.money - 200;
                         moneyView.setText("" + Model.money);
@@ -901,15 +901,6 @@ public class View extends javax.swing.JFrame {
                 }
             }
         });
-    }
-
-    public static Tower findTower(int x, int y) {
-        for (int i = 0; i < Model.towers.size(); ++i) {
-            if (Model.towers.get(i).getPos().x == x && Model.towers.get(i).getPos().y == y) {
-                return Model.towers.get(i);
-            }
-        }
-        return null;
     }
 
     public static void createMoneyNotEnoughDialog() {
