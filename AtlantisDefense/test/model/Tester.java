@@ -1,3 +1,5 @@
+package model;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author ZA
  */
-public class NewEmptyJUnitTest {
+public class Tester {
     
-    public NewEmptyJUnitTest() {
+    public Tester() {
     }
     
     // annotációk -> @Test
@@ -47,4 +49,16 @@ public class NewEmptyJUnitTest {
     //
     // @Test
     // public void hello() {}
+    
+    @Test
+    public void TowerCreationTester(){
+        Tower t = new GoldTower();
+        assertTrue("Newly created tower is instanceof GoldTower", t instanceof GoldTower);
+        t = new IceTower();
+        assertTrue("Newly created tower is instanceof IceTower", t instanceof IceTower);
+        t = new ElectricTower();
+        assertTrue("Newly created tower is instanceof ElectricTower", t instanceof ElectricTower);
+        t = new BubbleTower();
+        assertTrue("Newly created tower is instanceof BubbleTower", t instanceof BubbleTower);
+    }
 }
