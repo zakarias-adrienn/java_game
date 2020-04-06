@@ -110,9 +110,9 @@ public class View extends javax.swing.JFrame {
         this.setTitle("Főképernyő");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.moneyView.setText("" + Model.money);
+        View.moneyView.setText("" + Model.money);
         this.startTime = System.currentTimeMillis();
-        this.timerForMoneyViewAndEnemiesComing = new Timer(1000, new ActionListener() {
+        View.timerForMoneyViewAndEnemiesComing = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("a");
@@ -219,6 +219,7 @@ public class View extends javax.swing.JFrame {
 //    public long elapsedTime() {
 //            return Math.round((this.elapsed - this.startTime) / 100);
 //    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
