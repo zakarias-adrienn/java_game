@@ -219,7 +219,6 @@ public class View extends javax.swing.JFrame {
 //    public long elapsedTime() {
 //            return Math.round((this.elapsed - this.startTime) / 100);
 //    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -638,6 +637,11 @@ public class View extends javax.swing.JFrame {
         }
     }
 
+    public static void closeDialogForTower() {
+        View.j.setVisible(false);
+        View.j.dispose();
+    }
+
     public static void createDialogForTower(int x, int y, Cell thumb) {
         View.j = new JDialog();
         URL url = View.class.getClassLoader().getResource("res/fish.png");
@@ -696,11 +700,11 @@ public class View extends javax.swing.JFrame {
         button1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (Model.money >= 50) {
+                Tower t = findTower(x, y);
+                if (Model.money >= 50 && t != null) {
                     Model.money -= 50;
                     moneyView.setText("" + Model.money);
                     // meg kell keresni az ezen a helyen levő tornyot s növelni az életerejét
-                    Tower t = findTower(x, y);
                     t.increaseLife();
                     try {
                         thumb.setLife(100);
@@ -708,7 +712,7 @@ public class View extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
                     }
-                } else {
+                } else if (t != null) {
                     // ha nincs elég pénze
                     View.createMoneyNotEnoughDialog();
                 }
@@ -723,7 +727,9 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
                 if (button3.isEnabled()) {
-                    t.onlyMyEnemiesShooting = true;
+                    if(t != null){
+                        t.onlyMyEnemiesShooting = true;
+                    }
                     View.j.setVisible(false);
                     View.j.dispose();
                 }
@@ -736,7 +742,9 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = findTower(x, y);
                 if (button4.isEnabled()) {
-                    t.onlyMyEnemiesShooting = false;
+                    if(t!=null){
+                        t.onlyMyEnemiesShooting = false;
+                    }
                     View.j.setVisible(false);
                     View.j.dispose();
                 }
@@ -755,20 +763,21 @@ public class View extends javax.swing.JFrame {
                     int moneyForTower = Math.round(t.getLife() / 10);
                     Model.money += moneyForTower;
                     moneyView.setText("" + Model.money);
+                    try {
+                        thumb.unsetIsTower();
+                        thumb.isMouseListenerActive = false;
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                        Image img = ResourceLoader.loadImage("res/toronyhely.png");
+                        ImageIcon icon = new ImageIcon(img);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
+                        Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
+                    } catch (IOException ex) {
+                        System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
+                    }
                 }
-                try {
-                    thumb.unsetIsTower();
-                    thumb.isMouseListenerActive = false;
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].unsetIsTower();
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                    Image img = ResourceLoader.loadImage("res/toronyhely.png");
-                    ImageIcon icon = new ImageIcon(img);
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setIcon(icon);
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].setLife(0);
-                    Board.cells[thumb.getXPos() - 1][thumb.getYPos() - 1].repaint();
-                } catch (IOException ex) {
-                    System.out.println("Nem sikerült toronyhelyre cserélni az eladni kívánt tornyot");
-                }
+
                 View.j.setVisible(false);
                 View.j.dispose();
             }
@@ -781,7 +790,7 @@ public class View extends javax.swing.JFrame {
                 // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
                 if (button2.isEnabled()) {
                     Tower t = findTower(x, y);
-                    if (Model.money - 100 >= 0) {
+                    if (Model.money - 100 >= 0 && t!=null) {
                         Model.money = Model.money - 100;
                         moneyView.setText("" + Model.money);
                         Image img = null;
@@ -824,12 +833,12 @@ public class View extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             System.out.println("Nem sikerült az életerőt feljavítani.");
                         }
-                        View.j.setVisible(false);
-                        View.j.dispose();
-                    } else {
+                    } else if(t!=null){
                         // ha nincs elég pénze
                         View.createMoneyNotEnoughDialog();
                     }
+                    View.j.setVisible(false);
+                    View.j.dispose();
                 }
             }
         });
@@ -840,7 +849,7 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (button6.isEnabled()) {
                     Tower t = findTower(x, y);
-                    if (Model.money - 200 >= 0) {
+                    if (Model.money - 200 >= 0 && t!=null) {
                         Model.money = Model.money - 200;
                         moneyView.setText("" + Model.money);
                         Image img = null;
@@ -883,12 +892,13 @@ public class View extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             System.out.println("Nem sikerült az életerőt feljavítani.");
                         }
-                        View.j.setVisible(false);
-                        View.j.dispose();
-                    } else {
+                    } else if(t!=null){
                         // ha nincs elég pénze
                         View.createMoneyNotEnoughDialog();
+                        
                     }
+                    View.j.setVisible(false);
+                    View.j.dispose();
                 }
             }
         });
