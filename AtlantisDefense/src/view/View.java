@@ -42,9 +42,7 @@ import res.ResourceLoader;
 public class View extends javax.swing.JFrame {
 
     private long startTime;
-    public static Timer timerForMoneyView;
-    public static Timer timerForEnemiesComing;
-    public static Timer timerForCollosion;
+    public static Timer timerForMoneyViewAndEnemiesComing;
     public static Timer goldTowerTimer;
     public static Timer otherTowerTimer;
     public static Timer bulletTimer;
@@ -114,7 +112,7 @@ public class View extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.moneyView.setText("" + Model.money);
         this.startTime = System.currentTimeMillis();
-        this.timerForMoneyView = new Timer(1000, new ActionListener() {
+        this.timerForMoneyViewAndEnemiesComing = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("a");
@@ -123,7 +121,28 @@ public class View extends javax.swing.JFrame {
                  timeView.setLocation(x, tmp.y);*/
                 if (!paused) {
                     timeView.setText("" + i++);
-
+                    elapsed += 10;
+                    for (int i = 0; i < Model.readedEnemies.size(); ++i) {
+                        if (Model.readedEnemies.get(i).startTime == elapsed) {
+                            try {
+                                // el kell induljon az ellenség, mert eljött az ideje
+                                Enemy enemy;
+                                if ("electric".equals(Model.readedEnemies.get(i).type)) {
+                                    enemy = new Eel();
+                                } else if ("ice".equals(Model.readedEnemies.get(i).type)) {
+                                    enemy = new SwordFish();
+                                } else if ("bubble".equals(Model.readedEnemies.get(i).type)) {
+                                    enemy = new Fugu();
+                                } else {
+                                    enemy = new GoldFish();
+                                }
+                                Model.enemies.add(enemy);
+                                Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed, enemy);
+                            } catch (IOException ex) {
+                                System.out.println("Ellenség képét nem sikerült elérni.\n");
+                            }
+                        }
+                    }
                 }
 
             }
@@ -177,20 +196,7 @@ public class View extends javax.swing.JFrame {
                 }
 
                 fish.setLocation(x, tmp.y);
-            }
-        });
-        View.bulletTimer.start();
-
-        /*debugTarget = new javax.swing.JLabel();
-         debugTarget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/debug_target.png")));
-         getContentPane().add(debugTarget);
-         debugTarget.setBounds(98, 54, 30, 30);
-         debugTarget.setForeground(Color.WHITE);
-         getContentPane().setComponentZOrder(debugTarget, 0);*/
-        this.timerForCollosion = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                System.out.println("-------");
+                //                System.out.println("-------");
                 //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
 
@@ -204,44 +210,10 @@ public class View extends javax.swing.JFrame {
                      if (Model.enemies.size() >2)
                      debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);*/
                 }
-
             }
         });
-
-        // ez hozza létre az ellenségeket amikor eljött az idejük
-        this.timerForEnemiesComing = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!paused) {
-                    elapsed += 10;
-                    for (int i = 0; i < Model.readedEnemies.size(); ++i) {
-                        if (Model.readedEnemies.get(i).startTime == elapsed) {
-                            try {
-                                // el kell induljon az ellenség, mert eljött az ideje
-                                Enemy enemy;
-                                if ("electric".equals(Model.readedEnemies.get(i).type)) {
-                                    enemy = new Eel();
-                                } else if ("ice".equals(Model.readedEnemies.get(i).type)) {
-                                    enemy = new SwordFish();
-                                } else if ("bubble".equals(Model.readedEnemies.get(i).type)) {
-                                    enemy = new Fugu();
-                                } else {
-                                    enemy = new GoldFish();
-                                }
-                                Model.enemies.add(enemy);
-                                Board.enemyComes(Model.readedEnemies.get(i).getImage(), Model.readedEnemies.get(i).speed, enemy);
-                            } catch (IOException ex) {
-                                System.out.println("Ellenség képét nem sikerült elérni.\n");
-                            }
-                        }
-                    }
-                }
-
-            }
-        });
-        timerForMoneyView.start();
-        timerForEnemiesComing.start();
-        timerForCollosion.start();
+        View.bulletTimer.start();
+        timerForMoneyViewAndEnemiesComing.start();
     }
 
 //    public long elapsedTime() {
@@ -464,8 +436,7 @@ public class View extends javax.swing.JFrame {
 
     private void timerContinuePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerContinuePanelMouseClicked
         this.paused = false;
-        timerForMoneyView.start();
-        timerForEnemiesComing.start();
+        timerForMoneyViewAndEnemiesComing.start();
         otherTowerTimer.start();
         goldTowerTimer.start();
         bulletTimer.start();
@@ -473,9 +444,8 @@ public class View extends javax.swing.JFrame {
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
         // TODO add your handling code here:
-        timerForMoneyView.stop();
+        timerForMoneyViewAndEnemiesComing.stop();
         this.paused = true;
-        timerForEnemiesComing.stop();
         otherTowerTimer.stop();
         goldTowerTimer.stop();
         bulletTimer.stop();
@@ -605,8 +575,7 @@ public class View extends javax.swing.JFrame {
 
     public static void createGameOverDialog() {
         View.j.setVisible(false);
-        View.timerForMoneyView.stop();
-        View.timerForEnemiesComing.stop();
+        View.timerForMoneyViewAndEnemiesComing.stop();
         View.otherTowerTimer.stop();
         View.bulletTimer.stop();
         View.otherTowerTimer.stop();
@@ -630,9 +599,8 @@ public class View extends javax.swing.JFrame {
 
     public static void createWinDialog() {
         View.j.setVisible(false);
-        View.timerForMoneyView.stop();
+        View.timerForMoneyViewAndEnemiesComing.stop();
         View.otherTowerTimer.stop();
-        View.timerForEnemiesComing.stop();
         View.bulletTimer.stop();
         View.otherTowerTimer.stop();
         for (int i = 0; i < Board.timers.size(); ++i) {
