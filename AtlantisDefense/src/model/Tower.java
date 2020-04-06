@@ -21,7 +21,7 @@ public abstract class Tower {
     String bullet_img;
     int speed;
 
-    public Tower(boolean isGoldTower) {
+    public Tower() {
         this.onlyMyEnemiesShooting = false;
         this.pos = new Point();
     }

@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author ZA
  */
-public class Tester {
+public class TowerTester {
     
-    public Tester() {
+    public TowerTester() {
     }
     
     // annotációk -> @Test
@@ -51,7 +51,7 @@ public class Tester {
     // public void hello() {}
     
     @Test
-    public void TowerCreationTester(){
+    public void TowerCreationTest(){
         Tower t = new GoldTower();
         assertTrue("Newly created tower is instanceof GoldTower", t instanceof GoldTower);
         t = new IceTower();
@@ -60,5 +60,12 @@ public class Tester {
         assertTrue("Newly created tower is instanceof ElectricTower", t instanceof ElectricTower);
         t = new BubbleTower();
         assertTrue("Newly created tower is instanceof BubbleTower", t instanceof BubbleTower);
+    }
+    
+    @Test
+    public void increaseLifeTest(){
+        Tower t = new IceTower();
+        t.increaseLife();
+        assertTrue("Value of life becomes 100 after increaseLife method", t.life==100);
     }
 }

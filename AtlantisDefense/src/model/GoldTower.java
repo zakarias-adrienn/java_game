@@ -4,7 +4,7 @@ public class GoldTower extends Tower {
     
     public GoldTower()
     {
-        super(true);
+        super();
         this.raiseMoneyValue = 5;
         this.life = 100;
         this.spot = null;

@@ -7,7 +7,7 @@ import view.Board;
 public class BubbleTower extends Tower {
     
     public BubbleTower() {
-        super(false);
+        super();
         this.life = 100;
         this.spot = null;
         this.price = 80;
