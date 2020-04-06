@@ -44,10 +44,6 @@ public abstract class Tower {
                 && (Model.enemies.get(index).getYPos() == this.pos.y + 2
                 || Model.enemies.get(index).getYPos() == this.pos.y
                 || Model.enemies.get(index).getYPos() == this.pos.y + 1)) {
-//            System.out.println(Model.enemies.get(index).getXPos());
-//            System.out.println(Model.enemies.get(index).getYPos());
-//            System.out.println(this.pos.x);
-//            System.out.println(this.pos.y);
             return true;
         } else {
             return false;
@@ -106,7 +102,6 @@ public abstract class Tower {
         this.life -= 20;
     }
 
-    // csak a goldTowernél használom egyelőre, a többinél a shoot metódusban van, de lehet jó lenne a többinél is kiszedni onnan
     public void checkLife() {
         if (this.life == 0) {
             Model.towers.remove(this);
@@ -117,7 +112,6 @@ public abstract class Tower {
             }
             Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
             Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-            this.towerTimer.stop();
         }
     }
 }

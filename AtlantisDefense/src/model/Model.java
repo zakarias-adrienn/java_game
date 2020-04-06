@@ -25,7 +25,6 @@ public class Model {
     public static LevelItem[][] level;
     public static ArrayList<EnemyReaded> readedEnemies;
     private ArrayList<String> readLines;
-//    public static ArrayList<Timer> bulletTimers;
     public static ArrayList<Bullet> allBullets;
     public static int deadEnemyNum;
     public static int arrivedEnemyNum;
@@ -34,7 +33,6 @@ public class Model {
     
     public Model(Menu menu) {
         allBullets = new ArrayList<>();
-//        bulletTimers = new ArrayList<>();
         pearlPower = 100;
         money = moneyDefaultValue; // kezdetben mennyi legyen?
         enemies = new ArrayList<>();
@@ -45,7 +43,6 @@ public class Model {
         arrivedEnemyNum = 0;
         this.menu = menu;
  
-        //System.out.println("l modelben:" +l);
         if(Menu.level1ButtonClicked){
             readLines = readFile("src/res/palya.txt");
             l = 1;

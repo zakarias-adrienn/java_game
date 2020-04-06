@@ -36,7 +36,6 @@ public class ElectricTower extends Tower {
                     
                 }
             }
-            //Bullet bullet = new Bullet(pos.x+1, pos.y+1, bullet_img, speed);
         }
         Model.allBullets.addAll(bullets);
         this.life -= 10;
@@ -50,17 +49,6 @@ public class ElectricTower extends Tower {
         {
             bullets.get(i).direction = "stay";
         }
-        //bullets.add(bullet);
-        //bullet.move("w");
-        if(this.life==0){
-            Model.towers.remove(this);
-            try {
-                Board.cells[this.pos.x][this.pos.y].setLife(-1);
-            } catch (IOException ex) {
-                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
-            }
-            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
-            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-        }
+        this.checkLife();
     }
 }

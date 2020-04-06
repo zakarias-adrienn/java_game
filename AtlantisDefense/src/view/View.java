@@ -713,7 +713,6 @@ public class View extends javax.swing.JFrame {
                     View.createMoneyNotEnoughDialog();
                 }
                 View.j.setVisible(false);
-//                System.out.println(View.j.isVisible());
                 View.j.dispose();
             }
         });
@@ -836,11 +835,9 @@ public class View extends javax.swing.JFrame {
         });
 
         // torony feljavítása vörös szint, még a speedet nem változtatja
-        // goldTowert is lehessen? -> ne legyenek potyába a képek?
         button6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
                 if (button6.isEnabled()) {
                     Tower t = findTower(x, y);
                     if (Model.money - 200 >= 0) {

@@ -172,7 +172,6 @@ public class Board extends JPanel {
     }
 
     public static void enemyComes(Image img, int speed, Enemy enemy) throws IOException {
-        // itt kellene haladjon az enemy adott sebességgel a routeCells cellákon
         // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
         if (!View.paused) {
             System.out.println("ellenség jön");
@@ -258,7 +257,6 @@ public class Board extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-//          System.out.println("Toronyra kattintottak");
             if (thumb.isMouseListenerActive) {
                 if (thumb.isTower() && !thumb.wasJustPlaced) { //még torony van itt
                     View.createDialogForTower(thumb.getXPos() - 1, thumb.getYPos() - 1, thumb);

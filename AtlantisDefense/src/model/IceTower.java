@@ -58,16 +58,6 @@ public class IceTower extends Tower {
         bullet6.direction = "se";
         bullet7.direction = "sw";
         bullet8.direction = "nw";
-        if(this.life==0){
-            Model.towers.remove(this);
-            try {
-                Board.cells[this.pos.x][this.pos.y].setLife(-1);
-            } catch (IOException ex) {
-                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
-            }
-            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
-            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-        }
-
+        this.checkLife();
     }
 }

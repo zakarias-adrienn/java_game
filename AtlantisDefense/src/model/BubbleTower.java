@@ -25,8 +25,6 @@ public class BubbleTower extends Tower {
 
     @Override
     public void shoot() {
-      
-//        System.out.println(bullets.size());
         Bullet bullet1 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
@@ -47,27 +45,6 @@ public class BubbleTower extends Tower {
         bullet2.direction = "e";
         bullet3.direction = "s";
         bullet4.direction = "w";
-        if(this.life==0){
-            Model.towers.remove(this);
-            try {
-                Board.cells[this.pos.x][this.pos.y].setLife(-1);
-            } catch (IOException ex) {
-                System.out.println("Torony nem tűnt el ha elfogyott az életereje.");
-            }
-            Board.resetCellAfterTowerDeath(this.pos.x, this.pos.y);
-            Board.cells[this.pos.x][this.pos.y].unsetIsTower();
-        }
-        /*JLabel tmp = new javax.swing.JLabel();
-        //tmp.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        tmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bubble_bullet.png")));
-        Menu.v.getContentPane().add(tmp);
-        tmp.setBounds(98, 54, 30, 30);
-        tmp.setForeground(Color.WHITE);
-        Menu.v.getContentPane().setComponentZOrder(tmp, 0);
-        tmp.setLocation(116+28+57*(pos.y-1), 100+23+47*(pos.x-1)); // Golyót a toronyra igazítja
-        //116,100: ott kezdődik a táblázat
-        //57, 47: cellák magasság szélessége
-        //28, 27: küzépre igazítja a golyót (alapból bal felső sarokba rakná)
-        System.out.println("" + pos.x + ", " + pos.y);*/
+        this.checkLife();
     }
 }
