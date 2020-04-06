@@ -207,12 +207,12 @@ public class Board extends JPanel {
                                 ((Timer) e.getSource()).stop();
                                 for (int i = 0; i < Model.towers.size(); ++i) {
                                     if (Model.towers.get(i).getType().equals("gold")) {
-                                        Model.towers.get(i).decreaseLife();
-                                        Model.towers.get(i).checkLife();
                                         int x = Model.towers.get(i).getPos().x;
                                         int y = Model.towers.get(i).getPos().y;
                                         cells[x][y].setLife(Model.towers.get(i).getLife());
                                         cells[x][y].repaint();
+                                        Model.towers.get(i).decreaseLife();
+                                        Model.towers.get(i).checkLife();
                                     }
                                 }
                             } catch (IOException ex) {
