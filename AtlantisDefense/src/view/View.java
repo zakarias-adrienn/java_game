@@ -153,7 +153,7 @@ public class View extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
                     for (int i = 0; i < Model.towers.size(); ++i) {
-                        Model.towers.get(i).readyForShoot();
+                        Model.towers.get(i).beforeShoot();
                     }
                 }
             }

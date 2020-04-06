@@ -20,10 +20,16 @@ public class NewEmptyJUnitTest {
     public NewEmptyJUnitTest() {
     }
     
+    // annotációk -> @Test
+    // assertek elvárt eredmények tesztelése
+    // beszédes neve legyen a teszteknek
+    
+    // összes teszteset előtt
     @BeforeClass
     public static void setUpClass() {
     }
     
+    // összes teszteset után
     @AfterClass
     public static void tearDownClass() {
     }

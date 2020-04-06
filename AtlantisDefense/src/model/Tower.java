@@ -50,7 +50,7 @@ public abstract class Tower {
         }
     }
 
-    public void readyForShoot() {
+    public void beforeShoot() {
         if (!(this instanceof GoldTower)) {
             if (Model.enemies.size() > 0) {
                 if (!this.onlyMyEnemiesShooting) {
