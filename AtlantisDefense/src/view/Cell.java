@@ -16,6 +16,7 @@ public class Cell extends JLabel {
     private boolean isTower = false;
     public boolean wasJustPlaced = false;
     public boolean isMouseListenerActive = false;
+    public boolean isPearl = false;
 
     Cell(ImageIcon icon, int x, int y) {
         this.icon = icon;
@@ -26,7 +27,7 @@ public class Cell extends JLabel {
     public void getImage() throws IOException {
         if(this.life==-1){
             this.img = null;
-        }else if (this.life == 0 && (this.isTower || this.wasJustPlaced)) {
+        }else if (this.life == 0 && (this.isTower || this.wasJustPlaced || this.isPearl)) {
             this.img = ResourceLoader.loadImage("res/toronyhely.png");
         } else if (this.life == 0) {
             this.img = ResourceLoader.loadImage("res/ut.png");

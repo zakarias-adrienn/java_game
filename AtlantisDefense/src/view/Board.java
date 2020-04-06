@@ -85,6 +85,7 @@ public class Board extends JPanel {
                 thumb.setIcon(icon);
                 if (kagylo) {
                     thumb.setLife(Pearl.getLife());
+                    thumb.isPearl = true;
                     Pearl.setX(y);
                     Pearl.setY(x);
                 }
