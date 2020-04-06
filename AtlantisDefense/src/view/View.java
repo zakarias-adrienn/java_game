@@ -758,7 +758,6 @@ public class View extends javax.swing.JFrame {
                 Tower t = findTower(x, y);
                 if (t != null) {
                     thumb.wasJustPlaced = true;
-                    t.towerTimer.stop();
                     Model.towers.remove(t);
                     int moneyForTower = Math.round(t.getLife() / 10);
                     Model.money += moneyForTower;
