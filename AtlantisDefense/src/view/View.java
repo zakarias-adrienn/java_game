@@ -42,9 +42,8 @@ import res.ResourceLoader;
 public class View extends javax.swing.JFrame {
 
     private long startTime;
-    public static Timer timer;
-    public static Timer timerForEnemies;
-    public static Timer timerForElapsed;
+    public static Timer timerForMoneyView;
+    public static Timer timerForEnemiesComing;
     public static Timer timerForAnimation;
     public static Timer timerForCollosion;
     public static Timer goldTowerTimer;
@@ -116,7 +115,7 @@ public class View extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.moneyView.setText("" + Model.money);
         this.startTime = System.currentTimeMillis();
-        this.timer = new Timer(1000, new ActionListener() {
+        this.timerForMoneyView = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("a");
@@ -221,7 +220,7 @@ public class View extends javax.swing.JFrame {
         });
         
         // ez hozza létre az ellenségeket amikor eljött az idejük
-        this.timerForEnemies = new Timer(1000, new ActionListener() {
+        this.timerForEnemiesComing = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!paused) {
@@ -251,8 +250,8 @@ public class View extends javax.swing.JFrame {
 
             }
         });
-        timer.start();
-        timerForEnemies.start();
+        timerForMoneyView.start();
+        timerForEnemiesComing.start();
         timerForAnimation.start();
         timerForCollosion.start();
     }
@@ -477,8 +476,8 @@ public class View extends javax.swing.JFrame {
 
     private void timerContinuePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerContinuePanelMouseClicked
         this.paused = false;
-        timer.start();
-        timerForEnemies.start();
+        timerForMoneyView.start();
+        timerForEnemiesComing.start();
         otherTowerTimer.start();
         goldTowerTimer.start();
         bulletTimer.start();
@@ -486,9 +485,9 @@ public class View extends javax.swing.JFrame {
 
     private void timerStopPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timerStopPanelMouseClicked
         // TODO add your handling code here:
-        timer.stop();
+        timerForMoneyView.stop();
         this.paused = true;
-        timerForEnemies.stop();
+        timerForEnemiesComing.stop();
         otherTowerTimer.stop();
         goldTowerTimer.stop();
         bulletTimer.stop();
@@ -618,9 +617,9 @@ public class View extends javax.swing.JFrame {
 
     public static void createGameOverDialog() {
         View.j.setVisible(false);
-        View.timer.stop();
+        View.timerForMoneyView.stop();
         View.timerForAnimation.stop();
-        View.timerForEnemies.stop();
+        View.timerForEnemiesComing.stop();
         View.otherTowerTimer.stop();
         View.bulletTimer.stop();
         View.otherTowerTimer.stop();
@@ -644,10 +643,10 @@ public class View extends javax.swing.JFrame {
     
     public static void createWinDialog() {
         View.j.setVisible(false);
-        View.timer.stop();
+        View.timerForMoneyView.stop();
         View.otherTowerTimer.stop();
         View.timerForAnimation.stop();
-        View.timerForEnemies.stop();
+        View.timerForEnemiesComing.stop();
         View.bulletTimer.stop();
         View.otherTowerTimer.stop();
         for (int i = 0; i < Board.timers.size(); ++i) {
