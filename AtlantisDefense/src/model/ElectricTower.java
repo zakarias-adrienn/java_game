@@ -12,7 +12,7 @@ public class ElectricTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 50;
-        this.distance = 5;
+        this.distance = 3;
         this.type = "electric";
         bullets = new ArrayList<>();
         bullet_img = "/res/electric_bullet.png";

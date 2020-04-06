@@ -199,7 +199,6 @@ public class Model {
             Model.money = moneyDefaultValue;
             View.moneyView.setText("" + Model.money);
             Pearl.setLife(100);
-            System.out.println("HOL VAGYUNKM???????????????????????????????");
             return true;
         }
         return false;

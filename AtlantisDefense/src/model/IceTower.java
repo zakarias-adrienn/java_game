@@ -11,7 +11,7 @@ public class IceTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 100;
-        this.distance = 6;
+        this.distance = 4;
         this.type = "ice";
         bullets = new ArrayList<>();
         bullet_img = "/res/ice_bullet.png";

@@ -37,7 +37,7 @@ public abstract class Enemy {
 //                System.out.println("HIT");
                 this.life -= 50;
                 try {
-                    // itt kell a cellán a helatbart változtatni
+                    // itt kell a cellán a healthbart változtatni
                     Board.cells[this.pos.x-1][this.pos.y-1].setLife(this.life);
                 } catch (IOException ex) {
                     System.out.println("Nem sikerült az ellenség életerejét frissíteni a healthbaron.");

@@ -2,8 +2,6 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import view.Board;
 
 public class BubbleTower extends Tower {
@@ -13,12 +11,11 @@ public class BubbleTower extends Tower {
         this.life = 100;
         this.spot = null;
         this.price = 80;
-        this.distance = 30;
+        this.distance = 20;
         this.type = "bubble";
         bullets = new ArrayList<>();
         bullet_img = "/res/bubble_bullet.png";
         speed = 5;
-
     }
     
     @Override
