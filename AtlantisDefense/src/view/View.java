@@ -183,19 +183,19 @@ public class View extends javax.swing.JFrame {
                     Model.allBullets.get(i).move();
                 }
                 Point tmp = fish.getLocation();
-                int x = 0;
-                if (tmp.x > 1000) {
+                int y = 0;
+                if (tmp.y > 750) {
                     plus = false;
-                } else if (tmp.x < 0) {
+                } else if (tmp.y < 0) {
                     plus = true;
                 }
                 if (plus) {
-                    x = tmp.x + 10;
+                    y = tmp.y + 10;
                 } else {
-                    x = tmp.x - 10;
+                    y = tmp.y - 10;
                 }
 
-                fish.setLocation(x, tmp.y);
+                fish.setLocation(tmp.x, y);
                 //                System.out.println("-------");
                 //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
