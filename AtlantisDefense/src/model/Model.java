@@ -15,17 +15,17 @@ public class Model {
 
     public static int money;
     public static int pearlPower;
-    public static ArrayList<Enemy> enemies;
-    public static ArrayList<Tower> towers;
+    public static ArrayList<Enemy> enemies = new ArrayList<>();
+    public static ArrayList<Tower> towers = new ArrayList<>();
     private static int enemyNumber;
-    public static ArrayList<Point> route;
+    public static ArrayList<Point> route = new ArrayList<>();
     private int length;
     private int width;
     private int table[][];
     public static LevelItem[][] level;
-    public static ArrayList<EnemyReaded> readedEnemies;
+    public static ArrayList<EnemyReaded> readedEnemies = new ArrayList<>();
     private ArrayList<String> readLines;
-    public static ArrayList<Bullet> allBullets;
+    public static ArrayList<Bullet> allBullets = new ArrayList<>();
     public static int deadEnemyNum;
     public static int arrivedEnemyNum;
     public static Menu menu = null;

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.Menu;
 
 /**
  *
@@ -23,6 +24,10 @@ public class EnemyTester {
     
     @BeforeClass
     public static void setUpClass() {
+        Menu menu = new Menu();
+        Menu.level1ButtonClicked = true;
+        // Boardot is valahogy be kell hozni majd
+        Model model = new Model(menu);
     }
     
     @AfterClass
@@ -53,5 +58,14 @@ public class EnemyTester {
         assertTrue("In case of Eel type is electric", e.getType().equals("electric"));
         e = new Fugu();
         assertTrue("In case of Fugu type is bubble", e.getType().equals("bubble"));
+    }
+    
+    @Test
+    public void checkLifeTest(){
+        Enemy e = new GoldFish();
+        e.life = 50;
+        Model.enemies.add(e);
+        assertTrue("Model.enemies shold contain enemy after checklife", Model.enemies.contains(e));
+        
     }
 }
