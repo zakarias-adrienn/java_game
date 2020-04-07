@@ -38,6 +38,9 @@ public abstract class Tower {
 
     // toronynál nem talál az index
     public boolean enemyGotIn(int index) {
+        if(Model.enemies.isEmpty() || index>=Model.enemies.size() || index<0){
+            return false;
+        }
         if ((Model.enemies.get(index).getXPos() == this.pos.x + 2
                 || Model.enemies.get(index).getXPos() == this.pos.x
                 || Model.enemies.get(index).getXPos() == this.pos.x + 1)
@@ -100,6 +103,10 @@ public abstract class Tower {
 
     public void decreaseLife() {
         this.life -= 20;
+    }
+    
+    public void setLife(int life){
+        this.life = life;
     }
 
     public void checkLife() {

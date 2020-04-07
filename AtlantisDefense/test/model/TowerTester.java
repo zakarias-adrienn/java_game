@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.Menu;
 
 /**
  *
@@ -29,6 +30,10 @@ public class TowerTester {
     // összes teszteset előtt
     @BeforeClass
     public static void setUpClass() {
+        Menu menu = new Menu();
+        Menu.level1ButtonClicked = true;
+        // Boardot is valahogy be kell hozni majd
+        Model model = new Model(menu);
     }
     
     // összes teszteset után
@@ -68,4 +73,55 @@ public class TowerTester {
         t.increaseLife();
         assertTrue("Value of life becomes 100 after increaseLife method", t.life==100);
     }
+    
+    @Test
+    public void decreaseLifeTest(){
+        Tower t = new IceTower();
+        t.setLife(60);
+        t.decreaseLife();
+        assertTrue("Value of life becomes 40 after decreaseLife method", t.life==40);
+    }
+    
+//    @Test
+//    public void checkLifeOfTowerTest(){
+//        // beforeclassba kellene ez a ket sor
+//        Menu menu = new Menu();
+//        Menu.level1ButtonClicked = true;
+//        // Boardot is valahogy be kell hozni
+//        Model model = new Model(menu);
+//        Tower t = new IceTower();
+//        Model.towers.add(t);
+//        t.setLife(0);
+//        t.checkLife();
+//        assertTrue("Tower is removed from Model.towers array when its life becomes 0", Model.towers.contains(t)==false);
+//    }
+    
+    @Test
+    public void enemyGotInTest(){
+        Tower t = new BubbleTower();
+        Enemy e = new GoldFish();
+        Model.enemies.add(e);
+        e.setPos(2, 3);
+        t.setPos(2, 2);
+        assertTrue("Enemy should be in the distance of the tower", t.enemyGotIn(0));
+        e.setPos(4, 6);
+        assertFalse("Enemy should not be in the distance of the tower", t.enemyGotIn(0));
+        assertFalse("Enemy should not be in the distance of the tower, too big index", t.enemyGotIn(1));
+        assertFalse("Enemy should not be in the distance of the tower, too small index", t.enemyGotIn(-1));
+        Model.enemies.remove(e);
+        assertFalse("Enemy should not be in the distance of the tower, Model.enemies is empty", t.enemyGotIn(0));
+    }
+    
+    @Test
+    public void getTypeTest(){
+        Tower t = new GoldTower();
+        assertTrue("In case of GoldTower type is gold", t.getType().equals("gold"));
+        t = new IceTower();
+        assertTrue("In case of IceTower type is ice", t.getType().equals("ice"));
+        t = new ElectricTower();
+        assertTrue("In case of ElectricTower type is electric", t.getType().equals("electric"));
+        t = new BubbleTower();
+        assertTrue("In case of BubbleTower type is bubble", t.getType().equals("bubble"));
+    }
+    
 }
