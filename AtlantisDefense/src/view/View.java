@@ -427,6 +427,14 @@ public class View extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
         Menu menu = new Menu();
+        if (AtlantisDefense.level2Opened)
+        {
+            menu.level2Button.setEnabled(true);
+        }
+        if (AtlantisDefense.level3Opened)
+        {
+            menu.level3Button.setEnabled(true);
+        }
         menu.setPreferredSize(new Dimension(1397, 842));
         menu.pack();
         menu.setVisible(true);
