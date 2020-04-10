@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
+import javax.swing.JDialog;
+import javax.swing.Timer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,11 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import view.Menu;
+import view.View;
 
-/**
- *
- * @author ZA
- */
 public class ModelTester {
     
     public ModelTester() {
@@ -58,4 +52,12 @@ public class ModelTester {
     }
     
     // kell még konstruktor, readFile, gameOver, checkWin metódusok tesztjei
+    
+    @Test
+    public void gameOverTest(){
+        Pearl.setLife(10);
+        assertFalse("GameOver method should return false", Model.gameOver());
+        Pearl.setLife(0);
+        assertTrue("GameOver method should return true", Model.gameOver());
+    }
 }

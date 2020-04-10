@@ -570,27 +570,39 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createGameOverDialog() {
-        View.j.setVisible(false);
-        View.timerForMoneyViewAndEnemiesComing.stop();
-        View.otherTowerTimer.stop();
-        View.bulletTimer.stop();
-        View.otherTowerTimer.stop();
-        for (int i = 0; i < Board.timers.size(); ++i) {
-            Board.timers.get(i).stop();
+        if(View.j!=null){
+            View.j.setVisible(false);
         }
-        int result = JOptionPane.showConfirmDialog(null,
-                "A játék sajnos végetért. Veszítettél! \nLegyőzött ellenségek száma: " + Model.deadEnemyNum,
-                "FIGYELEM!",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE);
-        if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
-            Menu.v.setVisible(false);
-            Menu.v.dispose();
-            Menu menu = new Menu();
-            menu.setPreferredSize(new Dimension(1397, 842));
-            menu.pack();
-            menu.setVisible(true);
+        if(View.timerForMoneyViewAndEnemiesComing!=null){
+            View.timerForMoneyViewAndEnemiesComing.stop();
         }
+        if(View.otherTowerTimer!=null){
+            View.otherTowerTimer.stop();
+        }
+        if(View.bulletTimer!=null){
+            View.bulletTimer.stop();
+        }
+        if(Board.timers!=null){
+            for (int i = 0; i < Board.timers.size(); ++i) {
+                Board.timers.get(i).stop();
+            }
+        }
+        if(Menu.v!=null){
+           int result = JOptionPane.showConfirmDialog(null,
+                   "A játék sajnos végetért. Veszítettél! \nLegyőzött ellenségek száma: " + Model.deadEnemyNum,
+                   "FIGYELEM!",
+                   JOptionPane.DEFAULT_OPTION,
+                   JOptionPane.PLAIN_MESSAGE);
+           if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
+               Menu.v.setVisible(false);
+               Menu.v.dispose();
+               Menu menu = new Menu();
+               menu.setPreferredSize(new Dimension(1397, 842));
+               menu.pack();
+               menu.setVisible(true);
+           }   
+        }
+        
     }
 
     public static void createWinDialog() {

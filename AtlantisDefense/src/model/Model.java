@@ -152,7 +152,9 @@ public class Model {
         if (Pearl.getLife() <= 0) {
             View.createGameOverDialog();
             Model.money = moneyDefaultValue;
-            View.moneyView.setText("" + Model.money);
+            if(View.moneyView!=null){
+                View.moneyView.setText("" + Model.money);
+            }
             Pearl.setLife(100);
             return true;
         }
