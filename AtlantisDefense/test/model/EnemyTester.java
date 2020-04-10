@@ -1,22 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.Board;
+import view.Cell;
 import view.Menu;
 
-/**
- *
- * @author ZA
- */
+
 public class EnemyTester {
     
     public EnemyTester() {
@@ -26,8 +21,10 @@ public class EnemyTester {
     public static void setUpClass() {
         Menu menu = new Menu();
         Menu.level1ButtonClicked = true;
-        // Boardot is valahogy be kell hozni majd
         Model model = new Model(menu);
+        Board.cells = new Cell[1][1];
+        ImageIcon icon = null;
+        Board.cells[0][0] = new Cell(icon, 0,0);
     }
     
     @AfterClass
@@ -67,5 +64,12 @@ public class EnemyTester {
         Model.enemies.add(e);
         assertTrue("Model.enemies shold contain enemy after checklife", Model.enemies.contains(e));
         
+        // ezt be kellene fejezni -> timer laállítás miatt lehet tesztelni?
+//        e.life = 0;
+//        assertFalse("Model.enemies shold not contain enemy after checklife", Model.enemies.contains(e));
+//        assertEquals("Model.deadEnemy number should be 1", Model.deadEnemyNum, 1);
+        
     }
+    
+    // collosion metódus tesztje kell még
 }

@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -147,6 +149,12 @@ public class Board extends JPanel {
     }
 
     public static void resetCellAfterTowerDeath(int x, int y) {
+        Image towerPlace = null;
+        try {
+            towerPlace = ResourceLoader.loadImage("res/toronyhely.png");
+        } catch (IOException ex) {
+            System.out.println("Nem sikerült toronyhelyre cserélni.");
+        }
         ImageIcon icon = new ImageIcon(towerPlace);
         cells[x][y].setIcon(icon);
     }

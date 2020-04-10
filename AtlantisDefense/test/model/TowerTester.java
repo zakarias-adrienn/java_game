@@ -6,12 +6,15 @@ package model;
  * and open the template in the editor.
  */
 
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.Board;
+import view.Cell;
 import view.Menu;
 
 /**
@@ -34,6 +37,9 @@ public class TowerTester {
         Menu.level1ButtonClicked = true;
         // Boardot is valahogy be kell hozni majd
         Model model = new Model(menu);
+        Board.cells = new Cell[1][1];
+        ImageIcon icon = null;
+        Board.cells[0][0] = new Cell(icon, 0,0);
     }
     
     // összes teszteset után
@@ -58,6 +64,7 @@ public class TowerTester {
     @Test
     public void TowerCreationTest(){
         Tower t = new GoldTower();
+        assertFalse("Newly created tower's onlyMyEnemyShooting is false", t.onlyMyEnemiesShooting);
         assertTrue("Newly created tower is instanceof GoldTower", t instanceof GoldTower);
         t = new IceTower();
         assertTrue("Newly created tower is instanceof IceTower", t instanceof IceTower);
@@ -82,19 +89,17 @@ public class TowerTester {
         assertTrue("Value of life becomes 40 after decreaseLife method", t.life==40);
     }
     
-//    @Test
-//    public void checkLifeOfTowerTest(){
-//        // beforeclassba kellene ez a ket sor
-//        Menu menu = new Menu();
-//        Menu.level1ButtonClicked = true;
-//        // Boardot is valahogy be kell hozni
-//        Model model = new Model(menu);
-//        Tower t = new IceTower();
-//        Model.towers.add(t);
-//        t.setLife(0);
-//        t.checkLife();
-//        assertTrue("Tower is removed from Model.towers array when its life becomes 0", Model.towers.contains(t)==false);
-//    }
+    @Test
+    public void checkLifeOfTowerTest(){
+        Tower t = new IceTower();
+        Model.towers.add(t);
+        t.setPos(0, 0);
+        t.setLife(0);
+        t.checkLife();
+        assertTrue("Tower is removed from Model.towers array when its life becomes 0", Model.towers.contains(t)==false);
+        assertFalse("On the board the place of tower should not be a towerplace", Board.cells[0][0].isTower());
+        assertEquals("On the board the life of the cell of the tower should become -1", Board.cells[0][0].getLife(), -1);
+    }
     
     @Test
     public void enemyGotInTest(){
@@ -124,4 +129,16 @@ public class TowerTester {
         assertTrue("In case of BubbleTower type is bubble", t.getType().equals("bubble"));
     }
     
+    @Test
+    public void goldTowerShootTest() {
+        Tower t = new GoldTower();
+        Model.money = 10;
+        t.shoot();
+        assertEquals("After GoldTower shoot money should be 15", Model.money, 15);
+    }
+    
+    // beforeShoot-ot hogy teszteljük? -> shoot-ot hívja
+    // BubbleTower - shoot metódusát is tesztelni kell
+    // ElectricTower shoot metódusát is
+    // IceTower shoot metódusát is
 }

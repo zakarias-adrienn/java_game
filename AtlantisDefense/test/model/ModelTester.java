@@ -56,4 +56,6 @@ public class ModelTester {
         Model.towers.remove(t1);
         assertEquals("findTower should return null", null, Model.findTower(1, 2));
     }
+    
+    // kell még konstruktor, readFile, gameOver, checkWin metódusok tesztjei
 }

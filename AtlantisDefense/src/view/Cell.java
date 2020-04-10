@@ -18,7 +18,7 @@ public class Cell extends JLabel {
     public boolean isMouseListenerActive = false;
     public boolean isPearl = false;
 
-    Cell(ImageIcon icon, int x, int y) {
+    public Cell(ImageIcon icon, int x, int y) {
         this.icon = icon;
         this.xPos = x;
         this.yPos = y;
