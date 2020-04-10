@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -196,19 +197,8 @@ public class View extends javax.swing.JFrame {
                 }
 
                 fish.setLocation(tmp.x, y);
-                //                System.out.println("-------");
-                //csak nekem segít egyelőre
                 for (int i = 0; i < Model.enemies.size(); ++i) {
-
-//                    System.out.println("" + Model.enemies.get(i).collosion().y + ", " + Model.enemies.get(i).collosion().x);
                     Model.enemies.get(i).collosion();
-//                    System.out.println(Model.enemies.get(i).life);
-
-                    /*debugTarget.setLocation(Model.enemies.get(0).collosion().x, Model.enemies.get(0).collosion().y);
-                     if (Model.enemies.size() >1) 
-                     debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);
-                     if (Model.enemies.size() >2)
-                     debugTarget.setLocation(Model.enemies.get(1).collosion().x, Model.enemies.get(1).collosion().y);*/
                 }
             }
         });
@@ -427,12 +417,10 @@ public class View extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
         Menu menu = new Menu();
-        if (AtlantisDefense.level2Opened)
-        {
+        if (AtlantisDefense.level2Opened) {
             menu.level2Button.setEnabled(true);
         }
-        if (AtlantisDefense.level3Opened)
-        {
+        if (AtlantisDefense.level3Opened) {
             menu.level3Button.setEnabled(true);
         }
         menu.setPreferredSize(new Dimension(1397, 842));
@@ -735,7 +723,7 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = Model.findTower(x, y);
                 if (button3.isEnabled()) {
-                    if(t != null){
+                    if (t != null) {
                         t.onlyMyEnemiesShooting = true;
                     }
                     View.j.setVisible(false);
@@ -750,7 +738,7 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 Tower t = Model.findTower(x, y);
                 if (button4.isEnabled()) {
-                    if(t!=null){
+                    if (t != null) {
                         t.onlyMyEnemiesShooting = false;
                     }
                     View.j.setVisible(false);
@@ -797,7 +785,7 @@ public class View extends javax.swing.JFrame {
                 // ide esetleg lehetne hogyha isEnabled csak akkor történjen valami
                 if (button2.isEnabled()) {
                     Tower t = Model.findTower(x, y);
-                    if (Model.money - 100 >= 0 && t!=null) {
+                    if (Model.money - 100 >= 0 && t != null) {
                         Model.money = Model.money - 100;
                         moneyView.setText("" + Model.money);
                         Image img = null;
@@ -840,7 +828,7 @@ public class View extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             System.out.println("Nem sikerült az életerőt feljavítani.");
                         }
-                    } else if(t!=null){
+                    } else if (t != null) {
                         // ha nincs elég pénze
                         View.createMoneyNotEnoughDialog();
                     }
@@ -856,7 +844,7 @@ public class View extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (button6.isEnabled()) {
                     Tower t = Model.findTower(x, y);
-                    if (Model.money - 200 >= 0 && t!=null) {
+                    if (Model.money - 200 >= 0 && t != null) {
                         Model.money = Model.money - 200;
                         moneyView.setText("" + Model.money);
                         Image img = null;
@@ -899,10 +887,10 @@ public class View extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             System.out.println("Nem sikerült az életerőt feljavítani.");
                         }
-                    } else if(t!=null){
+                    } else if (t != null) {
                         // ha nincs elég pénze
                         View.createMoneyNotEnoughDialog();
-                        
+
                     }
                     View.j.setVisible(false);
                     View.j.dispose();

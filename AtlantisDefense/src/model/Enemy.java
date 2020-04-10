@@ -20,12 +20,9 @@ public abstract class Enemy {
     public abstract String getType();
 
     public Point collosion() {
-        //System.out.println("" + (116 + 28 + 57 * (pos.y - 1)) + ", " + (100 + 23 + 47 * (pos.x - 1)));
-        //pos = new Point(116 + 28 + 57 * (towerY - 1), 100 + 23 + 47 * (towerX - 1));
-
+        Point ret = null;
         int precision = 15;
         Point enemyAbsoulutePos = new Point((116 + 28 + 57 * (pos.y - 1)), (100 + 23 + 47 * (pos.x - 1)));
-//        System.out.println(Model.allBullets.size());
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
 //                System.out.println("HIT");
@@ -38,17 +35,10 @@ public abstract class Enemy {
                 }
                 Board.cells[this.pos.x-1][this.pos.y-1].repaint();
                 this.checkLife();
-                JLabel hit = new javax.swing.JLabel();
-                hit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/hit.png")));
-                Menu.v.getContentPane().add(hit);
-                hit.setBounds(98, 54, 30, 30);
-                hit.setForeground(Color.WHITE);
-                Menu.v.getContentPane().setComponentZOrder(hit, 0);
-                hit.setLocation(Model.allBullets.get(i).pos.x, Model.allBullets.get(i).pos.y);
-               
+                ret = new Point(Model.allBullets.get(i).pos.x, Model.allBullets.get(i).pos.y); 
             }
         }
-        return new Point((116 + 28 + 57 * (pos.y - 1)), (100 + 23 + 47 * (pos.x - 1)));
+        return ret;
     }
     
     // ez fogja eltűntetni a tábláról
