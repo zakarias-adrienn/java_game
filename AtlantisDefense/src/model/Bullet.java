@@ -42,7 +42,7 @@ public class Bullet {
         if (elapsedDistance > distance) {
             pos.y = -50;
             pos.x = -50;
-            bullet.setLocation(pos.x, pos.y); //csak kihelyezi a golyót a látómezőből. nem elegáns, valahogy meg kéne szüntetni az objektumot. viszont stabilan működik.
+            bullet.setLocation(pos.x, pos.y);
             Model.allBullets.remove(this);
             return;
         }

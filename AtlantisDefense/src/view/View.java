@@ -624,12 +624,10 @@ public class View extends javax.swing.JFrame {
                 menu.level2Button.setEnabled(true);
                 AtlantisDefense.level2Opened = true;
             } else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened) {
-                System.out.println("ITTT MEGVAGYOK MÉG?");
                 menu.level2Button.setEnabled(true);
                 menu.level3Button.setEnabled(true);
                 AtlantisDefense.level3Opened = true;
             }
-            System.out.println("HAHÓ2");
         }
     }
 
