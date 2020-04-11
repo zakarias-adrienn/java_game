@@ -11,13 +11,13 @@ import view.View;
 
 public class Model {
 
-    public static final int moneyDefaultValue = 2000; //debug miatt nagyobbra állítottam.
+    public static final int moneyDefaultValue = 400;
 
     public static int money;
     public static int pearlPower;
     public static ArrayList<Enemy> enemies = new ArrayList<>();
     public static ArrayList<Tower> towers = new ArrayList<>();
-    private static int enemyNumber;
+    private static int enemyNumber = 0;
     public static ArrayList<Point> route = new ArrayList<>();
     private int length;
     private int width;
@@ -117,6 +117,7 @@ public class Model {
 
     }
 
+    // private metódus, ezért nem kell tesztelni
     private ArrayList<String> readFile(String filename) {
         ArrayList<String> records = new ArrayList<String>();
         try {
@@ -133,6 +134,10 @@ public class Model {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public static int getEnemyNum(){
+        return Model.enemyNumber;
     }
 
     public static LevelItem getItem(int row, int col) {
@@ -166,7 +171,9 @@ public class Model {
             View.createWinDialog();
             //menu.setButton(l+1);
             Model.money = moneyDefaultValue;
-            View.moneyView.setText("" + Model.money);
+            if(View.moneyView!=null){
+                View.moneyView.setText("" + Model.money);
+            }
             Pearl.setLife(100);
             return true;
         }

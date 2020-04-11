@@ -51,7 +51,7 @@ public class ModelTester {
         assertEquals("findTower should return null", null, Model.findTower(1, 2));
     }
     
-    // kell még konstruktor, readFile, gameOver, checkWin metódusok tesztjei
+    // kell még konstruktor tesztje
     
     @Test
     public void gameOverTest(){
@@ -59,5 +59,17 @@ public class ModelTester {
         assertFalse("GameOver method should return false", Model.gameOver());
         Pearl.setLife(0);
         assertTrue("GameOver method should return true", Model.gameOver());
+    }
+    
+    @Test
+    public void checkWinTest(){
+        Pearl.setLife(0);
+        assertFalse("checkWin method should return false", Model.checkWin());
+        Pearl.setLife(10);
+        Model.deadEnemyNum = 2;
+        Model.arrivedEnemyNum = 0;
+        assertFalse("checkWin method should return false", Model.checkWin());
+        Model.deadEnemyNum = 0;
+        assertTrue("checkWin method should return true", Model.checkWin()); 
     }
 }

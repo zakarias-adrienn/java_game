@@ -34,5 +34,13 @@ public class PearlTester {
     // @Test
     // public void hello() {}
     
-    // decreaseLifeMetódus tesztje kell
+    @Test
+    public void decreaseLifeTest() {
+        Pearl.setLife(70);
+        Pearl.decreaseLife();
+        assertEquals("After decreaseLife Pearl's life should be 60", Pearl.getLife(), 60);
+        Pearl.setLife(10);
+        Pearl.decreaseLife();
+        assertEquals("After decreaseLife Pearl's life should be 100", Pearl.getLife(), 100);
+    }
 }

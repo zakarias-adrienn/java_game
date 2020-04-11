@@ -570,77 +570,81 @@ public class View extends javax.swing.JFrame {
     }
 
     public static void createGameOverDialog() {
-        if(View.j!=null){
+        if (View.j != null) {
             View.j.setVisible(false);
         }
-        if(View.timerForMoneyViewAndEnemiesComing!=null){
+        if (View.timerForMoneyViewAndEnemiesComing != null) {
             View.timerForMoneyViewAndEnemiesComing.stop();
         }
-        if(View.otherTowerTimer!=null){
+        if (View.otherTowerTimer != null) {
             View.otherTowerTimer.stop();
         }
-        if(View.bulletTimer!=null){
+        if (View.bulletTimer != null) {
             View.bulletTimer.stop();
         }
-        if(Board.timers!=null){
+        if (Board.timers != null) {
             for (int i = 0; i < Board.timers.size(); ++i) {
                 Board.timers.get(i).stop();
             }
         }
-        if(Menu.v!=null){
-           int result = JOptionPane.showConfirmDialog(null,
-                   "A játék sajnos végetért. Veszítettél! \nLegyőzött ellenségek száma: " + Model.deadEnemyNum,
-                   "FIGYELEM!",
-                   JOptionPane.DEFAULT_OPTION,
-                   JOptionPane.PLAIN_MESSAGE);
-           if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
-               Menu.v.setVisible(false);
-               Menu.v.dispose();
-               Menu menu = new Menu();
-               menu.setPreferredSize(new Dimension(1397, 842));
-               menu.pack();
-               menu.setVisible(true);
-           }   
+        if (Menu.v != null) {
+            int result = JOptionPane.showConfirmDialog(null,
+                    "A játék sajnos végetért. Veszítettél! \nLegyőzött ellenségek száma: " + Model.deadEnemyNum,
+                    "FIGYELEM!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
+                Menu.v.setVisible(false);
+                Menu.v.dispose();
+                Menu menu = new Menu();
+                menu.setPreferredSize(new Dimension(1397, 842));
+                menu.pack();
+                menu.setVisible(true);
+            }
         }
-        
+
     }
 
     public static void createWinDialog() {
-        View.j.setVisible(false);
-        View.timerForMoneyViewAndEnemiesComing.stop();
-        View.otherTowerTimer.stop();
-        View.bulletTimer.stop();
-        View.otherTowerTimer.stop();
-        for (int i = 0; i < Board.timers.size(); ++i) {
-            Board.timers.get(i).stop();
-        }
-        String message = "Gratulálok, győztél!\n Elérhető a következő szint.";
-        if (AtlantisDefense.level3Opened) {
-            message = "Gratulálok, győztél!\n Sikeresen megvédted Atlantist és annak igazgyöngyét!\n Ha gondolod játszd újra a pályákat!";
-        }
-        int result = JOptionPane.showConfirmDialog(null,
-                message,
-                "GRATULÁLOK!",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE);
-        if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
-            Menu.v.setVisible(false);
-            Menu.v.dispose();
-            Menu menu = new Menu();
-            menu.setPreferredSize(new Dimension(1397, 842));
-            menu.pack();
-            menu.setVisible(true);
-            System.out.println("HAHÓ");
-            System.out.println(menu.level3Button.isEnabled() + ", " + AtlantisDefense.level2Opened);
-            if (!AtlantisDefense.level2Opened) {
-                menu.level2Button.setEnabled(true);
-                AtlantisDefense.level2Opened = true;
-            } else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened) {
-                menu.level2Button.setEnabled(true);
-                menu.level3Button.setEnabled(true);
-                AtlantisDefense.level3Opened = true;
+        if (View.j != null && View.timerForMoneyViewAndEnemiesComing != null && View.otherTowerTimer != null && View.bulletTimer != null && Board.timers != null) {
+            View.j.setVisible(false);
+            View.timerForMoneyViewAndEnemiesComing.stop();
+            View.otherTowerTimer.stop();
+            View.bulletTimer.stop();
+            for (int i = 0; i < Board.timers.size(); ++i) {
+                Board.timers.get(i).stop();
             }
         }
+        if (Menu.v != null) {
+            String message = "Gratulálok, győztél!\n Elérhető a következő szint.";
+            if (AtlantisDefense.level3Opened) {
+                message = "Gratulálok, győztél!\n Sikeresen megvédted Atlantist és annak igazgyöngyét!\n Ha gondolod játszd újra a pályákat!";
+            }
+            int result = JOptionPane.showConfirmDialog(null,
+                    message,
+                    "GRATULÁLOK!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+            if (result == JOptionPane.OK_OPTION || result == JOptionPane.CLOSED_OPTION) {
+                Menu.v.setVisible(false);
+                Menu.v.dispose();
+                Menu menu = new Menu();
+                menu.setPreferredSize(new Dimension(1397, 842));
+                menu.pack();
+                menu.setVisible(true);
+                System.out.println("HAHÓ");
+                System.out.println(menu.level3Button.isEnabled() + ", " + AtlantisDefense.level2Opened);
+                if (!AtlantisDefense.level2Opened) {
+                    menu.level2Button.setEnabled(true);
+                    AtlantisDefense.level2Opened = true;
+                } else if (!menu.level3Button.isEnabled() && AtlantisDefense.level2Opened) {
+                    menu.level2Button.setEnabled(true);
+                    menu.level3Button.setEnabled(true);
+                    AtlantisDefense.level3Opened = true;
+                }
+            }
+        }
+
     }
 
     public static void closeDialogForTower() {

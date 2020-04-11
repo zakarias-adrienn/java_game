@@ -27,7 +27,6 @@ public class TowerTester {
     public static void setUpClass() {
         Menu menu = new Menu();
         Menu.level1ButtonClicked = true;
-        // Boardot is valahogy be kell hozni majd
         Model model = new Model(menu);
         Board.cells = new Cell[1][1];
         ImageIcon icon = null;
