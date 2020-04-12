@@ -157,17 +157,17 @@ public class Menu extends javax.swing.JFrame {
         JTextArea txtAreaDetail = new JTextArea("- GoldTower: Ezzel a toronnyal a játékban eltelt idővel arányosan  \n"
                 + "  lehet pénz gyűjteni. Aktív támadásra nem használható, azonban \n"
                 + "  minden - más torony által - kilőtt Goldfish után a pénztermelés \n"
-                + "  gyorsasága a kétszeresére nő.\n\n"
+                + "  gyorsasága a kétszeresére nő. Ára: 20.\n\n"
                 + "- BubbleTower: Az ElectricTower-rel ellentétben ez a toronytípus\n"
                 + "  pontatlanabbul, de sokkal nagyobb hatőkörben képes lőni maga \n"
                 + "  körül a fejlesztésektől függő sugarú körben. Enemy, akire\n"
-                + "  leginkább hatásos: Fugu.\n\n"
+                + "  leginkább hatásos: Fugu. Ára: 80.\n\n"
                 + "- IceTower: Ez a torony a hatókörébe érkező gyors Swordfish-eket \n"
                 + "  képes lelassítani, fejlesztések után akár megállítani, \n"
-                + "  befagyasztani, hogy minél nagyobb arányban ki tudja őket lőni.\n\n"
+                + "  befagyasztani, hogy minél nagyobb arányban ki tudja őket lőni. Ára: 100.\n\n"
                 + "- ElectricTower: Ez a torony nagyon gyors ütemben, de egyszerre\n"
                 + "  csak egy enemy-t képes lőni nagy pontossággal, messziről. Enemy, \n"
-                + "  akire leginkább hatásos: Eel.");
+                + "  akire leginkább hatásos: Eel. Ára: 50.");
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(new Color(0, 0, 81)/*Color.BLACK*/);
