@@ -160,6 +160,12 @@ public class Board extends JPanel {
     }
     
     public static void resetCellAfterEnemyDeath(int x, int y) {
+        Image route = null;
+        try {
+            route = ResourceLoader.loadImage("res/ut.png");
+        } catch (IOException ex) {
+            System.out.println("Nem sikerült útra cserélni.");
+        }
         ImageIcon icon = new ImageIcon(route);
         cells[x][y].setIcon(icon);
     }

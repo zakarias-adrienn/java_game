@@ -31,11 +31,13 @@ public class Bullet {
         //28, 27: küzépre igazítja a golyót (alapból bal felső sarokba rakná
         bullet = new javax.swing.JLabel();
         bullet.setIcon(new javax.swing.ImageIcon(getClass().getResource(bullet_img)));
-        Menu.v.getContentPane().add(bullet);
-        bullet.setBounds(98, 54, 30, 30);
-        bullet.setForeground(Color.WHITE);
-        Menu.v.getContentPane().setComponentZOrder(bullet, 0);
-        bullet.setLocation(pos.x, pos.y); // Golyót a toronyra igazítja)
+        if(Menu.v!=null){
+            Menu.v.getContentPane().add(bullet);
+            bullet.setBounds(98, 54, 30, 30);
+            bullet.setForeground(Color.WHITE);
+            Menu.v.getContentPane().setComponentZOrder(bullet, 0);
+            bullet.setLocation(pos.x, pos.y); // Golyót a toronyra igazítja)
+        }
     }
 
     public void move() {

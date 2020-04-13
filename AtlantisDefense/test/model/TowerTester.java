@@ -28,9 +28,11 @@ public class TowerTester {
         Menu menu = new Menu();
         Menu.level1ButtonClicked = true;
         Model model = new Model(menu);
-        Board.cells = new Cell[1][1];
+        Board.cells = new Cell[4][4];
         ImageIcon icon = null;
         Board.cells[0][0] = new Cell(icon, 0,0);
+        Board.cells[2][2] = new Cell(icon, 2,2);
+        Board.cells[2][3] = new Cell(icon, 2,3);
     }
     
     // összes teszteset után
@@ -128,7 +130,48 @@ public class TowerTester {
         assertEquals("After GoldTower shoot money should be 15", Model.money, 15);
     }
     
-    // beforeShoot-ot hogy teszteljük? -> shoot-ot hívja
+    @Test
+    public void beforeShootTest(){
+        Tower t = new IceTower();
+        t.setLife(80);
+        Enemy ee = new Fugu();
+        Enemy f = new SwordFish();
+        Model.enemies.add(ee);
+        Model.enemies.add(f);
+        t.onlyMyEnemiesShooting = false;
+        t.setPos(2,2);
+        ee.setPos(2,3);
+        f.setPos(2,3);
+        t.beforeShoot();
+        assertEquals("Tower's life decreases after shooting", t.getLife(), 60);
+        assertTrue("Both enemies are shooted with 16 bullets", t.bullets.size()==16);
+        t.onlyMyEnemiesShooting = true;
+        t.beforeShoot();
+        assertEquals("Only sword fish is shooted with 8 bullets", t.bullets.size(), 24);
+        t = new BubbleTower();
+        t.setLife(20);
+        t.onlyMyEnemiesShooting = true;
+        t.setPos(2,2);
+        t.beforeShoot();
+        assertEquals("Tower's life decreases after shooting", t.getLife(), 10);
+        assertEquals("Only Fugu is shooted with 4 bullets", t.bullets.size(), 4);
+        t.onlyMyEnemiesShooting = false;
+        t.beforeShoot();
+        assertEquals("Both enemies are shooted with 8 bullets", t.bullets.size(), 12);
+        t = new ElectricTower();
+        t.setLife(30);
+        t.setPos(2,2);
+        t.beforeShoot();
+        assertEquals("Tower's life decreases after shooting", t.getLife(), 10);
+        assertEquals("Both enemies are shooted with 16 bullets", t.bullets.size(), 16);
+        t.onlyMyEnemiesShooting = true;
+        t.beforeShoot();
+        assertEquals("None of the enemies is shooted with bullets", t.bullets.size(), 16);
+        Model.enemies.remove(ee);
+        Model.enemies.remove(f);
+        
+    }
+    
     // BubbleTower - shoot metódusát is tesztelni kell
     // ElectricTower shoot metódusát is
     // IceTower shoot metódusát is

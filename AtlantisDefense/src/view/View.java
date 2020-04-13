@@ -180,6 +180,7 @@ public class View extends javax.swing.JFrame {
         View.bulletTimer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                View.moneyView.setText(Integer.toString(Model.money));
                 for (int i = 0; i < Model.allBullets.size(); ++i) {
                     Model.allBullets.get(i).move();
                 }

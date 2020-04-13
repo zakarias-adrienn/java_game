@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 import view.Board;
 import view.Menu;
+import static view.View.moneyView;
 
 public abstract class Enemy {
 
@@ -44,6 +45,8 @@ public abstract class Enemy {
     // ez fogja eltűntetni a tábláról
     public void checkLife(){
         if(this.life==0){
+            Model.money += 5;
+            moneyView.setText("" + Model.money);
             Model.enemies.remove(this);
             Model.deadEnemyNum++;
             Model.checkWin();
