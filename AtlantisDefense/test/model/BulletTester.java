@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+import javax.swing.JLabel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,12 +30,18 @@ public class BulletTester {
     @After
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
-    // kell a move metódus tesztje és a konstruktor
+    // kell a move metódus tesztje és a konstruktor -> 
+    @Test
+    public void BulletConstructor() {
+        Point pos;
+        JLabel bullet;
+        pos = new Point();
+        bullet = new javax.swing.JLabel();
+    }
+    
+    @Test
+    public void moveTest(){
+        //Bullet.move(); //static miatt nem tudom hogyan hívjam, mit teszteljek rajta?
+    }
 }

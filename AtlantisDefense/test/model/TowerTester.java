@@ -173,6 +173,11 @@ public class TowerTester {
     }
     
     // BubbleTower - shoot metódusát is tesztelni kell
+    /*@Test
+    public void bubbleTowerShootTest() {
+        Tower t = new BubbleTower();
+    }*/
+    
     // ElectricTower shoot metódusát is
     // IceTower shoot metódusát is
 }
