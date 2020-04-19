@@ -62,7 +62,7 @@ public class EnemyTester {
         e.checkLife();
         assertTrue("Model.enemies shold contain enemy after checklife", Model.enemies.contains(e));
         e.life = 0;
-        e.checkLife(); //én erre errosrt kapok
+        e.checkLife();
         assertFalse("Model.enemies shold not contain enemy after checklife", Model.enemies.contains(e));
         assertEquals("Model.deadEnemy number should be 1", Model.deadEnemyNum, 1);
         assertEquals("Place of the enemy should become a piece of route", Board.cells[0][0].getLife(), -1);

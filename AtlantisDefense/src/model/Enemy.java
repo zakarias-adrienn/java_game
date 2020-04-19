@@ -46,7 +46,9 @@ public abstract class Enemy {
     public void checkLife(){
         if(this.life==0){
             Model.money += 5;
-            moneyView.setText("" + Model.money);
+            if(moneyView!=null){
+                moneyView.setText("" + Model.money);
+            }
             Model.enemies.remove(this);
             Model.deadEnemyNum++;
             Model.checkWin();

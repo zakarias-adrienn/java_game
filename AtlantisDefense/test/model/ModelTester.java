@@ -51,7 +51,7 @@ public class ModelTester {
         assertEquals("findTower should return null", null, Model.findTower(1, 2));
     }
     
-    // kell még konstruktor tesztje
+    // kell még konstruktor tesztje?
     
     @Test
     public void gameOverTest(){
