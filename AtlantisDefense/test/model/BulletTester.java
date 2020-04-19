@@ -55,6 +55,131 @@ public class BulletTester {
         b.move();
         assertTrue("Bullet y position should change", b.pos.y==7);
         assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
-        // a többi esetet is ez alapján le kellene tesztelni - ne, e, se, stb az iránya a golyónak
+        Model.allBullets.remove(b);
+        
+        // ne
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "ne";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==13);
+        assertTrue("Bullet y position should change", b.pos.y==7);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // e
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "e";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==13);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // se
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "se";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==13);
+        assertTrue("Bullet y position should change", b.pos.y==13);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // s
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "s";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet y position should change", b.pos.y==13);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // sw
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "sw";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==7);
+        assertTrue("Bullet y position should change", b.pos.y==13);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // w
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "w";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==7);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // nw
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "nw";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position should change", b.pos.x==7);
+        assertTrue("Bullet y position should change", b.pos.y==7);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
+        
+        // stop
+        b.elapsedDistance = 60;
+        Model.allBullets.add(b);
+        b.move();
+        assertFalse("Bullet should not be in allBullets array", Model.allBullets.contains(b));
+        b.direction = "stop";
+        b.elapsedDistance = 5;
+        Model.allBullets.add(b);
+        b.pos.x = 10;
+        b.pos.y = 10;
+        b.move();
+        assertTrue("Bullet x position shouldn't change", b.pos.x==10);
+        assertTrue("Bullet y position shouldn't change", b.pos.y==10);
+        assertTrue("ElapsedDistance should grow", b.elapsedDistance==6);
+        Model.allBullets.remove(b);
     }
 }
