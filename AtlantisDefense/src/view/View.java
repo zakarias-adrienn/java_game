@@ -813,7 +813,7 @@ public class View extends javax.swing.JFrame {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
                         } else if (t instanceof ElectricTower) {
-                            t.setDistance(7);
+                            t.setDistance(4);
                             try {
                                 img = ResourceLoader.loadImage("res/electric_bg_2.png");
                             } catch (IOException ex) {
@@ -872,7 +872,7 @@ public class View extends javax.swing.JFrame {
                                 System.out.println("Nem sikerült az upgrade kép betöltése.");
                             }
                         } else if (t instanceof ElectricTower) {
-                            t.setDistance(7);
+                            t.setDistance(5);
                             try {
                                 img = ResourceLoader.loadImage("res/electric_bg_3.png");
                             } catch (IOException ex) {

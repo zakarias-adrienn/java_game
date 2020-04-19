@@ -27,7 +27,7 @@ public abstract class Enemy {
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
 //                System.out.println("HIT");
-                this.life -= 10;
+                this.life -= 5;
                 try {
                     // itt kell a cellán a healthbart változtatni
                     Board.cells[this.pos.x-1][this.pos.y-1].setLife(this.life);
