@@ -173,11 +173,39 @@ public class TowerTester {
     }
     
     // BubbleTower - shoot metódusát is tesztelni kell
-    /*@Test
+    @Test
     public void bubbleTowerShootTest() {
         Tower t = new BubbleTower();
-    }*/
+        t.setPos(0, 0);
+        t.life=70;
+        Model.allBullets.clear();
+        t.shoot();
+        assertTrue("Life of tower should decrease", t.life==60);
+        assertEquals("4 bullets should be in Model.allBullets after shooting", Model.allBullets.size(),4);
+    }
     
     // ElectricTower shoot metódusát is
+    @Test
+    public void electricTowerShootTest() {
+        Tower t = new ElectricTower();
+        t.setPos(0, 0);
+        t.life=70;
+        Model.allBullets.clear();
+        t.shoot();
+        assertTrue("Life of tower should decrease", t.life==60);
+        // assertEquals("4 bullets should be in Model.allBullets after shooting", Model.allBullets.size(),4);
+        // itt is kellene nézni hogy hány golyó lesz
+    }
+    
     // IceTower shoot metódusát is
+    @Test
+    public void iceTowerShootTest() {
+        Tower t = new IceTower();
+        t.setPos(0, 0);
+        t.life=70;
+        Model.allBullets.clear();
+        t.shoot();
+        assertTrue("Life of tower should decrease", t.life==60);
+        assertEquals("4 bullets should be in Model.allBullets after shooting", Model.allBullets.size(),8);
+    }
 }
