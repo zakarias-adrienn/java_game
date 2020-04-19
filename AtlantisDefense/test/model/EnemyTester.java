@@ -68,8 +68,18 @@ public class EnemyTester {
         assertEquals("Place of the enemy should become a piece of route", Board.cells[0][0].getLife(), -1);
     }
     
-    // collosion metódus tesztje kell még
     public void collosionTest(){
         //nem tudom hogyan teszteljem, mivel nézzel az ütközést?
+        Enemy e = new SwordFish();
+        e.setPos(1, 1);
+        e.enemyTimer = new Timer(100, null);
+        e.life = 50;
+        Model.enemies.add(e);
+        Tower t = new ElectricTower();
+        t.setPos(0, 0);
+        t.life=70;
+        Model.allBullets.clear();
+        t.shoot();
+        e.collosion(); // nézni, hogy a kilőtt golyókkal ütközik-e?
     }
 }

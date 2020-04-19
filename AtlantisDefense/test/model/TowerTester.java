@@ -68,30 +68,15 @@ public class TowerTester {
     }
     
     @Test
-    public void increaseLifeTest(){
-        Tower t = new IceTower();
-        t.increaseLife();
-        assertTrue("Value of life becomes 100 after increaseLife method", t.life==100);
-    }
-    
-    @Test
-    public void decreaseLifeTest(){
-        Tower t = new IceTower();
-        t.setLife(60);
-        t.decreaseLife();
-        assertTrue("Value of life becomes 40 after decreaseLife method", t.life==40);
-    }
-    
-    @Test
-    public void checkLifeOfTowerTest(){
-        Tower t = new IceTower();
-        Model.towers.add(t);
-        t.setPos(0, 0);
-        t.setLife(0);
-        t.checkLife();
-        assertTrue("Tower is removed from Model.towers array when its life becomes 0", Model.towers.contains(t)==false);
-        assertFalse("On the board the place of tower should not be a towerplace", Board.cells[0][0].isTower());
-        assertEquals("On the board the life of the cell of the tower should become -1", Board.cells[0][0].getLife(), -1);
+    public void getTypeTest(){
+        Tower t = new GoldTower();
+        assertTrue("In case of GoldTower type is gold", t.getType().equals("gold"));
+        t = new IceTower();
+        assertTrue("In case of IceTower type is ice", t.getType().equals("ice"));
+        t = new ElectricTower();
+        assertTrue("In case of ElectricTower type is electric", t.getType().equals("electric"));
+        t = new BubbleTower();
+        assertTrue("In case of BubbleTower type is bubble", t.getType().equals("bubble"));
     }
     
     @Test
@@ -108,26 +93,6 @@ public class TowerTester {
         assertFalse("Enemy should not be in the distance of the tower, too small index", t.enemyGotIn(-1));
         Model.enemies.remove(e);
         assertFalse("Enemy should not be in the distance of the tower, Model.enemies is empty", t.enemyGotIn(0));
-    }
-    
-    @Test
-    public void getTypeTest(){
-        Tower t = new GoldTower();
-        assertTrue("In case of GoldTower type is gold", t.getType().equals("gold"));
-        t = new IceTower();
-        assertTrue("In case of IceTower type is ice", t.getType().equals("ice"));
-        t = new ElectricTower();
-        assertTrue("In case of ElectricTower type is electric", t.getType().equals("electric"));
-        t = new BubbleTower();
-        assertTrue("In case of BubbleTower type is bubble", t.getType().equals("bubble"));
-    }
-    
-    @Test
-    public void goldTowerShootTest() {
-        Tower t = new GoldTower();
-        Model.money = 10;
-        t.shoot();
-        assertEquals("After GoldTower shoot money should be 15", Model.money, 15);
     }
     
     @Test
@@ -168,11 +133,44 @@ public class TowerTester {
         t.beforeShoot();
         assertEquals("None of the enemies is shooted with bullets", t.bullets.size(), 16);
         Model.enemies.remove(ee);
-        Model.enemies.remove(f);
-        
+        Model.enemies.remove(f);   
     }
     
-    // BubbleTower - shoot metódusát is tesztelni kell
+    @Test
+    public void increaseLifeTest(){
+        Tower t = new IceTower();
+        t.increaseLife();
+        assertTrue("Value of life becomes 100 after increaseLife method", t.life==100);
+    }
+    
+    @Test
+    public void decreaseLifeTest(){
+        Tower t = new IceTower();
+        t.setLife(60);
+        t.decreaseLife();
+        assertTrue("Value of life becomes 40 after decreaseLife method", t.life==40);
+    }
+    
+    @Test
+    public void checkLifeOfTowerTest(){
+        Tower t = new IceTower();
+        Model.towers.add(t);
+        t.setPos(0, 0);
+        t.setLife(0);
+        t.checkLife();
+        assertTrue("Tower is removed from Model.towers array when its life becomes 0", Model.towers.contains(t)==false);
+        assertFalse("On the board the place of tower should not be a towerplace", Board.cells[0][0].isTower());
+        assertEquals("On the board the life of the cell of the tower should become -1", Board.cells[0][0].getLife(), -1);
+    }
+      
+    @Test
+    public void goldTowerShootTest() {
+        Tower t = new GoldTower();
+        Model.money = 10;
+        t.shoot();
+        assertEquals("After GoldTower shoot money should be 15", Model.money, 15);
+    }
+    
     @Test
     public void bubbleTowerShootTest() {
         Tower t = new BubbleTower();
@@ -184,7 +182,6 @@ public class TowerTester {
         assertEquals("4 bullets should be in Model.allBullets after shooting", Model.allBullets.size(),4);
     }
     
-    // ElectricTower shoot metódusát is
     @Test
     public void electricTowerShootTest() {
         Tower t = new ElectricTower();
@@ -197,7 +194,6 @@ public class TowerTester {
         // itt is kellene nézni hogy hány golyó lesz
     }
     
-    // IceTower shoot metódusát is
     @Test
     public void iceTowerShootTest() {
         Tower t = new IceTower();
