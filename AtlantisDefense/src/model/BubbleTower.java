@@ -10,7 +10,7 @@ public class BubbleTower extends Tower {
         super();
         this.life = 100;
         this.spot = null;
-        this.price = 80;
+        this.price = 40;
         this.distance = 5;
         this.type = "bubble";
         bullets = new ArrayList<>();

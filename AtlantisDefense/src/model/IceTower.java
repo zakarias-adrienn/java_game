@@ -10,7 +10,7 @@ public class IceTower extends Tower {
         super();
         this.life = 100;
         this.spot = null;
-        this.price = 100;
+        this.price = 60;
         this.distance = 4;
         this.type = "ice";
         bullets = new ArrayList<>();
