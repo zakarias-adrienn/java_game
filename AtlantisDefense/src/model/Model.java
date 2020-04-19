@@ -11,7 +11,7 @@ import view.View;
 
 public class Model {
 
-    public static final int moneyDefaultValue = 400;
+    public static final int moneyDefaultValue = 300;
 
     public static int money;
     public static int pearlPower;
