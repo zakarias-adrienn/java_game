@@ -29,7 +29,7 @@ public class BubbleTower extends Tower {
         Bullet bullet2 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet3 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet4 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
-        this.life -= 10;
+        this.life -= 5;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
             Board.cells[this.pos.x][this.pos.y].repaint();

@@ -102,7 +102,7 @@ public abstract class Tower {
     }
 
     public void decreaseLife() {
-        this.life -= 20;
+        this.life -= 10;
     }
     
     public void setLife(int life){

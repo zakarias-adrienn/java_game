@@ -34,7 +34,7 @@ public class IceTower extends Tower {
         Bullet bullet6 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet7 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
         Bullet bullet8 = new Bullet(pos.x+1, pos.y+1, bullet_img, speed, distance);
-        this.life -= 10;
+        this.life -= 5;
         try {
             Board.cells[this.pos.x][this.pos.y].setLife(this.life);
             Board.cells[this.pos.x][this.pos.y].repaint();

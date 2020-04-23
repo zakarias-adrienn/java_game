@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import org.junit.After;
@@ -69,17 +70,19 @@ public class EnemyTester {
     }
     
     public void collosionTest(){
-        //nem tudom hogyan teszteljem, mivel nézzel az ütközést?
         Enemy e = new SwordFish();
-        e.setPos(1, 1);
+        e.setPos(0, 0);
         e.enemyTimer = new Timer(100, null);
         e.life = 50;
         Model.enemies.add(e);
-        Tower t = new ElectricTower();
-        t.setPos(0, 0);
-        t.life=70;
         Model.allBullets.clear();
-        t.shoot();
-        e.collosion(); // nézni, hogy a kilőtt golyókkal ütközik-e?
+        Bullet b = new Bullet();
+        b.pos.x=0;
+        b.pos.y=0;
+        Model.allBullets.add(b);
+        Point p = e.collosion(); // nézni, hogy a kilőtt golyókkal ütközik-e?
+        assertEquals("After collosion enemy's life should decrease", e.life, 45);
+        assertFalse("After collosion return value is not null",  p==null);
+        assertTrue("After collosion returned position is the bullet's position",  p==b.pos);
     }
 }

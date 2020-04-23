@@ -18,11 +18,6 @@ public class TowerTester {
     public TowerTester() {
     }
     
-    // annotációk -> @Test
-    // assertek elvárt eredmények tesztelése
-    // beszédes neve legyen a teszteknek
-    
-    // összes teszteset előtt
     @BeforeClass
     public static void setUpClass() {
         Menu menu = new Menu();
@@ -47,12 +42,6 @@ public class TowerTester {
     @After
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void TowerCreationTest(){
