@@ -12,7 +12,7 @@ public abstract class Tower {
     protected Integer spot;
     public Integer price;
     protected Integer distance;
-    protected int raiseMoneyValue = 0; // GoldTowerhez kell csak
+    protected int raiseMoneyValue = 0; 
     protected String type;
     public Timer towerTimer;
     protected Point pos;
@@ -36,7 +36,6 @@ public abstract class Tower {
         this.raiseMoneyValue = value;
     }
 
-    // toronynál nem talál az index
     public boolean enemyGotIn(int index) {
         if(Model.enemies.isEmpty() || index>=Model.enemies.size() || index<0){
             return false;
@@ -59,8 +58,7 @@ public abstract class Tower {
                 if (!this.onlyMyEnemiesShooting) {
                     for (int i = 0; i < Model.enemies.size(); ++i) {
                         if (enemyGotIn(i)) {
-                            System.out.println("Ellenség a hatókörömbe ért!");
-                            shoot(); // több golyó is létrejön egy ellenséghez
+                            shoot();
                         }
                     }
                 } else {

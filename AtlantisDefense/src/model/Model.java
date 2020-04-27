@@ -11,7 +11,7 @@ import view.View;
 
 public class Model {
 
-    public static final int moneyDefaultValue = 300;
+    public static final int moneyDefaultValue = 500;
 
     public static int money;
     public static int pearlPower;
@@ -34,7 +34,7 @@ public class Model {
     public Model(Menu menu) {
         allBullets = new ArrayList<>();
         pearlPower = 100;
-        money = moneyDefaultValue; // kezdetben mennyi legyen?
+        money = moneyDefaultValue; 
         enemies = new ArrayList<>();
         towers = new ArrayList<>();
         route = new ArrayList<>();
@@ -55,24 +55,14 @@ public class Model {
         }
 
         length = parseInt(readLines.get(1).split(" ")[0]);
-//        System.out.println("length: "+length);
         width = parseInt(readLines.get(1).split(" ")[1]);
         table = new int[length][width];
         for (int i = 2; i < 15; ++i) {
             String[] row = readLines.get(i).split(" ");
             for (int j = 0; j < width; ++j) {
-//                System.out.println(parseInt(row[j]));
                 table[i - 2][j] = parseInt(row[j]);
             }
         }
-        /*
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                System.out.println("i: " + i);
-                System.out.println("j: " + j);
-                System.out.println(table[i][j]);
-            }
-        }*/
         
         level = new LevelItem[length][width];
         for (int i = 0; i < length; i++) {
@@ -94,7 +84,7 @@ public class Model {
 
             }
         }
-        towers.clear(); //minden értéket null-ra állít
+        towers.clear(); 
 
         String[] routeString = readLines.get(length + 2).split(" ");
         for (int i = 0; i < routeString.length - 1; i += 2) {
@@ -117,7 +107,6 @@ public class Model {
 
     }
 
-    // private metódus, ezért nem kell tesztelni
     private ArrayList<String> readFile(String filename) {
         ArrayList<String> records = new ArrayList<String>();
         try {
@@ -169,7 +158,6 @@ public class Model {
     public static boolean checkWin(){
         if (Pearl.getLife() > 0  && deadEnemyNum+arrivedEnemyNum == enemyNumber){
             View.createWinDialog();
-            //menu.setButton(l+1);
             Model.money = moneyDefaultValue;
             if(View.moneyView!=null){
                 View.moneyView.setText("" + Model.money);

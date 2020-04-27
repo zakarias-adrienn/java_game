@@ -29,7 +29,7 @@ public class EnemyReaded {
             img = ResourceLoader.loadImage("res/fugu_small.png");
             return img;
         }
-        else{ //gold
+        else{ 
             img = ResourceLoader.loadImage("res/goldfish_small.png");
             return img;
         }

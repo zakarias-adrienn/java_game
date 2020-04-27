@@ -116,17 +116,12 @@ public class View extends javax.swing.JFrame {
         View.timerForMoneyViewAndEnemiesComing = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("a");
-                /*Point tmp = timeView.getLocation();
-                 int x = tmp.x + 10;
-                 timeView.setLocation(x, tmp.y);*/
                 if (!paused) {
                     timeView.setText("" + i++);
                     elapsed += 10;
                     for (int i = 0; i < Model.readedEnemies.size(); ++i) {
                         if (Model.readedEnemies.get(i).startTime == elapsed) {
                             try {
-                                // el kell induljon az ellenség, mert eljött az ideje
                                 Enemy enemy;
                                 if ("electric".equals(Model.readedEnemies.get(i).type)) {
                                     enemy = new Eel();
@@ -174,7 +169,6 @@ public class View extends javax.swing.JFrame {
                 }
             }
         });
-//        View.goldTowerTimers.add(t);
         View.goldTowerTimer.start();
 
         View.bulletTimer = new Timer(100, new ActionListener() {
@@ -207,9 +201,6 @@ public class View extends javax.swing.JFrame {
         timerForMoneyViewAndEnemiesComing.start();
     }
 
-//    public long elapsedTime() {
-//            return Math.round((this.elapsed - this.startTime) / 100);
-//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -401,9 +392,6 @@ public class View extends javax.swing.JFrame {
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(240, 248, 255));
         txtAreaDetail.setForeground(new Color(0, 0, 81));
-        /*Font f = txtAreaDetail.getFont();
-         Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-         txtAreaDetail.setFont(f2);*/
         Font font = new Font("Tw Cen MT", Font.BOLD, 20);
         txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();
@@ -715,7 +703,6 @@ public class View extends javax.swing.JFrame {
                 if (Model.money >= 50 && t != null) {
                     Model.money -= 50;
                     moneyView.setText("" + Model.money);
-                    // meg kell keresni az ezen a helyen levő tornyot s növelni az életerejét
                     t.increaseLife();
                     try {
                         thumb.setLife(100);
@@ -724,7 +711,6 @@ public class View extends javax.swing.JFrame {
                         System.out.println("Nem sikerült feljavítani az életerőt a healthbaron.");
                     }
                 } else if (t != null) {
-                    // ha nincs elég pénze
                     View.createMoneyNotEnoughDialog();
                 }
                 View.j.setVisible(false);

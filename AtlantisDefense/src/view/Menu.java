@@ -183,7 +183,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void level2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ButtonActionPerformed
 
-        System.out.println("gomb2 menu");
         this.setVisible(false);
         Menu.level2ButtonClicked = true;
         Menu.level1ButtonClicked = false;
@@ -206,9 +205,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_level3ButtonActionPerformed
 
     private void level1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ButtonActionPerformed
-        // játék indítása
-        System.out.println("gomb1 menu");
-
+        
         this.setVisible(false);
         Menu.level2ButtonClicked = false;
         Menu.level1ButtonClicked = true;
@@ -236,9 +233,6 @@ public class Menu extends javax.swing.JFrame {
         txtAreaDetail.setEditable(false);
         txtAreaDetail.setBackground(new Color(250, 215, 172));
         txtAreaDetail.setForeground(new Color(0, 0, 81));
-        /*Font f = txtAreaDetail.getFont();
-        Font f2 = new Font(f.getFontName(), f.getStyle(), f.getSize() + 3);
-        txtAreaDetail.setFont(f2);*/
         Font font = new Font("Tw Cen MT", Font.BOLD, 25);
         txtAreaDetail.setFont(font);
         JScrollPane txtAreaScroll = new JScrollPane();

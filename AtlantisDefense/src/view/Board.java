@@ -132,7 +132,6 @@ public class Board extends JPanel {
                                     Model.money -= tmp.price;
                                     View.moneyView.setText(Integer.toString(Model.money));
                                     Model.towers.add(tmp);
-//                                    System.out.println(Model.towers.size());
                                     spotIndex++;
                                 } else if (Model.money - tmp.price < 0) {
                                     View.createMoneyNotEnoughDialog();
@@ -170,7 +169,6 @@ public class Board extends JPanel {
         cells[x][y].setIcon(icon);
     }
 
-    // routeCell-t jó sorrendbe kellene tenni!
     public static ArrayList<Cell> orderRouteCells() {
         ArrayList<Cell> routeCopies = new ArrayList<>();
         int k = 0;
@@ -187,9 +185,7 @@ public class Board extends JPanel {
     }
 
     public static void enemyComes(Image img, int speed, Enemy enemy) throws IOException {
-        // a sebessége fgvében haladjon végig az úton -> routeCells celláinak ikonjait kell lecserélni
         if (!View.paused) {
-            System.out.println("ellenség jön");
             ArrayList<Cell> routeCells2 = orderRouteCells();
             ImageIcon icon = new ImageIcon(img);
             ImageIcon icon2 = new ImageIcon(route);
@@ -273,7 +269,7 @@ public class Board extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (thumb.isMouseListenerActive) {
-                if (thumb.isTower() && !thumb.wasJustPlaced) { //még torony van itt
+                if (thumb.isTower() && !thumb.wasJustPlaced) {
                     View.createDialogForTower(thumb.getXPos() - 1, thumb.getYPos() - 1, thumb);
                 } else if (thumb.wasJustPlaced == true) {
                     thumb.wasJustPlaced = false;

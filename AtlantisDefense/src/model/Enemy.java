@@ -11,7 +11,7 @@ import static view.View.moneyView;
 
 public abstract class Enemy {
 
-    protected Point pos; // x, y helyett
+    protected Point pos; 
     public int life;
     protected int strength;
     protected int speed;
@@ -26,10 +26,8 @@ public abstract class Enemy {
         Point enemyAbsoulutePos = new Point((116 + 28 + 57 * (pos.y - 1)), (100 + 23 + 47 * (pos.x - 1)));
         for (int i = 0; i < Model.allBullets.size(); i++) {
             if (Math.abs(Model.allBullets.get(i).pos.x - enemyAbsoulutePos.x) < precision && Math.abs(Model.allBullets.get(i).pos.y - enemyAbsoulutePos.y) < precision) {
-//                System.out.println("HIT");
                 this.life -= 5;
                 try {
-                    // itt kell a cellán a healthbart változtatni
                     Board.cells[this.pos.x-1][this.pos.y-1].setLife(this.life);
                 } catch (IOException ex) {
                     System.out.println("Nem sikerült az ellenség életerejét frissíteni a healthbaron.");
@@ -42,7 +40,6 @@ public abstract class Enemy {
         return ret;
     }
     
-    // ez fogja eltűntetni a tábláról
     public void checkLife(){
         if(this.life==0){
             Model.money += 5;
